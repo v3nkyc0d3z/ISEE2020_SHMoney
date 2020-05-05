@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Strawhats</string>
+    <string name="save_transaction">save</string>
+    <string name="amount_spent">Amount Spent</string>
+    <string name="transactionbtn">New Transaction</string>
+    <string name="select_date">Select Date</string>
+    <string name="add_new_expense">Add New Expense</string>
+    <string name="add_new_income">Add New Income</string>
+    <string-array name="Type_of_payments">
+        <item>Debit Card</item>
+        <item>Cash</item>
+    </string-array>
+</resources>
