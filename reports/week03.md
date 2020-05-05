@@ -30,7 +30,15 @@ In the first two weeks, we have finished the tasks on time as well as have gaine
 
 According to tasks assignment in the project plan, every team member has contributed to the team presentation milestone as well as the beginning part of the basic prototype milestone. With the organization of MayuraGurjar, the team has met several times to discuss the content of the team presentation and what should be explained during the presentation. Kim took the responsibility of designing the presentation based on the ideas of every team member. Mehrun volunteered to be the first presenter and has successfully explained the team's ideas to all audiences.
 After the meeting with the customer, one meeting was organized and new roles were assigned to team's members as following:
-![Untitled1](uploads/d7c51fa7894ecffe874a0d9b0af29103/Untitled1.png)
+
+| Team Member Name | Primary Responsibility | Secondary Responsibility |
+| ------ | ------ | ------ |
+| Thi Kim Nhung Phan | System Design | Quality Control |
+| Madhuri Arun Tawde | Product Owner | Final Implementation |
+| Mayura Gurjar Cheepinahalli Vasudeva | Requirement Analysis, Quality Assurance | Team Management |
+| Venkatesh Thirugnana Sambandham | Scrum Master | Task Distribution |
+| Mehrun A S Khan | Blog Writing and App Design | Testing |
+
 Even though each member has a specific role, however, they will also contribute to all the tasks of other members in order to learn new skills. In the last part of the team presentation milestone, the blog article was finished by the presenter of this milestone, Mehrun, with support from all team members. For the first part of the basic prototype milestone, Venkatesh, the scrum master, has built several functions for the app, which can be learned and processed further by other team members. All ideas for the weekly report was gathered and combined by Kim. 
 
 ### _Achievement_
