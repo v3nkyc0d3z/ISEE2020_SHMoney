@@ -9,15 +9,20 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class TransactionForm extends AppCompatActivity {
     private static final String TAG = "TransactionForm";
-
+    private ArrayList<CategoryItem> mCategoryList;
+    private CategoryAdapter mAdapter;
     private TextView DisplayDate;
     private DatePickerDialog.OnDateSetListener DateSetListener;
 
@@ -25,6 +30,7 @@ public class TransactionForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_form);
+        initCategoryList();
         DisplayDate = (TextView) findViewById(R.id.TransDate);
 
         DisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -54,5 +60,27 @@ public class TransactionForm extends AppCompatActivity {
 
             }
         };
+        Spinner spinnerCategories = findViewById(R.id.Spinner_Category);
+        mAdapter = new CategoryAdapter(this,mCategoryList);
+        spinnerCategories.setAdapter(mAdapter);
+
+        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CategoryItem ClickedItem = (CategoryItem) parent.getItemAtPosition(position);
+                String ClickedCategoryName = ClickedItem.getmCategoryName();
+                Toast.makeText(TransactionForm.this,ClickedCategoryName+" Selected",Toast.LENGTH_SHORT);
+                }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    private void initCategoryList(){
+        mCategoryList = new ArrayList<>();
+        mCategoryList.add(new CategoryItem("Shopping",R.drawable.ic_shopping_category));
+        mCategoryList.add(new CategoryItem("Entertainment",R.drawable.ic_entertainment_category));
     }
 }
