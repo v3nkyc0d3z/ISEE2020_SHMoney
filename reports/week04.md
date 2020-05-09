@@ -31,9 +31,9 @@ Technology background, we have divided team into two having coding and manageria
 responsibilities, however, they will also contribute to all the tasks of other members in order to explore new skills. Currently each 
 member is studying the concepts of class and activity diagram which will be included in our next Milestone. On short term we have planned
 on to below tasks on which individual/team of two will be working on
-*	Mayura- Studying UML diagrams
-*	Venkatesh and Kim-Implementation of essential requirements  
-*	Madhuri and Mehrun-Studying the database handling in android studio
+*	__Mayura__- Studying UML diagrams
+*	__Venkatesh and Kim__-Implementation of essential requirements  
+*	__Madhuri and Mehrun__-Studying the database handling in android studio
 ## Roadblocks 
 As some of the members are not well-versed or do not have any hands on experience in coding, it requires an extra efforts 
 to learn and implement various tasks.
