@@ -12,19 +12,19 @@
 *	Finish the weekly report on time.
 *	Generate the structure for the basic prototype.
 *	Build basic functionalities of the application.
-## Progress
+## _Progress_
 In the last week of meeting, we successfully completed our first Blog and first Milestone which was presented by Mehrun and 
 submitted our weekly report before deadline. Furthermore, we have assigned the roles and responsibilities for each team member with 
 the desired skills as we look forward to finish the project successfully and efficiently. The tasks are assigned appropriately in order
 to prepare the presentation and basic prototype for next Milestone. 
-## Roles and Responsibility
+## _Roles and Responsibility_
 As we have learned that we have to be ready with basic prototype containing all essential requirements on running app, we have been
 currently working on some of the essential requirements, we have assigned below roles:
-### Product Owner- Madhuri Arun Tawde
-###  Scrum Master- Venkatesh Thirugnana Sambandham
-### Team Members- Thi Kim Nhung Phan
-###               Mayura Gurjar Cheepinahalli Vasudeva
-###               Mehrun A S Khan
+* __Product Owner__- Madhuri Arun Tawde
+*  __Scrum Master__- Venkatesh Thirugnana Sambandham
+* __Team Members__- Thi Kim Nhung Phan,
+               Mayura Gurjar Cheepinahalli Vasudeva,
+               Mehrun A S Khan
 ## Individual assignment of Task
 We need to focus on both technical and strategical part of the project and since our team comprises of both Management and
 Technology background, we have divided team into two having coding and managerial teams ,each member will be working on the key
