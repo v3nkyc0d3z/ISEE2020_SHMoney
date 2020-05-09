@@ -2,11 +2,11 @@
 ### Strawhats
 ## Table of content
 *	[Last Week Goals](#lastweek)
-*	[Goals]
-*	Progress 
-*	Individual assignment completion
-*	Plans And Goals For Upcoming Weeks
-*   Meeting Agenda
+*	[Goals](Goals)
+*	[Progress](Progress) 
+*	[Individual assignment completion](Individual)
+*	[Plans And Goals For Upcoming Weeks](Plans)
+*   [Meeting Agenda](Meeting)
 ## Last Week Goals
 *	Complete a comprehensive blog article for the first milestone.
 *	Finish the weekly report on time.
@@ -20,11 +20,11 @@ to prepare the presentation and basic prototype for next Milestone.
 ## Roles and Responsibility
 As we have learned that we have to be ready with basic prototype containing all essential requirements on running app, we have been
 currently working on some of the essential requirements, we have assigned below roles:
-Product Owner- Madhuri Arun Tawde
-Scrum Master- Venkatesh Thirugnana Sambandham
-Team Members- Thi Kim Nhung Phan
-                            Mayura Gurjar Cheepinahalli Vasudeva
-		     Mehrun A S Khan
+### Product Owner- Madhuri Arun Tawde
+###  Scrum Master- Venkatesh Thirugnana Sambandham
+### Team Members- Thi Kim Nhung Phan
+###               Mayura Gurjar Cheepinahalli Vasudeva
+###               Mehrun A S Khan
 ## Individual assignment of Task
 We need to focus on both technical and strategical part of the project and since our team comprises of both Management and
 Technology background, we have divided team into two having coding and managerial teams ,each member will be working on the key
