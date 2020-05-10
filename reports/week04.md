@@ -2,11 +2,12 @@
 ### Strawhats
 ## Table of content
 *	[Last Week Goals](#lastweek)
-*	[Goals](Goals)
-*	[Progress](Progress) 
-*	[Individual assignment completion](Individual)
-*	[Plans And Goals For Upcoming Weeks](Plans)
-*   [Meeting Agenda](Meeting)
+*	[Goals](#Goals)
+*	[Progress](#Progress) 
+	- [Individual assignment completion](#Individual)
+    - [Roadblocks](#Roadblocks)
+*	[Plans And Goals For Upcoming Weeks](#Plans)
+*   [Meeting Agenda](#Meeting)
 ## Last Week Goals
 *	Complete a comprehensive blog article for the first milestone.
 *	Finish the weekly report on time.
