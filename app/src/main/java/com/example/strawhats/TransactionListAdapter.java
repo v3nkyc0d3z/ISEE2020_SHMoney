@@ -28,12 +28,17 @@ public class TransactionListAdapter extends ArrayAdapter<TransactionList> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String comment = getItem(position).getComment();
+        int id = getItem(position).getId();
         String date = getItem(position).getDate();
-        String action = getItem(position).getAction();
         String amount = getItem(position).getAmount();
+        String mode = getItem(position).getMode();
+        String category = getItem(position).getCategory();
+        String comment = getItem(position).getComment();
+        String type = getItem(position).getType();
+        String action = getItem(position).getAction();
 
-        TransactionList item = new TransactionList(comment,date,amount,action);
+
+        TransactionList item = new TransactionList(id,date,amount,mode,category,comment,type,action);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource,parent,false);

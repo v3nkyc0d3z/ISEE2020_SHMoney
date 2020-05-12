@@ -2,10 +2,12 @@ package com.example.strawhats;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -16,6 +18,7 @@ public class TransactionSummary extends AppCompatActivity {
     private static final String Tag = "TransactionSummary";
     TransactionDatabaseHelper mDatabaseHelper ;
     private ListView mlistView;
+    ArrayList<TransactionList> listData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,14 @@ public class TransactionSummary extends AppCompatActivity {
         mDatabaseHelper = new TransactionDatabaseHelper(this);
         
         populateListView();
+        mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TransactionSummary.this,TransactionDetails.class);
+                intent.putExtra("Transaction Item",listData.get(position));
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -36,7 +47,6 @@ public class TransactionSummary extends AppCompatActivity {
         String content = "";
         String action;
         String amt;
-        ArrayList<TransactionList> listData = new ArrayList<>();
         while(data.moveToNext()){
             int id = data.getInt(0);
             String date = data.getString(1);
@@ -49,7 +59,7 @@ public class TransactionSummary extends AppCompatActivity {
             if (type.equals("expense")){
                  action = "you spent";
             } else {  action = "you got";}
-            TransactionList transaction = new TransactionList(comment,date,amt,action);
+            TransactionList transaction = new TransactionList(id,date,amt,mode,category,comment,type,action);
             listData.add(transaction);
         }
        TransactionListAdapter adapter = new TransactionListAdapter(this,R.layout.adapter_transaction_list,listData);
