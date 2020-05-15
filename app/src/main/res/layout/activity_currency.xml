@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:layout_height="0dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="match_parent"
+            />
+
+        <com.example.strawhats.AutoResizeTextView
+            android:id="@+id/UI_SelectCurrency_Text_Info"
+            android:layout_width="0dp"
+            android:layout_weight="90"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:maxLines="2"
+            android:gravity="center"
+            android:textColor="@color/colorWhiteBackground"
+            android:text="Changing the currency doesn't change any entries"
+            />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="15"
+        android:layout_height="0dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="35"
+            android:layout_height="match_parent"
+            />
+
+
+        <EditText
+            android:id="@+id/UI_SelectCurrency_EditText_Currency"
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="match_parent"
+            android:inputType="textCapCharacters"
+            android:textSize="20sp"
+            android:hint="Currency"
+            android:gravity="center"
+            android:textColorHint="@color/colorWhiteBackground"
+            android:textColor="@color/colorWhiteBackground"
+            android:maxLength="3"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/icon_expand"
+            android:drawableTint="@color/colorWhiteBackground"
+            android:id="@+id/UI_SelectCurrency_Button_SpinnerIcon"
+            android:clickable="true"
+            />
+        <Spinner
+            android:id="@+id/UI_SelectCurrency_Spinner"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:dropDownWidth="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="match_parent"
+            />
+        <com.example.strawhats.AutoResizeTextView
+            android:id="@+id/UI_SelectCurrency_Text_Error"
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:textSize="14sp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@color/colorPrimaryInverted"
+            android:text="Nothing entered"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="20"
+        android:layout_height="0dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal"
+        android:weightSum="100">
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="match_parent"
+            />
+        <Button
+            android:id="@+id/UI_SelectCurrency_Button_Confirm"
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="match_parent"
+            android:text = "Confirm"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:background="@drawable/button_beige_boarderless"
+            android:textColorHint="@color/colorGreyBackgroundDark"
+            />
+    </LinearLayout>
+</LinearLayout>

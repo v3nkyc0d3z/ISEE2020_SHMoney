@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Strawhats.iml" filepath="$PROJECT_DIR$/../Strawhats.iml" group="Strawhats" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="Strawhats/app" />
+      <module fileurl="file://$PROJECT_DIR$/../strawhats-Strawhats.iml" filepath="$PROJECT_DIR$/../strawhats-Strawhats.iml" group="Strawhats" />
+      <module fileurl="file://$PROJECT_DIR$/strawhats-app.iml" filepath="$PROJECT_DIR$/strawhats-app.iml" group="Strawhats/app" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:layout_height="0dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="match_parent"
+            />
+
+        <com.example.strawhats.AutoResizeTextView
+            android:id="@+id/UI_SelectCurrency_Text_Info"
+            android:layout_width="0dp"
+            android:layout_weight="90"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:maxLines="2"
+            android:gravity="center"
+            android:textColor="@color/colorWhiteBackground"
+            android:text="Select date format"
+            />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="15"
+        android:layout_height="0dp"
+        />
+
+
+
+</LinearLayout>
