@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
             };
 //    private void configureNextButton(){
-//
 //        Button NewTransaction = (Button)findViewById(R.id.btnTrans);
 //        NewTransaction.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 //               startActivity(new Intent(MainActivity.this , TransactionForm.class));
 //            }
 //        });
-//
 //    }
 }
 
