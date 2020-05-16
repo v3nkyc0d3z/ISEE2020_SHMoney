@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Neon"></activity>
+        <activity android:name=".IncomeForm"></activity>
+        <activity android:name=".Neon" />
         <activity android:name=".security_setting" />
         <activity android:name=".currency" />
         <activity android:name=".TransactionDetails" />

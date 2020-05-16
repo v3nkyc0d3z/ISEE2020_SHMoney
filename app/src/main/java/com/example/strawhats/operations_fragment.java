@@ -19,10 +19,17 @@ public class operations_fragment extends Fragment {
 //        return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_operations,container,false);
         Button AddExpense = (Button) view.findViewById(R.id.btnAddExpense);
+        Button AddIncome = (Button) view.findViewById(R.id.btnNewIncome);
         AddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(getActivity(),TransactionForm.class));
+            startActivity(new Intent(getActivity(), TransactionForm.class));
+            }
+        });
+        AddIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),IncomeForm.class));
             }
         });
         return view;

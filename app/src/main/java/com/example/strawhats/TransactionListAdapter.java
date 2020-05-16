@@ -53,10 +53,10 @@ public class TransactionListAdapter extends ArrayAdapter<TransactionList> {
         tvAmount.setText(amount);
         tvAction.setText(action);
         if (action.equals("you spent")){
-            tvComment.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
-            tvDate.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
-            tvAmount.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
-            tvAction.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tvComment.setTextColor(ContextCompat.getColor(mContext,R.color.colorTextRed));
+            tvDate.setTextColor(ContextCompat.getColor(mContext,R.color.colorTextRed));
+            tvAmount.setTextColor(ContextCompat.getColor(mContext,R.color.colorTextRed));
+            tvAction.setTextColor(ContextCompat.getColor(mContext,R.color.colorTextRed));
         } else{
             tvComment.setTextColor(ContextCompat.getColor(mContext,R.color.green));
             tvDate.setTextColor(ContextCompat.getColor(mContext,R.color.green));
