@@ -5,9 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TransactionSummary">
+    <EditText
+        android:id="@+id/etFilterDescription"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:hint="comment"
+        android:layout_marginTop="30sp"
+        android:layout_marginLeft="20sp"/>
+    <Spinner
+        android:id="@+id/spModeFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:layout_below="@+id/etFilterDescription"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
+        android:entries="@array/Type_of_payments"
+        android:autofillHints="Type of payment"/>
+    <Spinner
+        android:id="@+id/spTypeFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:layout_below="@+id/spModeFilter"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
+        android:entries="@array/transaction_types"
+        android:autofillHints="Transaction type"/>
+    <Spinner
+        android:id="@+id/spCategoryFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:layout_below="@+id/etFilterDescription"
+        android:layout_toRightOf="@+id/spModeFilter"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
+        android:entries="@array/category_types"
+        android:autofillHints="Type of payment"/>
+    <Button
+        android:id="@+id/btnFilterReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spCategoryFilter"
+        android:layout_marginTop="10sp"
+        android:layout_toRightOf="@id/spTypeFilter"
+        android:layout_alignLeft="@+id/spCategoryFilter"
+        android:text="Reset Filters"/>
     <ListView
         android:id="@+id/lvAllTransactions"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnFilterReset"
+        android:layout_marginTop="20sp"/>
 
 </RelativeLayout>

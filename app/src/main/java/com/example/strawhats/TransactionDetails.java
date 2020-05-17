@@ -34,7 +34,7 @@ public class TransactionDetails extends AppCompatActivity {
         tvid.setText("Details about transaction "+ Integer.toString(id));
         tvdate.setText("Date : " + date);
         tvamount.setText("Amount : " + amount);
-        tvtype.setText("type : " + type );
+        tvtype.setText("Mode : " + mode );
         tvcategory.setText("Category : " + category);
     }
 }

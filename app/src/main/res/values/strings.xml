@@ -8,8 +8,21 @@
     <string name="add_new_income">Add New Income</string>
     <string name="all_transactions">All Transactions</string>
     <string-array name="Type_of_payments">
+        <item>Payment Mode</item>
         <item>Debit Card</item>
         <item>Cash</item>
+    </string-array>
+    <string-array name="category_types">
+        <item>Categories</item>
+        <item>Shopping</item>
+        <item>Entertainment</item>
+        <item>Rental</item>
+        <item>Hospital</item>
+    </string-array>
+    <string-array name="transaction_types">
+        <item>Type</item>
+        <item>income</item>
+        <item>expense</item>
     </string-array>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">

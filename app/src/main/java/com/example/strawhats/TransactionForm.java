@@ -61,6 +61,7 @@ public class TransactionForm extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month+1;
+                //Date format
                 String Date = year + "/" + dayOfMonth + "/" + month;
                 Log.d(TAG,"ondate set DATE="+year +"/"+month+"/" +dayOfMonth);
                 DisplayDate.setText(Date);
@@ -106,9 +107,11 @@ public class TransactionForm extends AppCompatActivity {
                     toastMessage("Amount should not be empty");
                 } else if(comment.length() == 0){
                     toastMessage("comment cannot be empty");
-                } else{
-                    addData(date,amt,mode,CategoryPicked,comment);
-                }
+                } else if(mode.equals("None")){
+                    toastMessage("Enter Mode of Payment");
+                }else {
+                        addData(date,amt,mode,CategoryPicked,comment);
+                    }
             }
         });
 
@@ -117,6 +120,8 @@ public class TransactionForm extends AppCompatActivity {
         mCategoryList = new ArrayList<>();
         mCategoryList.add(new CategoryItem("Shopping",R.drawable.ic_shopping_category));
         mCategoryList.add(new CategoryItem("Entertainment",R.drawable.ic_entertainment_category));
+        mCategoryList.add(new CategoryItem("Rental",R.drawable.ic_home_category));
+        mCategoryList.add(new CategoryItem("Hospital",R.drawable.ic_hospital_category));
     }
     public void addData(String date, int amount, String mode, String category, String comments){
         boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
