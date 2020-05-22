@@ -11,52 +11,61 @@
         android:layout_height="wrap_content"
         android:text="Details about Transaction"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:textSize="25dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
         android:textStyle="bold"/>
     <TextView
-        android:id="@+id/tvTdate"
+        android:id="@+id/tvT1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTid"
         android:text="Date"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="30sp"
         android:textSize="20dp"/>
     <TextView
-        android:id="@+id/tvTamount"
+        android:id="@+id/tvT2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTdate"
+        android:layout_below="@+id/tvT1"
         android:text="Amount"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="30dp"
         android:textSize="20dp"/>
     <TextView
-        android:id="@+id/tvTtype"
+        android:id="@+id/tvT3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTamount"
+        android:layout_below="@+id/tvT2"
         android:text="type"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="30dp"
         android:textSize="20dp"/>
     <TextView
-        android:id="@+id/tvTcategory"
+        android:id="@+id/tvT4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTtype"
+        android:layout_below="@+id/tvT3"
         android:text="category"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/tvT5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvT4"
+        android:text="category"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="30dp"
         android:textSize="20dp"/>
     <Button
         android:id="@+id/btnTdelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tvTcategory"
-        android:layout_marginTop="60dp"
+        android:layout_below="@+id/tvT5"
+        android:layout_marginTop="30dp"
         android:text="Delete"/>
 
 </RelativeLayout>

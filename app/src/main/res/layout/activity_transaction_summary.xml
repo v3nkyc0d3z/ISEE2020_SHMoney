@@ -12,7 +12,8 @@
         android:layout_centerHorizontal="true"
         android:hint="comment"
         android:layout_marginTop="30sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        android:inputType="none"/>
     <Spinner
         android:id="@+id/spModeFilter"
         android:layout_width="wrap_content"

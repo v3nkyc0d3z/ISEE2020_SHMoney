@@ -20,7 +20,7 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE TRANSACTIONS (Tid INTEGER PRIMARY KEY AUTOINCREMENT," +
                        "TransactionDate String," +
-                       "Amount INTEGER," +
+                       "Amount FLOAT," +
                        "Mode STRING," +
                        "Category String," +
                        "Comments String," +
@@ -34,7 +34,7 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addTransaction(String date, int amount, String mode, String category, String comments,String type){
+    public boolean addTransaction(String date, Float amount, String mode, String category, String comments,String type){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("TransactionDate",date);
@@ -58,5 +58,15 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         String query = "Select * from TRANSACTIONS";
         Cursor data = db.rawQuery(query,null);
         return data;
+    }
+
+    public boolean deleteData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete("TRANSACTIONS", "Tid = ?",new String[] {id});
+        if (result>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -13,7 +13,8 @@
         <activity android:name=".Neon" />
         <activity android:name=".security_setting" />
         <activity android:name=".currency" />
-        <activity android:name=".TransactionDetails" />
+        <activity android:name=".TransactionDetails"
+            android:theme="@style/AppTheme.PopUpWindow"/>
         <activity android:name=".TransactionSummary" />
         <activity android:name=".TransactionForm" />
         <activity android:name=".MainActivity">

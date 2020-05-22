@@ -77,7 +77,7 @@ public class IncomeForm extends AppCompatActivity {
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                int amt = Integer.parseInt(amount);
+                Float amt = Float.parseFloat(amount);
                 String comment = etComment.getText().toString();
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
@@ -90,7 +90,7 @@ public class IncomeForm extends AppCompatActivity {
         });
 
     }
-       public void addData(String date, int amount, String mode, String category, String comments){
+       public void addData(String date, Float amount, String mode, String category, String comments){
         boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA","NA",comments,"Income");
         if (insertData){
             toastMessage("Data Inserted");

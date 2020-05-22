@@ -30,7 +30,7 @@
         android:layout_marginBottom="45dp"
         android:hint="Amount Recieved"
         android:importantForAutofill="no"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/etTransactionComment"

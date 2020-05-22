@@ -120,8 +120,8 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
         while(data.moveToNext()){
             int id = data.getInt(0);
             String date = data.getString(1);
-            int amount = data.getInt(2);
-            amt = Integer.toString(amount);
+            Float amount = data.getFloat(2);
+            amt = Float.toString(amount);
             String mode = data.getString(3);
             String category = data.getString(4);
             String comment = data.getString(5);
@@ -149,5 +149,17 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
     @Override
     public void afterTextChanged(Editable s) {
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        listData.clear();
+        populateList();
+        myAdapter = new TransactionListAdapter(TransactionSummary.this,listData);
+        mlistView.setAdapter(myAdapter);
+        typeSpinner.setSelection(0);
+        CategoriesSpinner.setSelection(0);
+        ModeSpinner.setSelection(0);
     }
 }

@@ -3,20 +3,35 @@ package com.example.strawhats;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TransactionDetails extends AppCompatActivity {
+    TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int)(width*.6),(int)(height*.6));
+
         Intent intent = getIntent();
         TransactionList Transaction = intent.getParcelableExtra("Transaction Item");
 
+
         int id = Transaction.getId();
+        final String id_str = Integer.toString(id);
         String date = Transaction.getDate();
         String amount = Transaction.getAmount();
         String mode = Transaction.getMode();
@@ -26,15 +41,44 @@ public class TransactionDetails extends AppCompatActivity {
         String action = Transaction.getAction();
 
         TextView tvid = findViewById(R.id.tvTid);
-        TextView tvdate = findViewById(R.id.tvTdate);
-        TextView tvamount = findViewById(R.id.tvTamount);
-        TextView tvtype = findViewById(R.id.tvTtype);
-        TextView tvcategory = findViewById(R.id.tvTcategory);
+        TextView tv1 = findViewById(R.id.tvT1);
+        TextView tv2 = findViewById(R.id.tvT2);
+        TextView tv3 = findViewById(R.id.tvT3);
+        TextView tv4 = findViewById(R.id.tvT4);
+        TextView tv5 = findViewById(R.id.tvT5);
+        if (type.equals("expense")) {
+            tvid.setText("Transaction : " + Integer.toString(id));
+            tv1.setText("Date     : " + date);
+            tv2.setText("Type     : " + type);
+            tv3.setText("Amount   : " + amount);
+            tv4.setText("Mode     : " + mode);
+            tv5.setText("Category : " + category);
+        } else {
+            tvid.setText("Transaction : " + Integer.toString(id));
+            tv1.setText("Date     : " + date);
+            tv2.setText("Type     : " + type);
+            tv3.setText("Amount   : " + amount);
+            tv4.setVisibility(View.INVISIBLE);
+            tv5.setVisibility(View.INVISIBLE);
+        }
 
-        tvid.setText("Details about transaction "+ Integer.toString(id));
-        tvdate.setText("Date : " + date);
-        tvamount.setText("Amount : " + amount);
-        tvtype.setText("Mode : " + mode );
-        tvcategory.setText("Category : " + category);
+        Button Delete = (Button) findViewById(R.id.btnTdelete);
+        Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteData(id_str);
+            }
+        });
+    }
+    public void deleteData(String id){
+        boolean deletedata = mDatabaseHelper.deleteData(id);
+        if(deletedata){
+            toastMessage("Data Deleted");
+        } else{
+            toastMessage("Data Not Deleted");
+        }
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 }

@@ -31,7 +31,7 @@
         android:layout_marginBottom="45dp"
         android:hint="@string/amount_spent"
         android:importantForAutofill="no"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
     <Spinner
         android:id="@+id/PaymentType"

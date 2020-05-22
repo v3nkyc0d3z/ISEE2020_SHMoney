@@ -100,7 +100,7 @@ public class TransactionForm extends AppCompatActivity {
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                int amt = Integer.parseInt(amount);
+                Float amt = Float.parseFloat(amount);
                 String mode = ModeSelect.getSelectedItem().toString();
                 String comment = etComment.getText().toString();
                 if(amount.length() == 0){
@@ -123,7 +123,7 @@ public class TransactionForm extends AppCompatActivity {
         mCategoryList.add(new CategoryItem("Rental",R.drawable.ic_home_category));
         mCategoryList.add(new CategoryItem("Hospital",R.drawable.ic_hospital_category));
     }
-    public void addData(String date, int amount, String mode, String category, String comments){
+    public void addData(String date, Float amount, String mode, String category, String comments){
         boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
         if (insertData){
             toastMessage("Data Inserted");
