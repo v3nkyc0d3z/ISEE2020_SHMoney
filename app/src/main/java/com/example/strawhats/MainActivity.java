@@ -13,29 +13,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomnav = findViewById(R.id.bottom_navigation);
-        bottomnav.setOnNavigationItemSelectedListener(navListener);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new operations_fragment()).commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selected_fragment = null;
+                    Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
-                        case R.id.nav_summary:
-                            selected_fragment = new summary_fragment();
+                        case R.id.nav_home:
+                            selectedFragment = new operations_fragment();
                             break;
-                        case R.id.nav_functions:
-                            selected_fragment = new operations_fragment();
+                        case R.id.nav_account:
+                            selectedFragment = new AccountsFragment();
                             break;
-                        case R.id.nav_settings:
-                            selected_fragment = new settings_fragment();
+                        case R.id.nav_setting:
+                            selectedFragment = new SettingsFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selected_fragment).commit();
+                            selectedFragment).commit();
                     return true;
                 }
 

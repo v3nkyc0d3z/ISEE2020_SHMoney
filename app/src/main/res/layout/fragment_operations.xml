@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="#1f4068">
 
 
     <FrameLayout
@@ -39,7 +39,7 @@
             android:layout_marginEnd="0dp"
             android:clickable="true"
             android:focusable="true"
-            app:backgroundTint="@color/colorGreenBackgroundDark" />
+            app:backgroundTint="#30475e" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/piechart"
@@ -75,7 +75,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/down_arrow" />
+        app:srcCompat="@drawable/minus" />
 
     <TextView
         android:id="@+id/textViewAddIncome"
@@ -90,6 +90,7 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#f9f9f9"
         app:layout_constraintBottom_toTopOf="@+id/imageButtonAddIncome"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -106,6 +107,7 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#f9f9f9"
         app:layout_constraintBottom_toTopOf="@+id/imageButtonAddExpense"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -118,6 +120,7 @@
         android:text="Spending Overview"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="#f9f9f9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

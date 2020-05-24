@@ -87,7 +87,7 @@ public class operations_fragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
 
-        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
 
     }
 }
