@@ -112,6 +112,7 @@ public class TransactionForm extends AppCompatActivity {
                 }else {
                         addData(date,amt,mode,CategoryPicked,comment);
                     }
+                finish();
             }
         });
 

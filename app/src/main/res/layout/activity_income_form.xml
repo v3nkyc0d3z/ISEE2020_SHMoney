@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IncomeForm">
@@ -13,10 +15,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="45sp"
-        android:layout_marginTop="70dp"
+        android:layout_marginBottom="128dp"
         android:hint="@string/select_date"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/etAmount"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
         android:id="@+id/etAmount"
@@ -24,27 +29,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/TransDate"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="45dp"
-        android:hint="Amount Recieved"
+        android:layout_marginBottom="68dp"
+        android:hint="@string/amount_recieved_box"
         android:importantForAutofill="no"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
         android:id="@+id/etTransactionComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etAmount"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="132dp"
         android:autofillHints="comment"
-        android:hint="comment for income"
-        android:inputType="text" />
-
+        android:hint="@string/comment_for_income"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnSave"
@@ -52,8 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etTransactionComment"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="@string/save_transaction" />
+        android:layout_marginBottom="108dp"
+        android:text="@string/save_transaction"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

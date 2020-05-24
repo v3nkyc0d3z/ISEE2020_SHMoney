@@ -115,4 +115,16 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="imgbtnAddExpense">TODO</string>
+    <string name="imgbtnaddexpense">imgbtnAddExpense</string>
+    <string name="imgbtnaddincome">imgbtnAddIncome</string>
+    <string name="add_income">Add Income</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="add_income_text">ADD INCOME</string>
+    <string name="add_expense_text">ADD EXPENSE</string>
+    <string name="comment_for_income">comment for income</string>
+    <string name="amount_recieved_box">Amount Recieved</string>
+    <string name="summary_by_category">Summary By Category</string>
+    <string name="totalBalance">TextView</string>
+    <string name="textviewTotalBalance">TextView</string>
 </resources>
