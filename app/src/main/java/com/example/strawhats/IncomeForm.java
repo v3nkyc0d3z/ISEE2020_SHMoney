@@ -3,6 +3,7 @@ package com.example.strawhats;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -86,6 +87,7 @@ public class IncomeForm extends AppCompatActivity {
                 } else{
                     addData(date,amt,"NA","NA",comment);
                 }
+                finish();
             }
         });
 
