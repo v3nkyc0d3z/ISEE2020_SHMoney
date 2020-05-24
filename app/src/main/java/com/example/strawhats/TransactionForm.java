@@ -127,7 +127,7 @@ public class TransactionForm extends AppCompatActivity {
     public void addData(String date, Float amount, String mode, String category, String comments){
         boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
         if (insertData){
-            toastMessage("Data Inserted");
+            toastMessage("Data Inserted!");
         } else {
             toastMessage("Data insertion Failed");
         }
