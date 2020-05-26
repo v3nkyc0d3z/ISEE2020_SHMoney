@@ -7,16 +7,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IncomeForm">
+
     <TextView
         android:id="@+id/IncomeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Enter income details here"
-        android:textStyle="bold"
-        android:textSize="30sp"
         android:layout_marginTop="45sp"
-        android:textColor="@color/colorBlack"/>
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Enter income details here"
+        android:textColor="@color/colorBlack"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
     <TextView
@@ -26,9 +28,9 @@
         android:layout_below="@id/IncomeTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_marginTop="160dp"
         android:layout_marginBottom="45dp"
+        android:gravity="center"
         android:hint="@string/select_date"
         android:textSize="25sp" />
 
