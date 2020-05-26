@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new operations_fragment()).commit();
+                    new HomeFragment()).commit();
         }
     }
 
@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new operations_fragment();
+                            selectedFragment = new HomeFragment();
                             break;
-                        case R.id.nav_account:
-                            selectedFragment = new AccountsFragment();
+                        case R.id.nav_charts:
+                            selectedFragment = new ChartsFragment();
                             break;
                         case R.id.nav_setting:
                             selectedFragment = new SettingsFragment();

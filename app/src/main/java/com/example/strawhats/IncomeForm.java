@@ -37,7 +37,7 @@ public class IncomeForm extends AppCompatActivity {
         setContentView(R.layout.activity_income_form);
 
 //---------------------Date picker section---------------------------------------------------
-        DisplayDate = (TextView) findViewById(R.id.TransDate);
+        DisplayDate = (TextView) findViewById(R.id.IncomeDate);
         DisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,11 +67,10 @@ public class IncomeForm extends AppCompatActivity {
         };
 
 //-------------------------Save Button Action------------------------------------------------
-        Button SaveButton = (Button) findViewById(R.id.btnSave);
+        Button SaveButton = (Button) findViewById(R.id.btnIncomeSave);
         mDatabaseHelper = new TransactionDatabaseHelper(this);
-        etAmount = (EditText) findViewById(R.id.etAmount);
-        final Spinner ModeSelect = (Spinner) findViewById(R.id.PaymentType);
-        etComment = (EditText) findViewById(R.id.etTransactionComment);
+        etAmount = (EditText) findViewById(R.id.etIncomeAmount);
+        etComment = (EditText) findViewById(R.id.etIncomeComment);
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
