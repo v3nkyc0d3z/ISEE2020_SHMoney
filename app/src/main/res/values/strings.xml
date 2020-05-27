@@ -127,4 +127,8 @@
     <string name="summary_by_category">Summary By Category</string>
     <string name="totalBalance">TextView</string>
     <string name="textviewTotalBalance">TextView</string>
+    <string name="date">DATE</string>
+    <string name="note">NOTE</string>
+    <string name="_0_00_eur">0.00 EUR</string>
+    <string name="value">VALUE</string>
 </resources>

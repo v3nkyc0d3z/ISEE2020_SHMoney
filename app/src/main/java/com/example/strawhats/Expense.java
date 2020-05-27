@@ -19,8 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class TransactionForm extends AppCompatActivity {
-    private static final String TAG = "TransactionForm";
+public class Expense extends AppCompatActivity {
+    private static final String TAG = "Expense";
     private ArrayList<CategoryItem> mCategoryList;
     private CategoryAdapter mAdapter;
     private TextView DisplayDate;
@@ -49,7 +49,7 @@ public class TransactionForm extends AppCompatActivity {
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
-                        TransactionForm.this,
+                        Expense.this,
                         android.R.style.Theme_Holo_Light_Dialog,
                         DateSetListener,
                         year,month,day);
@@ -80,7 +80,7 @@ public class TransactionForm extends AppCompatActivity {
                 CategoryItem ClickedItem = (CategoryItem) parent.getItemAtPosition(position);
                 String ClickedCategoryName = ClickedItem.getmCategoryName();
                 CategoryPicked = ClickedCategoryName;
-                }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -110,8 +110,8 @@ public class TransactionForm extends AppCompatActivity {
                 } else if(mode.equals("None")){
                     toastMessage("Enter Mode of Payment");
                 }else {
-                        addData(date,amt,mode,CategoryPicked,comment);
-                    }
+                    addData(date,amt,mode,CategoryPicked,comment);
+                }
                 finish();
             }
         });
