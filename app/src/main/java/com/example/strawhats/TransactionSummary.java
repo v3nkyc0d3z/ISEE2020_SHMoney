@@ -36,6 +36,7 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_summary);
         EditText filter = (EditText) findViewById(R.id.etFilterDescription);
+
         mlistView = (ListView) findViewById(R.id.lvAllTransactions);
         filter.addTextChangedListener(this);
         mDatabaseHelper = new TransactionDatabaseHelper(this);

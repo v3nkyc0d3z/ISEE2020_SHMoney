@@ -1,23 +1,21 @@
 package com.example.strawhats;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.anychart.chart.common.dataentry.DataEntry;
-import com.anychart.chart.common.dataentry.ValueDataEntry;
-import com.anychart.charts.Pie;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -28,27 +26,31 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class operations_fragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     String[] categories = {"Income","Expense"};
-    int[] amounts = {1200, 800};
 
+    Cursor data;
+    Float Net = 0f;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_operations,container,false);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
         ImageButton AddExpense = (ImageButton) view.findViewById(R.id.imageButtonAddExpense);
         ImageButton AddIncome = (ImageButton) view.findViewById(R.id.imageButtonAddIncome);
         FloatingActionButton FAB = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         TextView totalBalance = (TextView) view.findViewById(R.id.textView7);
+        TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(getActivity());
+        data = mDatabaseHelper.getData();
+
 
 
         PieChart pieChart = view.findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
 
-        totalBalance.setText("$1234");
+
 
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,25 +71,48 @@ public class operations_fragment extends Fragment {
             }
         });
         setupPieChart(pieChart);
+        totalBalance.setText(Net.toString());
+        if (Net < 0) {
+            FAB.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorTextRed)));
+        } else{
+            FAB.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorTextGreen)));
+        }
         return view;
     }
 
 
     public void setupPieChart(PieChart pieChart){
+        pieChart.setUsePercentValues(false);
         List<PieEntry> value = new ArrayList<>();
-        value.add(new PieEntry(40f, "Jan"));
-        value.add(new PieEntry(60f, "Feb"));
+        Float income = 0f;
+        Float expense = 0f;
+        while(data.moveToNext()){
+            String type = data.getString(6);
+            float amount = data.getFloat(2);
 
-        PieDataSet pieDataSet = new PieDataSet(value,"Month");
+            if (type.equals("expense")){
+                expense = expense + amount;
+                Net = Net - amount;
+            } else{
+                income = income +amount;
+                Net = Net + amount;
+            }
+        }
+        value.add(new PieEntry(income,"inc"));
+        value.add(new PieEntry(expense,"exp"));
+
+
+        PieDataSet pieDataSet = new PieDataSet(value,"Proportions");
 
         PieData pieData = new PieData(pieDataSet);
-
+        pieData.setValueTextSize(13f);
         pieChart.setData(pieData);
         pieChart.setHoleRadius(70);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
-
+        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
 
     }
+
 }
