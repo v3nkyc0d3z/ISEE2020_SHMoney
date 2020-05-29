@@ -23,7 +23,7 @@ public class SettingsFragment extends Fragment {
         Currency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),Neon.class));
+                startActivity(new Intent(getActivity(),currency.class));
             }
         });
        return view;
