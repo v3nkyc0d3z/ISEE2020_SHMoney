@@ -6,7 +6,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -38,9 +42,13 @@ public class IncomeForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_form2);
         initCategoryList();
+        //Get current date
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.IncomeDate);
+        DisplayDate.setText(currentDate);
         DisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +78,10 @@ public class IncomeForm extends AppCompatActivity {
         };
 
         catBtn = findViewById(R.id.textViewCategory);
+        catBtn.setCompoundDrawablesWithIntrinsicBounds(mCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+        Drawable drawables[] = catBtn.getCompoundDrawables();
+        drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        catBtn.setText("  " + mCategoryList.get(1).getmCategoryName());
         catBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -84,7 +96,9 @@ public class IncomeForm extends AppCompatActivity {
                         ListView lw = ((AlertDialog)dialog).getListView();
                         CategoryItem checkedItem = (CategoryItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
                         catBtn.setCompoundDrawablesWithIntrinsicBounds(checkedItem.getmCategoryImage(), 0, 0, 0);
-                        catBtn.setText(checkedItem.getmCategoryName());
+                        Drawable drawables[] = catBtn.getCompoundDrawables();
+                        drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                        catBtn.setText("  " + checkedItem.getmCategoryName());
                         dialog.dismiss();
                 }
             });
