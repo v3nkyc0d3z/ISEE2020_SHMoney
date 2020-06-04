@@ -3,7 +3,7 @@
     <string name="save_transaction">save</string>
     <string name="amount_spent">Amount Spent</string>
     <string name="transactionbtn">New Transaction</string>
-    <string name="select_date"> tap here to Select Date</string>
+    <string name="select_date"> tap to select date</string>
     <string name="add_new_expense">Add New Expense</string>
     <string name="add_new_income">Add New Income</string>
     <string name="all_transactions">All Transactions</string>
@@ -123,9 +123,10 @@
     <string name="add_expense">Add Expense</string>
     <string name="add_income_text">ADD INCOME</string>
     <string name="add_expense_text">ADD EXPENSE</string>
-    <string name="comment_for_income">comment for income</string>
-    <string name="amount_recieved_box">Amount Recieved</string>
+    <string name="comment_for_income">Note</string>
+    <string name="amount_recieved_box">0.00 EUR</string>
     <string name="summary_by_category">Summary By Category</string>
     <string name="totalBalance">TextView</string>
     <string name="textviewTotalBalance">TextView</string>
+    <string name="tap_to_select_category">tap to select category</string>
 </resources>

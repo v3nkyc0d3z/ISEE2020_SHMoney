@@ -58,7 +58,7 @@ public class TransactionDetails extends AppCompatActivity {
             tv1.setText("Date     : " + date);
             tv2.setText("Type     : " + type);
             tv3.setText("Amount   : " + amount);
-            tv4.setVisibility(View.INVISIBLE);
+            tv4.setText("Category   : " + category);
             tv5.setVisibility(View.INVISIBLE);
         }
 
