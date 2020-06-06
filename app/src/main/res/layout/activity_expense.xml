@@ -12,17 +12,16 @@
     <EditText
         android:id="@+id/etAmount"
         android:layout_width="405dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="51dp"
         android:hint="@string/_0_00_eur"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="false"
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NewExpense" />
+        tools:layout_editor_absoluteY="188dp" />
 
     <Spinner
         android:id="@+id/PaymentType"
@@ -79,20 +78,18 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="64dp"
-        android:layout_height="36dp"
+        android:layout_width="71dp"
+        android:layout_height="49dp"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="18dp"
         android:layout_marginEnd="334dp"
-        android:layout_marginBottom="101dp"
         android:text="@string/value"
         android:textColor="#404351"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/etAmount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etAmount" />
+        tools:layout_editor_absoluteY="50dp" />
 
     <TextView
         android:id="@+id/TransDate"
@@ -156,10 +153,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="332dp"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="109dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="133dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

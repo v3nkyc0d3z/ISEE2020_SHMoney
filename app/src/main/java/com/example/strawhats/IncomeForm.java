@@ -49,9 +49,7 @@ public class IncomeForm extends AppCompatActivity {
         initCategoryList();
         //Get current date
         Calendar calendar = Calendar.getInstance();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime now = LocalDateTime.now();
-        String currentDate = dtf.format(now);
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.IncomeDate);
