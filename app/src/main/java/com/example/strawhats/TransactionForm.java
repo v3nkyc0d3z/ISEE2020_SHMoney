@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -37,6 +38,14 @@ public class TransactionForm extends AppCompatActivity {
         setContentView(R.layout.activity_expense);
 //Initialize the available categories
         initCategoryList();
+//Get current date
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        TextView textViewDate = findViewById(R.id.TransDate);
+        textViewDate.setText(currentDate);
+
+
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.TransDate);
         DisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +59,7 @@ public class TransactionForm extends AppCompatActivity {
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
                         TransactionForm.this,
-                        android.R.style.Theme_Holo_Light_Dialog,
+                        android.R.style.Theme_Holo_Dialog,
                         DateSetListener,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
