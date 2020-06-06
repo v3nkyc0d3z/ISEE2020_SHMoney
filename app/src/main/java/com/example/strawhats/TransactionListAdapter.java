@@ -1,6 +1,7 @@
 package com.example.strawhats;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,11 +49,16 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.adapter_transaction_list,null);
+        row.setPadding(0,30,0,-90);
 
         TextView tvComment = (TextView) row.findViewById(R.id.lvaComment);
+        tvComment.setTextSize(18);
         TextView tvDate = (TextView) row.findViewById(R.id.lvaDate);
+        tvDate.setTextSize(14);
         TextView tvAction = (TextView) row.findViewById(R.id.lvaAction);
+        tvAction.setTextSize(14);
         TextView tvAmount = (TextView) row.findViewById(R.id.lvaAmount);
+        tvAmount.setTextSize(18);
 
         tvComment.setText(Original.get(position).getComment());
         tvDate.setText(Original.get(position).getDate());
@@ -60,14 +66,14 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         tvAction.setText(Original.get(position).getAction());
 
         if(Original.get(position).getAction().equals("you spent")){
-            tvComment.setTextColor(ContextCompat.getColor(c,R.color.colorTextRed));
-            tvDate.setTextColor(ContextCompat.getColor(c,R.color.colorTextRed));
+            tvComment.setTextColor(ContextCompat.getColor(c, R.color.colorTextRed));
+            tvDate.setTextColor(ContextCompat.getColor(c,R.color.colorTextGrey));
             tvAmount.setTextColor(ContextCompat.getColor(c,R.color.colorTextRed));
             tvAction.setTextColor(ContextCompat.getColor(c,R.color.colorTextRed));
 
         } else{
             tvComment.setTextColor(ContextCompat.getColor(c,R.color.colorTextGreen));
-            tvDate.setTextColor(ContextCompat.getColor(c,R.color.colorTextGreen));
+            tvDate.setTextColor(ContextCompat.getColor(c,R.color.colorTextGrey));
             tvAmount.setTextColor(ContextCompat.getColor(c,R.color.colorTextGreen));
             tvAction.setTextColor(ContextCompat.getColor(c,R.color.colorTextGreen));
         }
