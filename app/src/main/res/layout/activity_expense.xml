@@ -11,10 +11,9 @@
 
     <EditText
         android:id="@+id/etAmount"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
+        android:layout_width="405dp"
+        android:layout_height="77dp"
         android:layout_marginTop="52dp"
-        android:background="#f3c623"
         android:hint="@string/_0_00_eur"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
@@ -155,6 +154,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="109dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

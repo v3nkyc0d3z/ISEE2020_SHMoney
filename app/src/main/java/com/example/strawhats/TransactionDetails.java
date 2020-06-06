@@ -24,7 +24,7 @@ public class TransactionDetails extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.6),(int)(height*.6));
+        getWindow().setLayout((int)(width*.6),(int)(height*.55));
 
         Intent intent = getIntent();
         TransactionList Transaction = intent.getParcelableExtra("Transaction Item");
@@ -58,7 +58,7 @@ public class TransactionDetails extends AppCompatActivity {
             tv1.setText("Date     : " + date);
             tv2.setText("Type     : " + type);
             tv3.setText("Amount   : " + amount);
-            tv4.setVisibility(View.INVISIBLE);
+            tv4.setText("Category   : " + category);
             tv5.setVisibility(View.INVISIBLE);
         }
 
@@ -67,6 +67,7 @@ public class TransactionDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteData(id_str);
+                finish();
             }
         });
     }
