@@ -2,41 +2,61 @@ package com.example.strawhats;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TransactionForm extends AppCompatActivity {
     private static final String TAG = "TransactionForm";
     private ArrayList<CategoryItem> mCategoryList;
+    private ArrayList<ModeItem> mModeList;
     private CategoryAdapter mAdapter;
+    private ModeAdapter nAdapter;
     private TextView DisplayDate;
     private DatePickerDialog.OnDateSetListener DateSetListener;
     public String CategoryPicked;
+    public String ModePicked;
     public EditText etAmount;
     public EditText etComment;
     TransactionDatabaseHelper mDatabaseHelper;
+    TextView catMenu;
+    TextView modeMenu;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction_form);
+        setContentView(R.layout.activity_expense);
 //Initialize the available categories
         initCategoryList();
+        initModeList();
+//Get current date
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        TextView textViewDate = findViewById(R.id.TransDate);
+        textViewDate.setText(currentDate);
+
+
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.TransDate);
         DisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +70,7 @@ public class TransactionForm extends AppCompatActivity {
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
                         TransactionForm.this,
-                        android.R.style.Theme_Holo_Light_Dialog,
+                        android.R.style.Theme_Holo_Dialog,
                         DateSetListener,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -68,31 +88,99 @@ public class TransactionForm extends AppCompatActivity {
 
             }
         };
-//-------------------------------------------------------------------------------------
-//-------------------------Category Spinner---------------------------------------------
-        Spinner spinnerCategories = findViewById(R.id.Spinner_Category);
-        mAdapter = new CategoryAdapter(this,mCategoryList);
-        spinnerCategories.setAdapter(mAdapter);
+//--------------------------------------------------------------------------------------------------
+//-----------------------------------Category Popup Menu--------------------------------------------
 
-        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CategoryItem ClickedItem = (CategoryItem) parent.getItemAtPosition(position);
-                String ClickedCategoryName = ClickedItem.getmCategoryName();
-                CategoryPicked = ClickedCategoryName;
-                }
+        catMenu = findViewById(R.id.textViewCat);
+        catMenu.setCompoundDrawablesWithIntrinsicBounds(mCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+        Drawable drawables[] = catMenu.getCompoundDrawables();
+        drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        catMenu.setText("  " + mCategoryList.get(1).getmCategoryName());
+        catMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(TransactionForm.this);
+                mBuilder.setTitle("Please pick a category");
+                mAdapter = new CategoryAdapter(TransactionForm.this, mCategoryList);
 
+                mBuilder.setSingleChoiceItems(mAdapter, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        ListView lw = ((AlertDialog)dialog).getListView();
+                        CategoryItem checkedItem = (CategoryItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        catMenu.setCompoundDrawablesWithIntrinsicBounds(checkedItem.getmCategoryImage(), 0, 0, 0);
+                        Drawable drawables[] = catMenu.getCompoundDrawables();
+                        drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                        catMenu.setText("  " + checkedItem.getmCategoryName());
+                        CategoryPicked = checkedItem.getmCategoryName();
+                        dialog.dismiss();
+                    }
+                });
+                mBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
             }
+
         });
-//-------------------------------------------------------------------------------------------
-//-------------------------Save Button Action------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+//-----------------------------------Payment Popup Menu--------------------------------------------
+
+        modeMenu = findViewById(R.id.textViewMode);
+        modeMenu.setCompoundDrawablesWithIntrinsicBounds(mModeList.get(1).getmModeImage(), 0, 0, 0);
+        Drawable drawable[] = modeMenu.getCompoundDrawables();
+        drawable[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        modeMenu.setText("  " + mModeList.get(1).getmModeName());
+        modeMenu.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder nBuilder = new AlertDialog.Builder(TransactionForm.this);
+                nBuilder.setTitle("Please pick a payment mode");
+                nAdapter = new ModeAdapter(TransactionForm.this, mModeList);
+
+                nBuilder.setSingleChoiceItems(nAdapter, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        ListView lw = ((AlertDialog)dialog).getListView();
+                        ModeItem checkedItem = (ModeItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        modeMenu.setCompoundDrawablesWithIntrinsicBounds(checkedItem.getmModeImage(), 0, 0, 0);
+                        Drawable drawables[] = modeMenu.getCompoundDrawables();
+
+                        drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+                        modeMenu.setText("  " + checkedItem.getmModeName());
+                        ModePicked = checkedItem.getmModeName();
+                        dialog.dismiss();
+                    }
+                });
+                nBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog nDialog = nBuilder.create();
+                nDialog.show();
+            }
+
+        });
+
+
+//--------------------------------------------------------------------------------------------------
+//-------------------------Save Button Action-------------------------------------------------------
         Button SaveButton = (Button) findViewById(R.id.btnSave);
         mDatabaseHelper = new TransactionDatabaseHelper(this);
         etAmount = (EditText) findViewById(R.id.etAmount);
-        final Spinner ModeSelect = (Spinner) findViewById(R.id.PaymentType);
+        //final Spinner ModeSelect = (Spinner) findViewById(R.id.PaymentType);
         etComment = (EditText) findViewById(R.id.etTransactionComment);
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
@@ -100,25 +188,19 @@ public class TransactionForm extends AppCompatActivity {
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                Float amt = 0f;
-                if (amount.length() != 0) {
-                    amt = Float.parseFloat(amount);
-                }
-                String mode = ModeSelect.getSelectedItem().toString();
+                Float amt = Float.parseFloat(amount);
+                //String mode = ModeSelect.getSelectedItem().toString();
                 String comment = etComment.getText().toString();
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
-                } else if(amt > 1000000) {
-                    toastMessage("Invalid Amount");
-                }
-                else if(comment.length() == 0){
+                } else if(comment.length() == 0){
                     toastMessage("comment cannot be empty");
-                } else if(mode.equals("None")){
-                    toastMessage("Enter Mode of Payment");
+                //} else if(mode.equals("None")){
+                //    toastMessage("Enter Mode of Payment");
                 }else {
-                        addData(date,amt,mode,CategoryPicked,comment);
-                        finish();
-                }
+                        addData(date,amt,ModePicked,CategoryPicked,comment);
+                    }
+                finish();
             }
         });
 
@@ -130,8 +212,15 @@ public class TransactionForm extends AppCompatActivity {
         mCategoryList.add(new CategoryItem("Rental",R.drawable.ic_home_category));
         mCategoryList.add(new CategoryItem("Hospital",R.drawable.ic_hospital_category));
     }
+    private void initModeList(){
+        mModeList = new ArrayList<>();
+        mModeList.add(new ModeItem("Debit Card",R.drawable.debit_24dp));
+        mModeList.add(new ModeItem("Credit Card",R.drawable.ic_credit_card_black_24dp));
+        mModeList.add(new ModeItem("Cash",R.drawable.cash_24dp));
+        mModeList.add(new ModeItem("PayPal",R.drawable.ic_paypal));
+    }
     public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense","EUR",false,"Default");
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {
