@@ -1,55 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:weightSum="100">
 
+    <ImageView
+        android:id="@+id/TLCategoryIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="-15dp"
+        android:src="@drawable/ic_shopping_category" />
+
     <LinearLayout
+        android:id="@+id/TLdetails"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_weight="33.3"
         android:layout_marginLeft="30dp"
+        android:layout_weight="33.3"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/lvaComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="comment"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/lvaDate"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="date"
             android:gravity="left"
-            android:textStyle="bold"
+            android:text="date"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lvaComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="comment"
             android:textSize="20sp" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_weight="66.6"
         android:layout_marginRight="30dp"
+        android:layout_weight="66.6"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/lvaAction"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Action"
             android:gravity="right"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:text="Action"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/lvaAmount"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Amount"
             android:gravity="right"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:text="Amount"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.strawhats;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -9,24 +10,31 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class IncomeForm extends AppCompatActivity {
     private static final String TAG = "IncomeForm";
@@ -39,6 +47,8 @@ public class IncomeForm extends AppCompatActivity {
     public EditText etComment;
     TransactionDatabaseHelper mDatabaseHelper;
     TextView catBtn;
+    ImageView Bold,Italic;
+    String comments;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -49,9 +59,11 @@ public class IncomeForm extends AppCompatActivity {
         initCategoryList();
         //Get current date
         Calendar calendar = Calendar.getInstance();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime now = LocalDateTime.now();
-        String currentDate = dtf.format(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String currentDate = sdf.format(new Date());
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//        LocalDateTime now = LocalDateTime.now();
+//        String currentDate = dtf.format(now);
 
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.IncomeDate);
@@ -128,29 +140,66 @@ public class IncomeForm extends AppCompatActivity {
         mDatabaseHelper = new TransactionDatabaseHelper(this);
         etAmount = (EditText) findViewById(R.id.etIncomeAmount);
         etComment = (EditText) findViewById(R.id.etIncomeComment);
+        Bold = (ImageView) findViewById(R.id.fmtBoldIncome);
+        Italic = (ImageView) findViewById(R.id.fmtItalicIncome);
+        Bold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int startSelection = etComment.getSelectionStart();
+                int endSelection = etComment.getSelectionEnd();
 
+                if (startSelection>endSelection){
+                    int temp = endSelection;
+                    endSelection = startSelection;
+                    startSelection = temp;
+                }
+
+                Spannable s = etComment.getText();
+                s.setSpan(new StyleSpan(Typeface.BOLD),startSelection,endSelection,0);
+                System.out.println(s);
+                String html = HtmlCompat.toHtml(s,HtmlCompat.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL);
+                etComment.setText(HtmlCompat.fromHtml(html,0));
+            }
+        });
+        Italic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int startSelection = etComment.getSelectionStart();
+                int endSelection = etComment.getSelectionEnd();
+
+                Spannable s = etComment.getText();
+                s.setSpan(new StyleSpan(Typeface.ITALIC),startSelection,endSelection,0);
+                System.out.println(s);
+                String html = HtmlCompat.toHtml(s,HtmlCompat.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL);
+                etComment.setText(HtmlCompat.fromHtml(html,0));
+            }
+        });
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                Float amt = Float.parseFloat(amount);
+                Float amt = 0f;
+                if (amount.length() != 0) {
+                    amt = Float.parseFloat(amount);
+                }
                 String category = catBtn.getText().toString();
-                String comment = etComment.getText().toString();
+                String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
                 } else if(comment.length() == 0){
                     toastMessage("comment cannot be empty");
                 } else{
-                    addData(date,amt,"NA",category,comment);
+                    String editcomment = HandleNewLine(comment);
+                    addData(date,amt,"NA",category,editcomment);
+                    finish();
                 }
-                finish();
             }
         });
 
     }
        public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Income");
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Income","EUR",false,"Default");
         if (insertData){
             toastMessage("Data Inserted");
         } else {
@@ -167,5 +216,12 @@ public class IncomeForm extends AppCompatActivity {
         mCategoryList.add(new CategoryItem("Rental",R.drawable.ic_home_green_24dp));
         mCategoryList.add(new CategoryItem("Interest",R.drawable.ic_attach_money_black_24dp));
         mCategoryList.add(new CategoryItem("Other",R.drawable.ic_turned_other_24dp));
+    }
+    public String HandleNewLine(String str){
+        String last2 = str.substring(str.length()-1);
+        if (last2.equals("\n")){
+            str = str.substring(0,str.length()-1);
+        }
+        return str;
     }
 }

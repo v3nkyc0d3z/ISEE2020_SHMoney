@@ -24,7 +24,10 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
                        "Mode STRING," +
                        "Category String," +
                        "Comments String," +
-                       "Type String)";
+                       "Type String,"+
+                       "Currency String,"+
+                       "Recurrence Boolean,"+
+                       "Profile String)";
         db.execSQL(query);
     }
 
@@ -34,7 +37,7 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addTransaction(String date, Float amount, String mode, String category, String comments,String type){
+    public boolean addTransaction(String date, Float amount, String mode, String category, String comments,String type,String currency,Boolean recurence,String profile){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("TransactionDate",date);
@@ -43,6 +46,9 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Category",category);
         contentValues.put("Comments",comments);
         contentValues.put("Type",type);
+        contentValues.put("Currency",currency);
+        contentValues.put("Recurrence",recurence);
+        contentValues.put("Profile",profile);
 
         long result =db.insert("TRANSACTIONS",null,contentValues);
         if (result>0){

@@ -71,7 +71,7 @@
         android:layout_height="43dp"
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-thin"
-        android:gravity="center"
+        android:gravity="start"
         android:hint="@string/select_date"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -86,7 +86,7 @@
         android:id="@+id/etIncomeComment"
         android:layout_width="364dp"
         android:layout_height="124dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60sp"
         android:autofillHints="comment"
         android:backgroundTint="#FFFFFF"
         android:hint="@string/comment_for_income"
@@ -98,6 +98,34 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate" />
+
+    <ImageView
+        android:id="@+id/fmtBoldIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_format_bold_white"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/fmtItalicIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_format_italic_white"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toEndOf="@+id/fmtBoldIncome"
+        app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnIncomeSave"
