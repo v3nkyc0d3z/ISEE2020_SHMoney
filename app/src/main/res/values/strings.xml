@@ -10,8 +10,9 @@
     <string-array name="Type_of_payments">
         <item>Payment Mode</item>
         <item>Debit Card</item>
+        <item>Credit Card</item>
         <item>Cash</item>
-        <item>Online</item>
+        <item>PayPal</item>
     </string-array>
     <string-array name="category_types">
         <item>Categories</item>
@@ -133,5 +134,10 @@
     <string name="value">VALUE</string>
     <string name="note">NOTE</string>
     <string name="date">DATE</string>
+    <string name="new_expense">New Expense</string>
+    <string name="payment_method">PAYMENT METHOD</string>
+    <string name="category">CATEGORY</string>
+    <string name="amount">AMOUNT</string>
+    <string name="repeated_transaction">REPEATED TRANSACTION</string>
 
 </resources>

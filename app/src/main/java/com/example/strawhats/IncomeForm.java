@@ -3,6 +3,7 @@ package com.example.strawhats;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -81,7 +82,7 @@ public class IncomeForm extends AppCompatActivity {
 
             }
         };
-
+//----------------------------------Category Popup Menu------------------------------------------------------------------
         catBtn = findViewById(R.id.textViewCategory);
         catBtn.setCompoundDrawablesWithIntrinsicBounds(mCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
         Drawable drawables[] = catBtn.getCompoundDrawables();
@@ -96,6 +97,7 @@ public class IncomeForm extends AppCompatActivity {
                 mAdapter = new CategoryAdapter(IncomeForm.this, mCategoryList);
 
                 mBuilder.setSingleChoiceItems(mAdapter, 0, new DialogInterface.OnClickListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         ListView lw = ((AlertDialog)dialog).getListView();

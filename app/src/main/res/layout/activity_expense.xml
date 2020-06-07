@@ -5,158 +5,185 @@
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#588da8"
+    android:background="#2F617C"
     tools:context=".Expense">
 
 
     <EditText
-        android:id="@+id/etAmount"
-        android:layout_width="405dp"
-        android:layout_height="51dp"
-        android:hint="@string/_0_00_eur"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
-        android:singleLine="false"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="188dp" />
-
-    <Spinner
-        android:id="@+id/PaymentType"
-        android:layout_width="137dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="37dp"
-        android:autofillHints="ACCOUNTS"
-        android:entries="@array/Type_of_payments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TransDate" />
-
-
-    <Spinner
-        android:id="@+id/Spinner_Category"
-        android:layout_width="150dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="72dp"
-        android:autofillHints="CATEGORY"
-        app:layout_constraintEnd_toStartOf="@+id/PaymentType"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TransDate" />
-
-    <EditText
         android:id="@+id/etTransactionComment"
-        android:layout_width="367dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="352dp"
+        android:layout_height="55dp"
         android:autofillHints="comment"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Spinner_Category" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="132dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="80dp"
+        android:layout_width="157dp"
+        android:layout_height="57dp"
         android:text="@string/save_transaction"
         android:textColor="#404351"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTransactionComment"
-        app:layout_constraintVertical_bias="0.105" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="71dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="334dp"
-        android:text="@string/value"
-        android:textColor="#404351"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="50dp" />
+        app:layout_constraintTop_toBottomOf="@+id/etTransactionComment" />
 
     <TextView
         android:id="@+id/TransDate"
-        android:layout_width="237dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/etAmount" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="51dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="286dp"
-        android:layout_marginBottom="42dp"
+        android:layout_width="348dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="bottom"
         android:text="@string/note"
-        android:textColor="#404351"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/etTransactionComment"
-        app:layout_constraintEnd_toEndOf="@+id/etTransactionComment"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textAlignment="textStart"
+        android:textColor="#FAFAFB"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etTransactionComment"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCat" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="71dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="324dp"
         android:text="@string/date"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
     <TextView
         android:id="@+id/NewExpense"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="83dp"
-        android:text="New Expense"
+        android:layout_width="209dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/new_expense"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="133dp" />
+        android:id="@+id/cardView3"
+        android:layout_width="404dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="36dp"
+        app:cardBackgroundColor="#F44336"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewExpense">
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="538dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="right|center_vertical"
+            android:hint="@string/_0_00_eur"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:singleLine="false"
+            android:textAlignment="textEnd"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/amount"
+            android:textColor="#F5F5F8"
+            android:textSize="14sp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="168dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/payment_method"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="94dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/category"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TransDate" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="185dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/repeated_transaction"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMode" />
+
+    <TextView
+        android:id="@+id/textViewMode"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:textColor="#F8F1F1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintStart_toEndOf="@+id/TransDate"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textViewCat"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
