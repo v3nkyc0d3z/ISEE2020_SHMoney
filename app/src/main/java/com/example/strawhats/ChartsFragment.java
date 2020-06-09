@@ -119,10 +119,17 @@ public class ChartsFragment extends Fragment {
                 amount = amount*-1;
             };
             if (lineDataMap.containsKey(transaction.getDate())){
-//                Insert condition here to differentiat between income and expense
-                lineDataMap.put(date,(lineDataMap.get(date)+amount));
+                if (transaction.getType().equals("Income")) {
+                    lineDataMap.put(date, (lineDataMap.get(date) + amount));
+                } else{
+                    lineDataMap.put(date, (lineDataMap.get(date) - amount));
+                }
             }else{
-                lineDataMap.put(date,amount);
+                if(transaction.getType().equals("Income")) {
+                    lineDataMap.put(date, amount);
+                } else{
+                    lineDataMap.put(date, amount * -1);
+                }
             }
         }
 /**      GraphView Graphs have a special Datatype called Datapoint array
@@ -132,14 +139,12 @@ public class ChartsFragment extends Fragment {
         DataPoint[] dp = new DataPoint[lineDataMap.size()];
         Map<Date,Float> sortedlineDataMap = new TreeMap<Date,Float>(lineDataMap);
         List<Date> dateList = new ArrayList<Date>(sortedlineDataMap.keySet());
-        double running_balance;
-        running_balance = 0;
+        Float netAmount = 0f;
         for (int i = 0;i<dateList.size();i++){
             Date currDate = dateList.get(i);
             Float currAmount = lineDataMap.get(currDate);
-
-            running_balance = running_balance + currAmount;
-            dp[i] = new DataPoint(currDate,running_balance);
+            netAmount = netAmount + currAmount;
+            dp[i] = new DataPoint(currDate,netAmount);
         }
         return dp;
     }
