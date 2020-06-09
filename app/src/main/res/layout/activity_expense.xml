@@ -100,7 +100,7 @@
 
         <EditText
             android:id="@+id/etAmount"
-            android:layout_width="538dp"
+            android:layout_width="391dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="right|center_vertical"

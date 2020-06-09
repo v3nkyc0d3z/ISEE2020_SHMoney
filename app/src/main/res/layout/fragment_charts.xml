@@ -11,21 +11,15 @@
         android:id="@+id/frameLayout"
         android:layout_width="372dp"
         android:layout_height="259dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/linechart"
-            android:layout_width="345dp"
-            android:layout_height="203dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
-
-        </com.github.mikephil.charting.charts.LineChart>
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/lineGraph"
+            android:layout_width="match_parent"
+            android:layout_height="200dip" />
     </FrameLayout>
 
     <FrameLayout
@@ -47,5 +41,17 @@
 
         </com.github.mikephil.charting.charts.RadarChart>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="BALANCE OVER TIME"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
