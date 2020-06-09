@@ -3,6 +3,7 @@ package com.example.strawhats;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +62,7 @@ public class HomeFragment extends Fragment {
         AddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(getActivity(), TransactionForm.class));
+                startActivity(new Intent(getActivity(), TransactionForm.class));
             }
         });
         AddIncome.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
             String type = data.getString(6);
             float amount = data.getFloat(2);
 
-            if (type.equals("Expense")){
+            if (type.equals("expense")){
                 expense = expense + amount;
                 Net = Net - amount;
             } else{
@@ -107,11 +108,16 @@ public class HomeFragment extends Fragment {
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueTextSize(13f);
         pieChart.setData(pieData);
+        pieChart.setHoleColor(Color.parseColor("#1f4068"));
         pieChart.setHoleRadius(70);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
         pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
-        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+        final int[] MY_COLORS = {Color.rgb(12,166,139), Color.rgb(212,64,34)};
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+        for(int c: MY_COLORS) colors.add(c);
+        pieDataSet.setColors(colors);
 
     }
 
