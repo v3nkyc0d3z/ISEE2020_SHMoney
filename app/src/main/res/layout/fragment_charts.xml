@@ -7,16 +7,51 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/lineGraph"
-        android:layout_width="382dp"
-        android:layout_height="342dp"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="372dp"
+        android:layout_height="259dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/lineGraph"
+            android:layout_width="match_parent"
+            android:layout_height="200dip" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="263dp"
+        android:layout_height="263dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
+        <com.github.mikephil.charting.charts.RadarChart
+            android:id="@+id/radarchart"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp">
+
+        </com.github.mikephil.charting.charts.RadarChart>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="BALANCE OVER TIME"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

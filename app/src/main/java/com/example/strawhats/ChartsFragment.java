@@ -23,10 +23,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,7 +60,23 @@ public class ChartsFragment extends Fragment {
 //        The getDataPoints method does most of the Data Manipulation part for the plot
         try {
             series = new LineGraphSeries<>(getDataPoints());
+            series.setDrawDataPoints(true);
+            series.setDataPointsRadius(10);
+            series.setDrawBackground(true);
+            series.setColor(Color.parseColor("#0e9aa7"));
+            series.setThickness(5);
+
             graphView.addSeries(series);
+
+
+            graphView.getViewport().setXAxisBoundsManual(true);
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(listData.size()+1);
+            graphView.getGridLabelRenderer().setHumanRounding(false);
+            graphView.getGridLabelRenderer().setGridStyle( GridLabelRenderer.GridStyle.NONE );
+            graphView.getGridLabelRenderer().setHighlightZeroLines( true );
+            graphView.getGridLabelRenderer().setTextSize(25);
+            graphView.getGridLabelRenderer().setLabelsSpace(20);
+
 
             graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
                 @Override
@@ -96,6 +114,10 @@ public class ChartsFragment extends Fragment {
             String sDate = transaction.getDate();
             Date date = new SimpleDateFormat("yyyy/dd/MM").parse(sDate);
             Float amount = Float.parseFloat(transaction.getAmount());
+            String type = transaction.getType();
+            if (type.equals("expense")){
+                amount = amount*-1;
+            };
             if (lineDataMap.containsKey(transaction.getDate())){
 //                Insert condition here to differentiat between income and expense
                 lineDataMap.put(date,(lineDataMap.get(date)+amount));
@@ -110,10 +132,14 @@ public class ChartsFragment extends Fragment {
         DataPoint[] dp = new DataPoint[lineDataMap.size()];
         Map<Date,Float> sortedlineDataMap = new TreeMap<Date,Float>(lineDataMap);
         List<Date> dateList = new ArrayList<Date>(sortedlineDataMap.keySet());
+        double running_balance;
+        running_balance = 0;
         for (int i = 0;i<dateList.size();i++){
             Date currDate = dateList.get(i);
             Float currAmount = lineDataMap.get(currDate);
-            dp[i] = new DataPoint(currDate,currAmount);
+
+            running_balance = running_balance + currAmount;
+            dp[i] = new DataPoint(currDate,running_balance);
         }
         return dp;
     }
