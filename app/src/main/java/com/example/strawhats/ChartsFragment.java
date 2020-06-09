@@ -52,7 +52,10 @@ public class ChartsFragment extends Fragment {
 //        RadarChart radarChart = view.findViewById(R.id.radarchart);
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
+//########################################################################################################
+//        once the activity is initiated an arraylist is loaded with DB Transaction Objects
         populateList();
+//        The getDataPoints method does most of the Data Manipulation part for the plot
         try {
             series = new LineGraphSeries<>(getDataPoints());
             graphView.addSeries(series);
@@ -81,6 +84,12 @@ public class ChartsFragment extends Fragment {
     }
 
     public DataPoint[] getDataPoints() throws ParseException {
+/**There is no order on how the data is stored in the DB
+ * The getData method of DBHelper is a 'select *' query that returns all the available data in the DB
+ * Dates are stored as Text in the DB so they are parsed as a Date type from string Data
+ * A HashMap is like a Dictionary type in Python that has a key value pair
+ * Here Dates are keys and the Net amount spent on that day is the value
+ * I have not implemented expenses, this piece of code below just add the amount of transaction and stores as a value regardless of "expense " of "income"**/
         HashMap<Date,Float> lineDataMap = new HashMap<Date,Float>();
         for (int i = 0; i<listData.size();i++){
             TransactionList transaction = listData.get(i);
@@ -88,11 +97,16 @@ public class ChartsFragment extends Fragment {
             Date date = new SimpleDateFormat("yyyy/dd/MM").parse(sDate);
             Float amount = Float.parseFloat(transaction.getAmount());
             if (lineDataMap.containsKey(transaction.getDate())){
+//                Insert condition here to differentiat between income and expense
                 lineDataMap.put(date,(lineDataMap.get(date)+amount));
             }else{
                 lineDataMap.put(date,amount);
             }
         }
+/**      GraphView Graphs have a special Datatype called Datapoint array
+ *      It is an array of size (n,2) n-data and 2 - axis
+ *      The downfall here is the labels i.e, the dates has to be in ascending order before passing it into graph object
+ *      TreeMap takes care of sorting the dates**/
         DataPoint[] dp = new DataPoint[lineDataMap.size()];
         Map<Date,Float> sortedlineDataMap = new TreeMap<Date,Float>(lineDataMap);
         List<Date> dateList = new ArrayList<Date>(sortedlineDataMap.keySet());

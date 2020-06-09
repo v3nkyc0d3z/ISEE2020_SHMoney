@@ -127,7 +127,7 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
             String category = data.getString(4);
             String comment = data.getString(5);
             String type = data.getString(6);
-            if (type.equals("expense")){
+            if (type.equals("Expense")){
                 action = "you spent";
             } else {  action = "you got";}
             TransactionList transaction = new TransactionList(id,date,amt,mode,category,comment,type,action);

@@ -100,10 +100,13 @@ public class Expense extends AppCompatActivity {
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                Float amt = Float.parseFloat(amount);
+                Float amt = 0f;
+                if (amount.length() != 0) {
+                    amt = Float.parseFloat(amount);
+                }
                 String mode = ModeSelect.getSelectedItem().toString();
                 String comment = etComment.getText().toString();
-                if(amount.length() == 0){
+                if(amount.length() == 0 || amt == 0){
                     toastMessage("Amount should not be empty");
                 } else if(comment.length() == 0){
                     toastMessage("comment cannot be empty");
@@ -111,8 +114,9 @@ public class Expense extends AppCompatActivity {
                     toastMessage("Enter Mode of Payment");
                 }else {
                     addData(date,amt,mode,CategoryPicked,comment);
+                    finish();
                 }
-                finish();
+
             }
         });
 
@@ -125,7 +129,7 @@ public class Expense extends AppCompatActivity {
         mCategoryList.add(new CategoryItem("Hospital",R.drawable.ic_hospital_category));
     }
     public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Expense","EUR",false,"Default");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {

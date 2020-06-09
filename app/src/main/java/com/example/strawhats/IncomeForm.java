@@ -61,9 +61,6 @@ public class IncomeForm extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         String currentDate = sdf.format(new Date());
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//        LocalDateTime now = LocalDateTime.now();
-//        String currentDate = dtf.format(now);
 
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.IncomeDate);
@@ -100,7 +97,7 @@ public class IncomeForm extends AppCompatActivity {
         catBtn.setCompoundDrawablesWithIntrinsicBounds(mCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
         Drawable drawables[] = catBtn.getCompoundDrawables();
         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-        catBtn.setText("  " + mCategoryList.get(1).getmCategoryName());
+        catBtn.setText(mCategoryList.get(1).getmCategoryName());
         catBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -117,7 +114,7 @@ public class IncomeForm extends AppCompatActivity {
                         catBtn.setCompoundDrawablesWithIntrinsicBounds(checkedItem.getmCategoryImage(), 0, 0, 0);
                         Drawable drawables[] = catBtn.getCompoundDrawables();
                         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-                        catBtn.setText("  " + checkedItem.getmCategoryName());
+                        catBtn.setText(checkedItem.getmCategoryName());
                         dialog.dismiss();
                 }
             });
@@ -166,6 +163,11 @@ public class IncomeForm extends AppCompatActivity {
             public void onClick(View v) {
                 int startSelection = etComment.getSelectionStart();
                 int endSelection = etComment.getSelectionEnd();
+                if (startSelection>endSelection){
+                    int temp = endSelection;
+                    endSelection = startSelection;
+                    startSelection = temp;
+                }
 
                 Spannable s = etComment.getText();
                 s.setSpan(new StyleSpan(Typeface.ITALIC),startSelection,endSelection,0);

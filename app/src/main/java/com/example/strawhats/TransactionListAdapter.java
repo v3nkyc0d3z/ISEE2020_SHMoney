@@ -82,15 +82,31 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
             tvAction.setTextColor(ContextCompat.getColor(c,R.color.colorTextGreen));
         }
         ImageView categoryIcon = (ImageView) row.findViewById(R.id.TLCategoryIcon);
-        if(Original.get(position).getCategory().equals("Wage")){
-            categoryIcon.setImageResource(R.drawable.ic_work_black_24dp);
-        } else if (Original.get(position).getCategory().equals("Rental")){
-            categoryIcon.setImageResource(R.drawable.ic_home_black_24dp);
-        } else if (Original.get(position).getCategory().equals("Interest")){
-            categoryIcon.setImageResource(R.drawable.ic_attach_money_black_24dp);
-        } else if (Original.get(position).getCategory().equals("Other")){
-            categoryIcon.setImageResource(R.drawable.ic_turned_other_24dp);
+        String cat = (String) Original.get(position).getCategory();
+        if (cat != null) {
+            if (cat.equals("Rental")) {
+                categoryIcon.setImageResource(R.drawable.ic_home_black_24dp);
+            } else if (cat.equals("Shopping")) {
+                categoryIcon.setImageResource(R.drawable.ic_shopping_category);
+            } else if (cat.equals("Hospital")) {
+                categoryIcon.setImageResource(R.drawable.ic_hospital_category);
+            } else if (cat.equals("Wage")) {
+                categoryIcon.setImageResource(R.drawable.ic_work_black_24dp);
+            } else if (cat.equals("Interest")) {
+                categoryIcon.setImageResource(R.drawable.ic_attach_money_black_24dp);
+            } else if (cat.equals("Entertainment")) {
+                categoryIcon.setImageResource(R.drawable.ic_entertainment_category);
+            } else if (cat.equals("Other")) {
+                categoryIcon.setImageResource(R.drawable.ic_turned_other_24dp);
+            }
         }
+//        if(Original.get(position).getCategory().equals("Wage")){
+//            categoryIcon.setImageResource(R.drawable.ic_work_black_24dp);
+//        } else  else if (Original.get(position).getCategory().equals("Interest")){
+//            categoryIcon.setImageResource(R.drawable.ic_attach_money_black_24dp);
+//        } else if (Original.get(position).getCategory().equals("Other")){
+//            categoryIcon.setImageResource(R.drawable.ic_turned_other_24dp);
+//        }
         return row;
     }
 

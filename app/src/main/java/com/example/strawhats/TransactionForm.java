@@ -1,29 +1,36 @@
 package com.example.strawhats;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TransactionForm extends AppCompatActivity {
     private static final String TAG = "TransactionForm";
@@ -40,6 +47,8 @@ public class TransactionForm extends AppCompatActivity {
     TransactionDatabaseHelper mDatabaseHelper;
     TextView catMenu;
     TextView modeMenu;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
+    ImageView Bold,Italic;
 
 
     @Override
@@ -51,10 +60,12 @@ public class TransactionForm extends AppCompatActivity {
         initModeList();
 //Get current date
         Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-
+        Date currDate = calendar.getTime();
+        String scurrDate = sdf.format(currDate);
+//        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//
         TextView textViewDate = findViewById(R.id.TransDate);
-        textViewDate.setText(currentDate);
+        textViewDate.setText(scurrDate);
 
 
 //---------------------Date picker section---------------------------------------------------
@@ -95,7 +106,7 @@ public class TransactionForm extends AppCompatActivity {
         catMenu.setCompoundDrawablesWithIntrinsicBounds(mCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
         Drawable drawables[] = catMenu.getCompoundDrawables();
         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-        catMenu.setText("  " + mCategoryList.get(1).getmCategoryName());
+        catMenu.setText(mCategoryList.get(1).getmCategoryName());
         catMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -112,7 +123,8 @@ public class TransactionForm extends AppCompatActivity {
                         catMenu.setCompoundDrawablesWithIntrinsicBounds(checkedItem.getmCategoryImage(), 0, 0, 0);
                         Drawable drawables[] = catMenu.getCompoundDrawables();
                         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-                        catMenu.setText("  " + checkedItem.getmCategoryName());
+                        catMenu.setText(checkedItem.getmCategoryName());
+//                        catMenu.setText("  " + checkedItem.getmCategoryName());
                         CategoryPicked = checkedItem.getmCategoryName();
                         dialog.dismiss();
                     }
@@ -137,7 +149,7 @@ public class TransactionForm extends AppCompatActivity {
         modeMenu.setCompoundDrawablesWithIntrinsicBounds(mModeList.get(1).getmModeImage(), 0, 0, 0);
         Drawable drawable[] = modeMenu.getCompoundDrawables();
         drawable[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-        modeMenu.setText("  " + mModeList.get(1).getmModeName());
+        modeMenu.setText(mModeList.get(1).getmModeName());
         modeMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -156,7 +168,7 @@ public class TransactionForm extends AppCompatActivity {
 
                         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
-                        modeMenu.setText("  " + checkedItem.getmModeName());
+                        modeMenu.setText(checkedItem.getmModeName());
                         ModePicked = checkedItem.getmModeName();
                         dialog.dismiss();
                     }
@@ -182,15 +194,57 @@ public class TransactionForm extends AppCompatActivity {
         etAmount = (EditText) findViewById(R.id.etAmount);
         //final Spinner ModeSelect = (Spinner) findViewById(R.id.PaymentType);
         etComment = (EditText) findViewById(R.id.etTransactionComment);
+        Bold = (ImageView) findViewById(R.id.fmtBoldExpense);
+        Italic = (ImageView) findViewById(R.id.fmtItalicExpense);
+        Bold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int startSelection = etComment.getSelectionStart();
+                int endSelection = etComment.getSelectionEnd();
+
+                if (startSelection>endSelection){
+                    int temp = endSelection;
+                    endSelection = startSelection;
+                    startSelection = temp;
+                }
+
+                Spannable s = etComment.getText();
+                s.setSpan(new StyleSpan(Typeface.BOLD),startSelection,endSelection,0);
+                System.out.println(s);
+                String html = HtmlCompat.toHtml(s,HtmlCompat.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL);
+                etComment.setText(HtmlCompat.fromHtml(html,0));
+            }
+        });
+        Italic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int startSelection = etComment.getSelectionStart();
+                int endSelection = etComment.getSelectionEnd();
+                if (startSelection>endSelection){
+                    int temp = endSelection;
+                    endSelection = startSelection;
+                    startSelection = temp;
+                }
+
+                Spannable s = etComment.getText();
+                s.setSpan(new StyleSpan(Typeface.ITALIC),startSelection,endSelection,0);
+                System.out.println(s);
+                String html = HtmlCompat.toHtml(s,HtmlCompat.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL);
+                etComment.setText(HtmlCompat.fromHtml(html,0));
+            }
+        });
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date = DisplayDate.getText().toString();
                 String amount = etAmount.getText().toString();
-                Float amt = Float.parseFloat(amount);
+                Float amt = 0f;
+                if (amount.length()!= 0) {
+                    amt = Float.parseFloat(amount);
+                }
                 //String mode = ModeSelect.getSelectedItem().toString();
-                String comment = etComment.getText().toString();
+                String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
                 } else if(comment.length() == 0){
@@ -198,9 +252,11 @@ public class TransactionForm extends AppCompatActivity {
                 //} else if(mode.equals("None")){
                 //    toastMessage("Enter Mode of Payment");
                 }else {
-                        addData(date,amt,ModePicked,CategoryPicked,comment);
+                        String editcomment = HandleNewLine(comment);
+                        addData(date,amt,ModePicked,CategoryPicked,editcomment);
+                        finish();
                     }
-                finish();
+
             }
         });
 
@@ -220,7 +276,7 @@ public class TransactionForm extends AppCompatActivity {
         mModeList.add(new ModeItem("PayPal",R.drawable.ic_paypal));
     }
     public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"expense");
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Expense","EUR",false,"Default");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {
@@ -229,5 +285,12 @@ public class TransactionForm extends AppCompatActivity {
     }
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+    public String HandleNewLine(String str){
+        String last2 = str.substring(str.length()-1);
+        if (last2.equals("\n")){
+            str = str.substring(0,str.length()-1);
+        }
+        return str;
     }
 }

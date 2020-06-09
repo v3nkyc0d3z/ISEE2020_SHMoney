@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
             String type = data.getString(6);
             float amount = data.getFloat(2);
 
-            if (type.equals("expense")){
+            if (type.equals("Expense")){
                 expense = expense + amount;
                 Net = Net - amount;
             } else{
