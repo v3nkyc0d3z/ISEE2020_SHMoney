@@ -1,15 +1,20 @@
 package com.example.strawhats;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.anychart.data.Iterator;
@@ -27,10 +32,16 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.honorato.multistatetogglebutton.MultiStateToggleButton;
+import org.honorato.multistatetogglebutton.ToggleButton;
+
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,19 +56,33 @@ public class ChartsFragment extends Fragment {
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+    Integer dateRange = 30;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charts,container,false);
-
-//        LineChart lineChart = view.findViewById(R.id.linechart);
-//        RadarChart radarChart = view.findViewById(R.id.radarchart);
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
-//########################################################################################################
-//        once the activity is initiated an arraylist is loaded with DB Transaction Objects
+
+
+        MultiStateToggleButton button = (MultiStateToggleButton) view.findViewById(R.id.mstb_multi_id);
+        button.setOnValueChangedListener(new ToggleButton.OnValueChangedListener() {
+            @Override
+            public void onValueChanged(int position) {
+                if (position==0){
+                    dateRange = 30;
+                } else if (position == 1){
+                    dateRange = 60;
+                } else {
+                    dateRange = 90;
+                }
+            }
+        });
+
         populateList();
-//        The getDataPoints method does most of the Data Manipulation part for the plot
         try {
             series = new LineGraphSeries<>(getDataPoints());
             series.setDrawDataPoints(true);
@@ -67,7 +92,6 @@ public class ChartsFragment extends Fragment {
             series.setThickness(5);
 
             graphView.addSeries(series);
-
 
             graphView.getViewport().setXAxisBoundsManual(true);
             graphView.getGridLabelRenderer().setNumHorizontalLabels(listData.size()+1);
@@ -92,6 +116,15 @@ public class ChartsFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+//        LineChart lineChart = view.findViewById(R.id.linechart);
+//        RadarChart radarChart = view.findViewById(R.id.radarchart);
+
+//########################################################################################################
+//        once the activity is initiated an arraylist is loaded with DB Transaction Objects
+        //populateList();
+//        The getDataPoints method does most of the Data Manipulation part for the plot
+
 //        try {
 //            setupLineChart(lineChart);
 //        } catch (ParseException e) {
@@ -101,6 +134,7 @@ public class ChartsFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public DataPoint[] getDataPoints() throws ParseException {
 /**There is no order on how the data is stored in the DB
  * The getData method of DBHelper is a 'select *' query that returns all the available data in the DB
@@ -113,24 +147,28 @@ public class ChartsFragment extends Fragment {
             TransactionList transaction = listData.get(i);
             String sDate = transaction.getDate();
             Date date = new SimpleDateFormat("yyyy/dd/MM").parse(sDate);
-            Float amount = Float.parseFloat(transaction.getAmount());
-            String type = transaction.getType();
-            if (type.equals("expense")){
-                amount = amount*-1;
+
+            if (date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(LocalDate.now().minusDays(dateRange))){
+                Float amount = Float.parseFloat(transaction.getAmount());
+                String type = transaction.getType();
+                if (type.equals("expense")){
+                    amount = amount*-1;
+                };
+                if (lineDataMap.containsKey(transaction.getDate())){
+                    if (transaction.getType().equals("Income")) {
+                        lineDataMap.put(date, (lineDataMap.get(date) + amount));
+                    } else{
+                        lineDataMap.put(date, (lineDataMap.get(date) - amount));
+                    }
+                }else{
+                    if(transaction.getType().equals("Income")) {
+                        lineDataMap.put(date, amount);
+                    } else{
+                        lineDataMap.put(date, amount * -1);
+                    }
+                }
             };
-            if (lineDataMap.containsKey(transaction.getDate())){
-                if (transaction.getType().equals("Income")) {
-                    lineDataMap.put(date, (lineDataMap.get(date) + amount));
-                } else{
-                    lineDataMap.put(date, (lineDataMap.get(date) - amount));
-                }
-            }else{
-                if(transaction.getType().equals("Income")) {
-                    lineDataMap.put(date, amount);
-                } else{
-                    lineDataMap.put(date, amount * -1);
-                }
-            }
+
         }
 /**      GraphView Graphs have a special Datatype called Datapoint array
  *      It is an array of size (n,2) n-data and 2 - axis

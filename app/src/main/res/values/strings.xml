@@ -7,6 +7,11 @@
     <string name="add_new_expense">Add New Expense</string>
     <string name="add_new_income">Add New Income</string>
     <string name="all_transactions">All Transactions</string>
+    <string-array name="time_range_array">
+        <item>Last 30 Days</item>
+        <item>Last 60 Days</item>
+        <item>Last 90 Days</item>
+    </string-array>
     <string-array name="Type_of_payments">
         <item>Payment Mode</item>
         <item>Debit Card</item>

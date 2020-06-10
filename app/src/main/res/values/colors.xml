@@ -25,4 +25,6 @@
     <color name="colorTextBlueGrey">#959FBF</color>
     <color name="colorTextOrange">#D16500</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorK1">#00909e</color>
+    <color name="colorK2">#eeeeee</color>
 </resources>
