@@ -276,7 +276,7 @@ public class TransactionForm extends AppCompatActivity {
         mModeList.add(new ModeItem("PayPal",R.drawable.ic_paypal));
     }
     public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Expense","EUR",false,"Default");
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"Expense","EUR",false,"Default");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {
