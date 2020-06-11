@@ -59,7 +59,7 @@ public class IncomeForm extends AppCompatActivity {
         initCategoryList();
         //Get current date
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
         String currentDate = sdf.format(new Date());
 
 //---------------------Date picker section---------------------------------------------------

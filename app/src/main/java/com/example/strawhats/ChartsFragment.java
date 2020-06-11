@@ -3,7 +3,7 @@ package com.example.strawhats;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.anychart.data.Iterator;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.charts.RadarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +34,7 @@ public class ChartsFragment extends Fragment {
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,8 +42,7 @@ public class ChartsFragment extends Fragment {
 // Git is so weird sometimes
 //---------------------------------Balance Over Time----------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------
-//        LineChart lineChart = view.findViewById(R.id.linechart);
-//        RadarChart radarChart = view.findViewById(R.id.radarchart);
+
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
 //########################################################################################################
