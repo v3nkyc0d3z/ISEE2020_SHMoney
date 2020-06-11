@@ -19,7 +19,9 @@
         app:layout_constraintTop_toTopOf="parent"
         mstb:mstbPrimaryColor="@color/colorK1"
         mstb:mstbSecondaryColor="@color/colorK2"
-        mstb:values="@array/time_range_array" />
+        mstb:values="@array/time_range_array" >
+
+    </org.honorato.multistatetogglebutton.MultiStateToggleButton>
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -34,26 +36,40 @@
             android:id="@+id/lineGraph"
             android:layout_width="match_parent"
             android:layout_height="200dip" />
+
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="SPENDING BY CATEGORY"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        mstb:layout_constraintEnd_toEndOf="parent"
+        mstb:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="263dp"
         android:layout_height="263dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
 
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/radarchart"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="0dp">
 
-        </com.github.mikephil.charting.charts.RadarChart>
+        </com.github.mikephil.charting.charts.PieChart>
     </FrameLayout>
 
     <TextView

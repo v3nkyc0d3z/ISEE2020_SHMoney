@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
@@ -34,6 +42,8 @@ public class ChartsFragment extends Fragment {
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+    Cursor data;
+    Float Net = 0f;
 
     @Nullable
     @Override
@@ -42,6 +52,12 @@ public class ChartsFragment extends Fragment {
 // Git is so weird sometimes
 //---------------------------------Balance Over Time----------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------
+        TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(getActivity());
+        data = mDatabaseHelper.getData();
+        PieChart pieChart = view.findViewById(R.id.piechart);
+        pieChart.setUsePercentValues(true);
+        setupPieChart(pieChart);
+
 
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
@@ -165,4 +181,71 @@ public class ChartsFragment extends Fragment {
 
    }
 
+    public void setupPieChart(PieChart pieChart){
+        pieChart.setUsePercentValues(false);
+        List<PieEntry> value = new ArrayList<>();
+        Float shopping = 0f;
+        Float entertainment = 0f;
+        Float rental = 0f;
+        Float hospital = 0f;
+
+        while(data.moveToNext()){
+            String type = data.getString(6);
+            String category = data.getString(4);
+            float amount = data.getFloat(2);
+            if (type != null && category != null){
+                if (type.equals("Expense")){
+                    if (category.equals("Shopping")){
+                        shopping = shopping + amount;
+                    } else if (category.equals("Entertainment")){
+                        entertainment = entertainment + amount;
+                    } else if (category.equals("Rental")){
+                        rental = rental + amount;
+                    } else {
+                        hospital = hospital + amount;
+                    }
+                }
+            }
+
+        }
+
+        if (shopping > 0){
+            value.add(new PieEntry(shopping,"Shopping"));
+        }
+
+        if (entertainment > 0){
+            value.add(new PieEntry(entertainment,"Entertainment"));
+        }
+
+        if (rental > 0){
+            value.add(new PieEntry(rental,"Rental"));
+        }
+        if (hospital > 0){
+            value.add(new PieEntry(hospital,"Hospital"));
+        }
+
+
+
+        PieDataSet pieDataSet = new PieDataSet(value,"");
+
+        PieData pieData = new PieData(pieDataSet);
+        pieData.setValueTextSize(13f);
+        pieData.setValueTextColor(Color.WHITE);
+
+
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.getLegend().setEnabled(true);
+        pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+
+        pieChart.setDrawSliceText(false);
+
+        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
+
+        final int[] MY_COLORS = ColorTemplate.COLORFUL_COLORS;
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+        for(int c: MY_COLORS) colors.add(c);
+        pieDataSet.setColors(colors);
+
+    }
 }
