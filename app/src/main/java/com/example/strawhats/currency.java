@@ -41,11 +41,11 @@ public class currency extends AppCompatActivity {
 
     private void initList() {
         mCountryList = new ArrayList<>();
-        mCountryList.add(new CountryItem("India", R.drawable.india));
-        mCountryList.add(new CountryItem("England", R.drawable.england));
-        mCountryList.add(new CountryItem("Japan",R.drawable.japan));
-        mCountryList.add(new CountryItem("USA", R.drawable.united));
-        mCountryList.add(new CountryItem("Germany", R.drawable.germany));
+        mCountryList.add(new CountryItem("Rupee", "元"));
+        mCountryList.add(new CountryItem("Pound", "£"));
+        mCountryList.add(new CountryItem("Yen", "¥"));
+        mCountryList.add(new CountryItem("Dollar", "$"));
+        mCountryList.add(new CountryItem("Euro", "€"));
     }
 
 

@@ -3,9 +3,6 @@ package com.example.strawhats;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import android.text.Layout;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +30,6 @@ import org.honorato.multistatetogglebutton.ToggleButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

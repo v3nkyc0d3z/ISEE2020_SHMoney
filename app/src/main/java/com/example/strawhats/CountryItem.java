@@ -4,9 +4,9 @@ package com.example.strawhats;
 
 public class CountryItem {
     private String mCountryName;
-    private int mFlagImage;
+    private String mFlagImage;
 
-    public CountryItem(String countryName, int flagImage) {
+    public CountryItem(String countryName, String flagImage) {
         mCountryName = countryName;
         mFlagImage = flagImage;
     }
@@ -15,7 +15,7 @@ public class CountryItem {
         return mCountryName;
     }
 
-    public int getFlagImage() {
+    public String getFlagImage() {
         return mFlagImage;
     }
 }

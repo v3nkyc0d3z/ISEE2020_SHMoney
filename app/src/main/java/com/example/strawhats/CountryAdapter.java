@@ -40,13 +40,13 @@ public class CountryAdapter extends ArrayAdapter<CountryItem> {
             );
         }
 
-        ImageView imageViewFlag = convertView.findViewById(R.id.image_view_flag);
+        TextView imageViewFlag = convertView.findViewById(R.id.currency_sign);
         TextView textViewName = convertView.findViewById(R.id.text_view_name);
 
         CountryItem currentItem = getItem(position);
 
         if (currentItem != null) {
-            imageViewFlag.setImageResource(currentItem.getFlagImage());
+            imageViewFlag.setText(currentItem.getFlagImage());
             textViewName.setText(currentItem.getCountryName());
         }
 
