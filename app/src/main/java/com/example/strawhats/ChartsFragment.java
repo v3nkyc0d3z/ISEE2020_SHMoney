@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.text.Layout;
+import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +28,14 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.honorato.multistatetogglebutton.MultiStateToggleButton;
+import org.honorato.multistatetogglebutton.ToggleButton;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +51,8 @@ public class ChartsFragment extends Fragment {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
     Cursor data;
     Float Net = 0f;
+    Integer dateRange = 60;
+    private MultiStateToggleButton button;
 
     @Nullable
     @Override
@@ -57,15 +66,17 @@ public class ChartsFragment extends Fragment {
         PieChart pieChart = view.findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
         setupPieChart(pieChart);
-
-
+        button = (MultiStateToggleButton) view.findViewById(R.id.mstb_multi_id);
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
-//########################################################################################################
-//        once the activity is initiated an arraylist is loaded with DB Transaction Objects
+        init();
+        return view;
+    }
+    private void create_line_graph(){
         populateList();
 //        The getDataPoints method does most of the Data Manipulation part for the plot
         try {
+            graphView.removeAllSeries();
             series = new LineGraphSeries<>(getDataPoints());
             series.setDrawDataPoints(true);
             series.setDataPointsRadius(10);
@@ -75,9 +86,15 @@ public class ChartsFragment extends Fragment {
 
             graphView.addSeries(series);
 
-
+            graphView.getViewport().setMinX(series.getLowestValueX());
+            graphView.getViewport().setMaxX(series.getHighestValueX());
+            graphView.getViewport().setMinY(series.getLowestValueY());
+            graphView.getViewport().setMaxY(series.getHighestValueY());
             graphView.getViewport().setXAxisBoundsManual(true);
-            graphView.getGridLabelRenderer().setNumHorizontalLabels(listData.size()+1);
+            graphView.getViewport().setYAxisBoundsManual(true);
+
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
+            graphView.getGridLabelRenderer().setNumVerticalLabels(3);
             graphView.getGridLabelRenderer().setHumanRounding(false);
             graphView.getGridLabelRenderer().setGridStyle( GridLabelRenderer.GridStyle.NONE );
             graphView.getGridLabelRenderer().setHighlightZeroLines( true );
@@ -99,16 +116,30 @@ public class ChartsFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        try {
-//            setupLineChart(lineChart);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-        return view;
     }
+    private void init(){
+        //declare the xySeries Object
 
+        button.setOnValueChangedListener(new ToggleButton.OnValueChangedListener() {
+            @Override
+            public void onValueChanged(int position) {
+                Log.d("Chart", "Position: " + position);
+                if (position==0){
+                    dateRange = 30;
+                } else if (position==1){
+                    dateRange = 60;
+                } else if (position==2){
+                    dateRange = 90;
+                }
+                else dateRange=10000;
+                Log.d("Chart", "DateRange: " + dateRange);
+                init();
+            }
+        });
 
+        create_line_graph();
+
+    }
 
     public DataPoint[] getDataPoints() throws ParseException {
 /**There is no order on how the data is stored in the DB
@@ -123,23 +154,31 @@ public class ChartsFragment extends Fragment {
             String sDate = transaction.getDate();
             Date date = new SimpleDateFormat("yyyy/dd/MM").parse(sDate);
             Float amount = Float.parseFloat(transaction.getAmount());
-            String type = transaction.getType();
-            if (type.equals("expense")){
-                amount = amount*-1;
-            };
-            if (lineDataMap.containsKey(transaction.getDate())){
-                if (transaction.getType().equals("Income")) {
-                    lineDataMap.put(date, (lineDataMap.get(date) + amount));
-                } else{
-                    lineDataMap.put(date, (lineDataMap.get(date) - amount));
-                }
-            }else{
-                if(transaction.getType().equals("Income")) {
-                    lineDataMap.put(date, amount);
-                } else{
-                    lineDataMap.put(date, amount * -1);
+
+            Calendar calendar = Calendar.getInstance(); // this would default to now
+            calendar.add(Calendar.DAY_OF_MONTH, -dateRange);
+
+            if (date.after(calendar.getTime())){
+                String type = transaction.getType();
+                if (type.equals("expense")){
+                    amount = amount*-1;
+                };
+                if (lineDataMap.containsKey(transaction.getDate())){
+                    if (transaction.getType().equals("Income")) {
+                        lineDataMap.put(date, (lineDataMap.get(date) + amount));
+                    } else{
+                        lineDataMap.put(date, (lineDataMap.get(date) - amount));
+                    }
+                }else{
+                    if(transaction.getType().equals("Income")) {
+                        lineDataMap.put(date, amount);
+                    } else{
+                        lineDataMap.put(date, amount * -1);
+                    }
                 }
             }
+
+
         }
 /**      GraphView Graphs have a special Datatype called Datapoint array
  *      It is an array of size (n,2) n-data and 2 - axis
