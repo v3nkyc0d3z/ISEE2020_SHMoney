@@ -95,7 +95,7 @@ public class ChartsFragment extends Fragment {
 
             graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
             graphView.getGridLabelRenderer().setNumVerticalLabels(3);
-            graphView.getGridLabelRenderer().setHumanRounding(false);
+            graphView.getGridLabelRenderer().setHumanRounding(true);
             graphView.getGridLabelRenderer().setGridStyle( GridLabelRenderer.GridStyle.NONE );
             graphView.getGridLabelRenderer().setHighlightZeroLines( true );
             graphView.getGridLabelRenderer().setTextSize(25);
