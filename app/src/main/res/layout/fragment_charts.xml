@@ -8,80 +8,82 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <org.honorato.multistatetogglebutton.MultiStateToggleButton
-        android:id="@+id/mstb_multi_id"
-        android:layout_width="394dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        mstb:mstbPrimaryColor="@color/colorK1"
-        mstb:mstbSecondaryColor="@color/colorK2"
-        mstb:values="@array/time_range_array" >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    </org.honorato.multistatetogglebutton.MultiStateToggleButton>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="372dp"
-        android:layout_height="259dp"
-        android:layout_marginTop="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
-
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/lineGraph"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dip" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    </FrameLayout>
+            <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                android:id="@+id/mstb_multi_id"
+                android:layout_width="394dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                mstb:mstbPrimaryColor="@color/colorK1"
+                mstb:mstbSecondaryColor="@color/colorK2"
+                mstb:values="@array/time_range_array">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="SPENDING BY CATEGORY"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout"
-        mstb:layout_constraintEnd_toEndOf="parent"
-        mstb:layout_constraintStart_toStartOf="parent" />
+            </org.honorato.multistatetogglebutton.MultiStateToggleButton>
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="263dp"
-        android:layout_height="263dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10">
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-black"
+                android:text="BALANCE OVER TIME"
+                android:textSize="18sp" />
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/piechart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp">
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="372dp"
+                android:layout_height="259dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp">
 
-        </com.github.mikephil.charting.charts.PieChart>
-    </FrameLayout>
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/lineGraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dip"
+                    android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-black"
-        android:text="BALANCE OVER TIME"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mstb_multi_id" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-black"
+                android:text="SPENDING BY CATEGORY"
+                android:textSize="18sp"
+                mstb:layout_constraintEnd_toEndOf="parent"
+                mstb:layout_constraintStart_toStartOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout2"
+                android:layout_width="263dp"
+                android:layout_height="263dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp">
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp">
+
+                </com.github.mikephil.charting.charts.PieChart>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
