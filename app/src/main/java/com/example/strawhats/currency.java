@@ -1,7 +1,6 @@
 package com.example.strawhats;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 
 public class currency extends AppCompatActivity {
     private ArrayList<CountryItem> mCountryList;
-    private CountryAdapter mAdapter;
+    private CurrencyAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class currency extends AppCompatActivity {
         setContentView(R.layout.activity_currency);
         initList();
         Spinner spinnerCountries = findViewById(R.id.spinner_countries);
-        mAdapter = new CountryAdapter(this, mCountryList);
+        mAdapter = new CurrencyAdapter(this, mCountryList);
         spinnerCountries.setAdapter(mAdapter);
         spinnerCountries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

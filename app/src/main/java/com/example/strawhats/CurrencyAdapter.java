@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +15,9 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 
-public class CountryAdapter extends ArrayAdapter<CountryItem> {
+public class CurrencyAdapter extends ArrayAdapter<CountryItem> {
 
-    public CountryAdapter(Context context, ArrayList<CountryItem> countryList) {
+    public CurrencyAdapter(Context context, ArrayList<CountryItem> countryList) {
         super(context, 0, countryList);
     }
 
@@ -36,18 +35,18 @@ public class CountryAdapter extends ArrayAdapter<CountryItem> {
     private View initView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.country_spinner_row, parent, false
+                    R.layout.currency_spinner_row, parent, false
             );
         }
 
-        TextView imageViewFlag = convertView.findViewById(R.id.currency_sign);
-        TextView textViewName = convertView.findViewById(R.id.text_view_name);
+        TextView CurrencySign = convertView.findViewById(R.id.currency_sign);
+        TextView CurrencyName = convertView.findViewById(R.id.text_view_name);
 
         CountryItem currentItem = getItem(position);
 
         if (currentItem != null) {
-            imageViewFlag.setText(currentItem.getFlagImage());
-            textViewName.setText(currentItem.getCountryName());
+            CurrencySign.setText(currentItem.getFlagImage());
+            CurrencyName.setText(currentItem.getCountryName());
         }
 
         return convertView;
