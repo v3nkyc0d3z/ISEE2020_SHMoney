@@ -32,6 +32,15 @@
         <item>income</item>
         <item>expense</item>
     </string-array>
+    <string-array name="Currency_types">
+        <item>Currency</item>
+        <item>Euro</item>
+        <item>Dollar</item>
+        <item>Rupee</item>
+        <item>Pound</item>
+        <item>Yen</item>
+
+    </string-array>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -145,5 +154,18 @@
     <string name="category">CATEGORY</string>
     <string name="amount">AMOUNT</string>
     <string name="repeated_transaction">REPEATED TRANSACTION</string>
+    <string name="app_username">Username</string>
+    <string name="app_password">Password</string>
+    <string name="app_Login">Login</string>
+    <string name="app_register">Register</string>
+    <string name="app_Username">Enter UserName</string>
+    <string name="app_Password">Enter Password</string>
+    <string name="app_id">Enter Email ID</string>
+    <string name="app_Currency">Default Currency</string>
+    <string name="app_threshold">Set Threshold</string>
+    <string name="app_Registered">Register</string>
+    <string name="app_NewSignin">New User? Sign In</string>
+    <string name="app_dob">Date of Birth</string>
+    <string name="app_country">Country</string>
 
 </resources>
