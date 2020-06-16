@@ -47,7 +47,6 @@
         android:background="#1f4068"
         android:textColor="@color/design_default_color_surface"/>
     <Button
-        android:id="@+id/Help_popup"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
