@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:text="@string/text_to_input"
+        android:text="COntent to be put here"
         android:textColor="@color/colorWhiteBackgroundDark"
         android:layout_gravity="center"
         android:gravity="center" />
