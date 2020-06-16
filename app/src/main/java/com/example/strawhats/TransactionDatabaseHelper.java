@@ -75,4 +75,23 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public boolean updateData(int id, String date, Float amount, String mode, String category, String comments,String type,String currency,Boolean recurence,String profile){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("TransactionDate",date);
+        contentValues.put("Amount",amount);
+        contentValues.put("Mode",mode);
+        contentValues.put("Category",category);
+        contentValues.put("Comments",comments);
+        contentValues.put("Type",type);
+        contentValues.put("Currency",currency);
+        contentValues.put("Recurrence",recurence);
+        contentValues.put("Profile",profile);
+        long result = db.update("TRANSACTIONS",contentValues,"Tid = "+id,null);
+        if (result > 0){
+            return  true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -90,11 +90,11 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               myAdapter = new TransactionListAdapter(TransactionSummary.this,listData);
-               mlistView.setAdapter(myAdapter);
-               typeSpinner.setSelection(0);
-               CategoriesSpinner.setSelection(0);
-               ModeSpinner.setSelection(0);
+                myAdapter = new TransactionListAdapter(TransactionSummary.this,listData);
+                mlistView.setAdapter(myAdapter);
+                typeSpinner.setSelection(0);
+                CategoriesSpinner.setSelection(0);
+                ModeSpinner.setSelection(0);
             }
         });
         populateList();

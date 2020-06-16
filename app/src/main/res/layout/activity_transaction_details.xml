@@ -74,14 +74,33 @@
         android:textColor="@color/colorBlack"
         android:textSize="15dp" />
 
-    <Button
-        android:id="@+id/btnTdelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvT5"
+
+    <ImageView
+        android:id="@+id/icDelete"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/tvT4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Delete"
-        android:textColor="@color/colorBlack" />
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_delete_black_24dp" />
+
+    <ImageView
+        android:id="@+id/icRepeat"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_repeat"
+        android:layout_toLeftOf="@+id/icDelete"
+        android:layout_marginRight="45dp"
+        android:layout_below="@id/tvT4"
+        android:layout_marginTop="70dp"/>
+    <ImageView
+        android:id="@+id/icEdit"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_edit_black"
+        android:layout_toRightOf="@+id/icDelete"
+        android:layout_marginLeft="45dp"
+        android:layout_below="@id/tvT4"
+        android:layout_marginTop="70dp"/>
 
 </RelativeLayout>
