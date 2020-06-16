@@ -291,7 +291,7 @@ public class TransactionForm extends AppCompatActivity {
         if (last2.equals("\n")){
             str = str.substring(0,str.length()-1);
         }
-        
+
         return str;
     }
 }

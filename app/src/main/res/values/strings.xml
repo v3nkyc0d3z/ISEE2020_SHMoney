@@ -167,5 +167,9 @@
     <string name="app_NewSignin">New User? Sign In</string>
     <string name="app_dob">Date of Birth</string>
     <string name="app_country">Country</string>
+    <string name="x">X</string>
+    <string name="hello_user_welcome_to_help_menu">Hello User, welcome to help menu</string>
+    <string name="text_to_input">***text to input***</string>
+    <string name="hello_user_welcome_to_help_center">Hello User, Welcome to Help Center</string>
 
 </resources>
