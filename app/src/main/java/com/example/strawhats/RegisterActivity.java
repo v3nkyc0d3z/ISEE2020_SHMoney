@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username, password, email,country,dob;
     Button register;
     Spinner Currency;
-    DatabaseHelper databaseHelper;
+    UserDatabaseHelper userDatabaseHelper;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        databaseHelper = new DatabaseHelper(this);
+        userDatabaseHelper = new UserDatabaseHelper(this);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                     contentValues.put("email",emailValue);
                     contentValues.put("country",countryValue);
 
-                    databaseHelper.insertUser(contentValues);
+                    userDatabaseHelper.insertUser(contentValues);
                     Toast.makeText(RegisterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(RegisterActivity.this, "Enter the values", Toast.LENGTH_SHORT).show();

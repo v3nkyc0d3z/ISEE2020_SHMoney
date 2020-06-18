@@ -100,6 +100,11 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
                 categoryIcon.setImageResource(R.drawable.ic_turned_other_24dp);
             }
         }
+        if(Original.get(position).getType().equals("Income")){
+            categoryIcon.setColorFilter(ContextCompat.getColor(c,R.color.colorTextGreen));
+        } else {
+            categoryIcon.setColorFilter(ContextCompat.getColor(c,R.color.colorTextRed));
+        }
 //        if(Original.get(position).getCategory().equals("Wage")){
 //            categoryIcon.setImageResource(R.drawable.ic_work_black_24dp);
 //        } else  else if (Original.get(position).getCategory().equals("Interest")){

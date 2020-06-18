@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button Login;
     TextView Register;
-    DatabaseHelper databaseHelper;
+    UserDatabaseHelper userDatabaseHelper;
 
     String uname,pass;
 
@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         Login = findViewById(R.id.btlogin);
         Register=findViewById(R.id.tvreg);
 
-        databaseHelper = new DatabaseHelper(this);
+        userDatabaseHelper = new UserDatabaseHelper(this);
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 String passentry = password.getText().toString();
 
 
-                Cursor data = databaseHelper.getData();
+                Cursor data = userDatabaseHelper.getData();
                 while(data.moveToNext()){
                     uname = data.getString(1);
                     pass = data.getString(2);
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-
+                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }

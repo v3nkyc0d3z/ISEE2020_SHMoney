@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class UserDatabaseHelper extends SQLiteOpenHelper {
     static String name = "database";
     static int version = 1;
 
@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "\t\"email\"\tTEXT,\n" +
             "\t\"country\"\tTEXT)";
 
-    public DatabaseHelper(@Nullable Context context) {
+    public UserDatabaseHelper(@Nullable Context context) {
         super(context, name, null, version);
         getWritableDatabase().execSQL(createTableUser);
     }

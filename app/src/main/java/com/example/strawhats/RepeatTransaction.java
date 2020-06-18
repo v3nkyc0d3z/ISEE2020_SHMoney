@@ -1,5 +1,5 @@
 package com.example.strawhats;
-/**Very complex and delicate code! Do not touch if you have no idea on what you are doing here */
+/**pretty complex and delicate code! Do not touch if you have no idea on what you are doing here */
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -97,7 +97,14 @@ public class RepeatTransaction extends AppCompatActivity {
             final EditText etAmount = (EditText) findViewById(R.id.etIncomeAmount);
             etAmount.setText(transaction.getAmount());
             final TextView catBtn = (TextView) findViewById(R.id.textViewCategory);
-            catBtn.setCompoundDrawablesWithIntrinsicBounds(mIncomeCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+            for (int i = 0;i<mIncomeCategoryList.size();i++){
+                if (mIncomeCategoryList.get(i).getmCategoryName().equals(transaction.getCategory())){
+                    catBtn.setCompoundDrawablesWithIntrinsicBounds(mIncomeCategoryList.get(i).getmCategoryImage(), 0, 0, 0);
+                    break;
+                } else {
+                    catBtn.setCompoundDrawablesWithIntrinsicBounds(mIncomeCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+                }
+            }
             Drawable drawables[] = catBtn.getCompoundDrawables();
             drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             catBtn.setText(transaction.getCategory());
@@ -249,7 +256,14 @@ public class RepeatTransaction extends AppCompatActivity {
             final EditText etAmount = (EditText) findViewById(R.id.etAmount);
             etAmount.setText(transaction.getAmount());
             final TextView catBtn = (TextView) findViewById(R.id.textViewCat);
-            catBtn.setCompoundDrawablesWithIntrinsicBounds(mExpenseCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+            for (int i = 0;i<mExpenseCategoryList.size();i++){
+                if (mExpenseCategoryList.get(i).getmCategoryName().equals(transaction.getCategory())){
+                    catBtn.setCompoundDrawablesWithIntrinsicBounds(mExpenseCategoryList.get(i).getmCategoryImage(), 0, 0, 0);
+                    break;
+                } else {
+                    catBtn.setCompoundDrawablesWithIntrinsicBounds(mExpenseCategoryList.get(1).getmCategoryImage(), 0, 0, 0);
+                }
+            }
             Drawable drawables[] = catBtn.getCompoundDrawables();
             drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             catBtn.setText(transaction.getCategory());
@@ -286,7 +300,14 @@ public class RepeatTransaction extends AppCompatActivity {
 
             });
             final TextView modeMenu = findViewById(R.id.textViewMode);
-            modeMenu.setCompoundDrawablesWithIntrinsicBounds(mModeList.get(1).getmModeImage(), 0, 0, 0);
+            for (int i = 0;i<mModeList.size();i++){
+                if (mModeList.get(i).getmModeName().equals(transaction.getMode())){
+                    modeMenu.setCompoundDrawablesWithIntrinsicBounds(mModeList.get(i).getmModeImage(), 0, 0, 0);
+                    break;
+                } else {
+                    modeMenu.setCompoundDrawablesWithIntrinsicBounds(mModeList.get(1).getmModeImage(), 0, 0, 0);
+                }
+            }
             Drawable drawable[] = modeMenu.getCompoundDrawables();
             drawable[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             modeMenu.setText(transaction.getMode());
