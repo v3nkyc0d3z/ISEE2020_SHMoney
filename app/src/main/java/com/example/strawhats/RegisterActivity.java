@@ -80,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     userDatabaseHelper.insertUser(contentValues);
                     Toast.makeText(RegisterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
+                    finish();
                 }else {
                     Toast.makeText(RegisterActivity.this, "Enter the values", Toast.LENGTH_SHORT).show();
                 }
