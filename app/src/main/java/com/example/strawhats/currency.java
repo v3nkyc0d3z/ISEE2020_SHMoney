@@ -40,7 +40,7 @@ public class currency extends AppCompatActivity {
 
     private void initList() {
         mCountryList = new ArrayList<>();
-        mCountryList.add(new CountryItem("Rupee", "元"));
+        mCountryList.add(new CountryItem("Rupee", "₹"));
         mCountryList.add(new CountryItem("Pound", "£"));
         mCountryList.add(new CountryItem("Yen", "¥"));
         mCountryList.add(new CountryItem("Dollar", "$"));

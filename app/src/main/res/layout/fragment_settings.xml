@@ -24,6 +24,7 @@
         android:layout_gravity="center"
         android:text="Change Date Formate"
         android:textSize="20sp"
+        android:id="@+id/Change_Date_Formate"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
@@ -32,17 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Manage Category"
+        android:text="Method of Payment"
         android:textSize="20sp"
+        android:id="@+id/Method_of_Payment"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Method of Payment"
+        android:text="Change Passward"
         android:textSize="20sp"
+        android:id="@+id/Change_Password"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
@@ -52,6 +56,7 @@
         android:layout_gravity="center"
         android:text="Help"
         android:textSize="20sp"
+        android:id="@+id/Help"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
