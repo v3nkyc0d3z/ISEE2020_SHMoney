@@ -29,6 +29,8 @@
             android:theme="@style/AppTheme.PopUpWindow" />
         <activity android:name=".TransactionSummary" />
         <activity android:name=".TransactionForm" />
+        <activity android:name=".HelpActivity"
+            android:theme="@style/AppTheme.PopUpWindow" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

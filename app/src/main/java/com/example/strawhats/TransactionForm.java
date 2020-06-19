@@ -6,6 +6,7 @@ import androidx.core.text.HtmlCompat;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -26,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,8 +39,10 @@ public class TransactionForm extends AppCompatActivity {
     private static final String TAG = "TransactionForm";
     private ArrayList<CategoryItem> mCategoryList;
     private ArrayList<ModeItem> mModeList;
+    private ArrayList<CurrencyItem> mCurrencyList;
     private CategoryAdapter mAdapter;
     private ModeAdapter nAdapter;
+    private CurrencyAdapter cAdapter;
     private TextView DisplayDate;
     private DatePickerDialog.OnDateSetListener DateSetListener;
     public String CategoryPicked;
@@ -49,6 +54,7 @@ public class TransactionForm extends AppCompatActivity {
     TextView modeMenu;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
     ImageView Bold,Italic;
+    CurrencyItem CurrencyPicked;
 
 
     @Override
@@ -58,6 +64,7 @@ public class TransactionForm extends AppCompatActivity {
 //Initialize the available categories
         initCategoryList();
         initModeList();
+        initCurrencyList();
 //Get current date
         Calendar calendar = Calendar.getInstance();
         Date currDate = calendar.getTime();
@@ -107,6 +114,7 @@ public class TransactionForm extends AppCompatActivity {
         Drawable drawables[] = catMenu.getCompoundDrawables();
         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         catMenu.setText(mCategoryList.get(1).getmCategoryName());
+        CategoryPicked = mCategoryList.get(1).getmCategoryName();
         catMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -150,6 +158,7 @@ public class TransactionForm extends AppCompatActivity {
         Drawable drawable[] = modeMenu.getCompoundDrawables();
         drawable[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         modeMenu.setText(mModeList.get(1).getmModeName());
+        ModePicked = mModeList.get(1).getmModeName();
         modeMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -188,6 +197,47 @@ public class TransactionForm extends AppCompatActivity {
 
 
 //--------------------------------------------------------------------------------------------------
+        String preferedCurrency = "EUR";
+        UserDatabaseHelper userDB = new UserDatabaseHelper(this);
+        Cursor cursor = userDB.getData();
+        while(cursor.moveToNext()){
+            preferedCurrency = cursor.getString(6);
+        }
+        final TextView Currency = (TextView) findViewById(R.id.textViewCurrency);
+        for(int i = 0;i<mCurrencyList.size();i++){
+            if(mCurrencyList.get(i).getmCurrencyAbbreviation().equals(preferedCurrency)){
+                Currency.setText(mCurrencyList.get(i).getCurrencySymbol() + " " + mCurrencyList.get(i).getCurrencyName());
+                CurrencyPicked = mCurrencyList.get(i);
+            }
+        }
+        Currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder nBuilder = new AlertDialog.Builder(TransactionForm.this);
+                cAdapter = new CurrencyAdapter(TransactionForm.this, mCurrencyList);
+                nBuilder.setSingleChoiceItems(cAdapter, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ListView lw = ((AlertDialog) dialog).getListView();
+                        CurrencyItem checked = (CurrencyItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        Currency.setText(checked.getCurrencySymbol() + " " + checked.getCurrencyName());
+                        etAmount.setHint("0.00 " + checked.getmCurrencyAbbreviation());
+                        CurrencyPicked = checked;
+                        dialog.dismiss();
+                    }
+                });
+                nBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog nDialog = nBuilder.create();
+                nDialog.show();
+            }
+        });
+
 //-------------------------Save Button Action-------------------------------------------------------
         Button SaveButton = (Button) findViewById(R.id.btnSave);
         mDatabaseHelper = new TransactionDatabaseHelper(this);
@@ -253,7 +303,8 @@ public class TransactionForm extends AppCompatActivity {
                 //    toastMessage("Enter Mode of Payment");
                 }else {
                         String editcomment = HandleNewLine(comment);
-                        addData(date,amt,ModePicked,CategoryPicked,editcomment);
+                        String Currency = CurrencyPicked.getmCurrencyAbbreviation();
+                        addData(date,amt,ModePicked,CategoryPicked,editcomment,Currency);
                         finish();
                     }
 
@@ -275,8 +326,16 @@ public class TransactionForm extends AppCompatActivity {
         mModeList.add(new ModeItem("Cash",R.drawable.cash_24dp));
         mModeList.add(new ModeItem("PayPal",R.drawable.ic_paypal));
     }
-    public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"Expense","EUR",false,"Default");
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+    }
+    public void addData(String date, Float amount, String mode, String category, String comments,String currency){
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,mode,category,comments,"Expense",currency,"Default");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {

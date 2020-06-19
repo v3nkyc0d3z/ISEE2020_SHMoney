@@ -70,13 +70,10 @@
         android:layout_width="154dp"
         android:layout_height="43dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-thin"
-        android:gravity="start"
-        android:hint="@string/select_date"
-        android:textAlignment="textStart"
+        android:gravity="center_vertical"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFAFA"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,13 +100,11 @@
         android:layout_height="44dp"
         android:background="#2F617C"
         android:backgroundTint="#2F617C"
-        android:fontFamily="sans-serif-thin"
         android:gravity="center_vertical"
         android:shadowColor="#FFFFFF"
-        android:text="@string/tap_to_select_category"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.632"
@@ -135,9 +130,10 @@
 
     <EditText
         android:id="@+id/etIncomeComment"
-        android:layout_width="364dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="60sp"
+        android:layout_width="347dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="12dp"
         android:autofillHints="comment"
         android:backgroundTint="#FFFFFF"
         android:hint="@string/comment_for_income"
@@ -145,10 +141,43 @@
         android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate" />
+
+    <TextView
+        android:id="@+id/tvCurr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="65dp"
+        android:text="CURRENCY"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/fmtItalicIncome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/textViewCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="EURO"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/fmtItalicIncome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurr"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/fmtBoldIncome"
@@ -159,10 +188,10 @@
         android:src="@drawable/ic_format_bold_white"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/fmtItalicIncome"
@@ -173,10 +202,10 @@
         android:src="@drawable/ic_format_italic_white"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fmtBoldIncome"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnIncomeSave"
@@ -194,26 +223,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIncomeComment"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Switch
-        android:id="@+id/IncomerecurrenceSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="10dp"
-        android:checked="false"
-        android:text="Repeated transaction?"
-        android:textColor="@color/colorWhiteBackgroundDark"
-        android:textStyle="bold"
-
-        android:thumb="@drawable/switch_thumb_selector"
-        android:track="@drawable/switch_track_selector"
-        app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCategory" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

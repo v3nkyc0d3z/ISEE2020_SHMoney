@@ -93,11 +93,11 @@ public class TransactionDetails extends AppCompatActivity {
         TextView tv3 = findViewById(R.id.tvT3);
         TextView tv4 = findViewById(R.id.tvT4);
         TextView tv5 = findViewById(R.id.tvT5);
-        if (type.equals("expense")) {
+        if (type.equals("Expense")) {
             tvid.setText("Transaction : " + Integer.toString(id));
-            tv1.setText("Date     : " + date);
-            tv2.setText("Type     : " + type);
-            tv3.setText("Amount   : " + amount);
+            tv1.setText("Date : " + date);
+            tv2.setText("Type : " + type);
+            tv3.setText("Amount :  " + amount);
             tv4.setText("Mode     : " + mode);
             tv5.setText("Category : " + category);
         } else {

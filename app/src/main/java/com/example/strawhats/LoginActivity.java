@@ -15,8 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button Login;
     TextView Register;
-    DatabaseHelper databaseHelper;
-
+    UserDatabaseHelper userDatabaseHelper;
+    Boolean isDataAvailable;
     String uname,pass;
 
 
@@ -28,16 +28,14 @@ public class LoginActivity extends AppCompatActivity {
         password= findViewById(R.id.etpass);
         Login = findViewById(R.id.btlogin);
         Register=findViewById(R.id.tvreg);
-
-        databaseHelper = new DatabaseHelper(this);
+        setThingsUp();
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userentry = username.getText().toString();
                 String passentry = password.getText().toString();
+                Cursor data = userDatabaseHelper.getData();
 
-
-                Cursor data = databaseHelper.getData();
                 while(data.moveToNext()){
                     uname = data.getString(1);
                     pass = data.getString(2);
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-
+                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
@@ -56,10 +54,29 @@ public class LoginActivity extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
+                if (isDataAvailable){
+//                    write the code for forget password activity here
+                }else {
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setThingsUp();
+    }
+
+    public void setThingsUp(){
+        userDatabaseHelper = new UserDatabaseHelper(this);
+        isDataAvailable = userDatabaseHelper.isDataAvailable();
+        if (isDataAvailable){
+            Register.setText("Forgot password?");
+        } else{
+            Register.setText("New user? Register");
+        }
     }
 }

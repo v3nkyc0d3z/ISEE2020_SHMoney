@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class UserDatabaseHelper extends SQLiteOpenHelper {
     static String name = "database";
     static int version = 1;
 
@@ -19,9 +19,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "\t\"password\"\tTEXT,\n" +
             "\t\"dob\"\tTEXT,\n" +
             "\t\"email\"\tTEXT,\n" +
-            "\t\"country\"\tTEXT)";
+            "\t\"country\"\tTEXT,\n" +
+            "\t\"currency\"\tTEXT)";
 
-    public DatabaseHelper(@Nullable Context context) {
+    public UserDatabaseHelper(@Nullable Context context) {
         super(context, name, null, version);
         getWritableDatabase().execSQL(createTableUser);
     }
@@ -56,5 +57,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-
+    public boolean isDataAvailable(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from user";
+        Cursor data = db.rawQuery(query,null);
+        if (data.moveToFirst()){
+            return true;
+        } else{
+            return false;
+        }
+    }
 }
