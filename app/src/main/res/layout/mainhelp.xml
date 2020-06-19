@@ -3,32 +3,94 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlack"
+    android:background="@color/colorTextRed"
     android:padding="5dp"
     android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/txtclose"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:text="@string/x"
-        android:textColor="@color/colorWhiteBackgroundDark"
-        android:textStyle="bold"
-        android:layout_gravity="end"
-        android:gravity="center" />
-<TextView
-    android:layout_width="300dp"
-    android:layout_height="50dp"
-    android:text="@string/hello_user_welcome_to_help_center"
-    android:textColor="@color/colorWhiteBackgroundDark"
-    android:textStyle="bold"
-    android:layout_gravity="center"
-    android:gravity="center" />
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="COntent to be put here"
-        android:textColor="@color/colorWhiteBackgroundDark"
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="513dp"
         android:layout_gravity="center"
-        android:gravity="center" />
+        android:layout_marginTop="70dp"
+        android:background="@color/colorBlack"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtclose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:text="@string/x"
+            android:textColor="@color/colorWhiteBackgroundDark"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/hello_user_welcome_to_help_center"
+            android:textColor="@color/colorWhiteBackgroundDark"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="We present you this app to assist you track your daily transactions"
+            android:textColor="@color/colorWhiteBackgroundDark"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="1. In the home screen, you see spending overview chart, add income button, add expense button, charts menu and settings menu"
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="2. Click on 'add income' button to add your income"
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="3. Click on 'add expense' to enter your expenses "
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="4. Click at centre of the 'transaction overview' button to see your transaction history"
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="5. Click on 'charts' menu to see visualisation of your transaction details"
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="6. Click on 'settings' menu to go settings"
+            android:textColor="@color/colorWhiteBackgroundDark" />
+
+    </LinearLayout>
 </LinearLayout>
