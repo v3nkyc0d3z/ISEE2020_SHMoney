@@ -128,12 +128,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
+
     <EditText
         android:id="@+id/etIncomeComment"
         android:layout_width="347dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="12dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
         android:autofillHints="comment"
         android:backgroundTint="#FFFFFF"
         android:hint="@string/comment_for_income"
@@ -151,44 +152,38 @@
         android:id="@+id/tvCurr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginStart="32dp"
         android:text="CURRENCY"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/fmtItalicIncome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintBottom_toTopOf="@+id/fmtBoldIncome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.304" />
 
     <TextView
         android:id="@+id/textViewCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:text="EURO"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/fmtItalicIncome"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCurr"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toEndOf="@+id/tvCurr"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
+        app:layout_constraintVertical_bias="0.202" />
 
     <ImageView
         android:id="@+id/fmtBoldIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:layout_marginBottom="15dp"
         android:src="@drawable/ic_format_bold_white"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IncomeDate"
         app:layout_constraintVertical_bias="1.0" />
@@ -198,7 +193,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:layout_marginBottom="15dp"
         android:src="@drawable/ic_format_italic_white"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"

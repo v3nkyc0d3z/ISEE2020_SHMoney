@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCat"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/fmtItalicExpense"
@@ -37,14 +37,14 @@
         android:id="@+id/etTransactionComment"
         android:layout_width="377dp"
         android:layout_height="87dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="52dp"
         android:autofillHints="comment"
         android:hint="@string/comment_for_income"
         android:inputType="text"
         android:textColor="@color/colorWhiteBackgroundDark"
         android:textColorHint="@color/colorWhiteBackgroundDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCat" />
 
@@ -183,13 +183,13 @@
         android:layout_height="47dp"
         android:layout_marginStart="19dp"
         android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewCat"
         android:gravity="center_vertical"
         android:textColor="#F8F1F1"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toEndOf="@+id/textViewCat" />
 
     <TextView
         android:id="@+id/textViewMode"
