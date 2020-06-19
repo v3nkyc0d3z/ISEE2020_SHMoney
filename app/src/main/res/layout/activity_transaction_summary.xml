@@ -7,83 +7,6 @@
     android:layout_height="match_parent"
     android:background="#F1F1F1"
     tools:context=".TransactionSummary">
-
-    <Button
-        android:id="@+id/btnFilterReset"
-        android:layout_width="91dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
-        android:background="#8BC34A"
-        android:text="Reset Filters"
-        android:textColor="#FFFFFF"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvAllTransactions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/etFilterDescription" />
-
-    <EditText
-        android:id="@+id/etFilterDescription"
-        android:layout_width="268dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="22dp"
-        android:hint="Search"
-        android:includeFontPadding="false"
-        android:inputType="none"
-        android:textColor="#323232"
-        android:textColorHint="#3A3A3A"
-        android:textColorLink="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvAllTransactions"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spTypeFilter"
-        android:layout_width="105dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="35dp"
-        android:autofillHints="Transaction type"
-        android:entries="@array/transaction_types"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/etFilterDescription"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spCategoryFilter"
-        android:layout_width="114dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="35dp"
-        android:autofillHints="Type of payment"
-        android:entries="@array/category_types"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/etFilterDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/spModeFilter" />
-
-    <Spinner
-        android:id="@+id/spModeFilter"
-        android:layout_width="154dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="35dp"
-        android:autofillHints="Type of payment"
-        android:entries="@array/Type_of_payments"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/etFilterDescription"
-        app:layout_constraintStart_toEndOf="@+id/spTypeFilter" />
-
-    <ListView
-        android:id="@+id/lvAllTransactions"
-        android:layout_width="413dp"
-        android:layout_height="416dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -97,5 +20,86 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Spinner
+        android:id="@+id/spTypeFilter"
+        android:layout_width="105dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="30sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="35dp"
+        android:autofillHints="Transaction type"
+        android:entries="@array/transaction_types"
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spCategoryFilter"
+        android:layout_width="114dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="30sp"
+        android:autofillHints="Type of payment"
+        android:entries="@array/category_types"
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spModeFilter" />
+
+    <Spinner
+        android:id="@+id/spModeFilter"
+        android:layout_width="154dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+       android:layout_marginTop="30sp"
+        android:autofillHints="Type of payment"
+        android:entries="@array/Type_of_payments"
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/spTypeFilter" />
+
+
+    <Button
+        android:id="@+id/btnFilterReset"
+        android:layout_width="91dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30sp"
+        android:background="#8BC34A"
+        android:text="Reset Filters"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/spCategoryFilter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/etFilterDescription" />
+
+    <EditText
+        android:id="@+id/etFilterDescription"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30sp"
+        android:hint="Search"
+        android:includeFontPadding="false"
+        android:inputType="none"
+        android:textColor="#323232"
+        android:textColorHint="#3A3A3A"
+        android:textColorLink="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/spTypeFilter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:id="@+id/lvAllTransactions"
+        android:layout_marginTop="40sp"
+        app:layout_constraintTop_toBottomOf="@+id/etFilterDescription"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

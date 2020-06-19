@@ -18,7 +18,8 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/round_button" />
-
+        <activity android:name=".EditTransaction"/>
+        <activity android:name=".RepeatTransaction"/>
         <activity android:name=".IncomeForm" />
         <activity android:name=".Neon" />
         <activity android:name=".security_setting" />

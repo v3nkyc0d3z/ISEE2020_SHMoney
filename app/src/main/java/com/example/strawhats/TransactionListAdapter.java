@@ -118,9 +118,6 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         return cs;
     }
 
-
-
-
     class CustomFilter extends Filter{
 
         @Override

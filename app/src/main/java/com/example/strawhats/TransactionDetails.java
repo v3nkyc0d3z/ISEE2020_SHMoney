@@ -1,18 +1,22 @@
 package com.example.strawhats;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class TransactionDetails extends AppCompatActivity {
     TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(this);
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +30,53 @@ public class TransactionDetails extends AppCompatActivity {
 
         getWindow().setLayout((int)(width*.6),(int)(height*.55));
 
-        Intent intent = getIntent();
-        TransactionList Transaction = intent.getParcelableExtra("Transaction Item");
+        intent = getIntent();
+        final TransactionList Transaction = intent.getParcelableExtra("Transaction Item");
+        setupEverything(Transaction);
+        int id = Transaction.getId();
+        final String id_str = Integer.toString(id);
+        ImageView Delete = (ImageView) findViewById(R.id.icDelete);
+//        Button Delete = (Button) findViewById(R.id.btnTdelete);
+        Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteData(id_str);
+                finish();
+            }
+        });
 
+        ImageView Edit = (ImageView)findViewById(R.id.icEdit);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TransactionDetails.this,EditTransaction.class);
+                intent.putExtra("Transaction Object",Transaction);
+                startActivityForResult(intent,0);
+            }
+        });
+        ImageView Repeat =(ImageView)findViewById(R.id.icRepeat);
+        Repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TransactionDetails.this,RepeatTransaction.class);
+                intent.putExtra("Transaction Object",Transaction);
+                startActivityForResult(intent,0);
+            }
+        });
 
+    }
+    public void deleteData(String id){
+        boolean deletedata = mDatabaseHelper.deleteData(id);
+        if(deletedata){
+            toastMessage("Data Deleted");
+        } else{
+            toastMessage("Data Not Deleted");
+        }
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+    public void setupEverything(final TransactionList Transaction){
         int id = Transaction.getId();
         final String id_str = Integer.toString(id);
         String date = Transaction.getDate();
@@ -62,24 +109,14 @@ public class TransactionDetails extends AppCompatActivity {
             tv5.setVisibility(View.INVISIBLE);
         }
 
-        Button Delete = (Button) findViewById(R.id.btnTdelete);
-        Delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteData(id_str);
-                finish();
-            }
-        });
     }
-    public void deleteData(String id){
-        boolean deletedata = mDatabaseHelper.deleteData(id);
-        if(deletedata){
-            toastMessage("Data Deleted");
-        } else{
-            toastMessage("Data Not Deleted");
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK){
+            TransactionList updatedTransaction = data.getParcelableExtra("updatedTransaction");
+            setupEverything(updatedTransaction);
         }
-    }
-    private void toastMessage(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 }
