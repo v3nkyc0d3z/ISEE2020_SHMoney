@@ -13,8 +13,9 @@ public class TransactionList implements Parcelable {
     public String comment;
     public String type;
     public String action;
+    public String currency;
 
-    public TransactionList(int id, String date, String amount, String mode, String category, String comment, String type, String action) {
+    public TransactionList(int id, String date, String amount, String mode, String category, String comment, String type, String action,String currency) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -23,6 +24,7 @@ public class TransactionList implements Parcelable {
         this.comment = comment;
         this.type = type;
         this.action = action;
+        this.currency = currency;
     }
 
     protected TransactionList(Parcel in) {
@@ -34,6 +36,7 @@ public class TransactionList implements Parcelable {
         comment = in.readString();
         type = in.readString();
         action = in.readString();
+        currency = in.readString();
     }
 
     public static final Creator<TransactionList> CREATOR = new Creator<TransactionList>() {
@@ -126,6 +129,10 @@ public class TransactionList implements Parcelable {
         this.action = action;
     }
 
+    public String getCurrency(){return currency;}
+
+    public void setCurrency(String currency){this.currency =  currency;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -141,5 +148,6 @@ public class TransactionList implements Parcelable {
         dest.writeString(comment);
         dest.writeString(type);
         dest.writeString(action);
+        dest.writeString(currency);
     }
 }

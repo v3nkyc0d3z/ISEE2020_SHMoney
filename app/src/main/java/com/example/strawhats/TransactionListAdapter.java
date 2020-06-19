@@ -23,6 +23,7 @@ import java.util.List;
 public class TransactionListAdapter extends BaseAdapter implements Filterable {
     Context c;
     ArrayList<TransactionList> Original,Temp;
+    ArrayList<CurrencyItem> mCurrencyList;
     CustomFilter cs;
 
 
@@ -61,12 +62,19 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         tvAction.setTextSize(14);
         TextView tvAmount = (TextView) row.findViewById(R.id.lvaAmount);
         tvAmount.setTextSize(18);
-
+        initCurrencyList();
+        String currencySymbol = "";
+        for(int i = 0; i<mCurrencyList.size();i++){
+            if (Original.get(position).getCurrency().equals(mCurrencyList.get(i).getmCurrencyAbbreviation())){
+                currencySymbol = mCurrencyList.get(i).getCurrencySymbol();
+                break;
+            }
+        }
         String comment = Original.get(position).getComment();
 //        tvComment.setText(Original.get(position).getComment());
         tvComment.setText(HtmlCompat.fromHtml(comment,0));
         tvDate.setText(Original.get(position).getDate());
-        tvAmount.setText(Original.get(position).getAmount());
+        tvAmount.setText(currencySymbol+ " " +Original.get(position).getAmount());
         tvAction.setText(Original.get(position).getAction());
 
         if(Original.get(position).getAction().equals("you spent")){
@@ -114,7 +122,14 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
 //        }
         return row;
     }
-
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+    }
     @Override
     public Filter getFilter() {
         if (cs == null){
@@ -136,20 +151,20 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
                 for (int i = 0 ; i<Temp.size();i++){
                     if (Temp.get(i).getComment().toUpperCase().contains(constraint)){
                         TransactionList record = new TransactionList(Temp.get(i).getId(),Temp.get(i).getDate(),Temp.get(i).getAmount(),
-                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction());
+                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction(),Temp.get(i).getCurrency());
                         filters.add(record);
                     }
                     if (Temp.get(i).getMode().toUpperCase().equals(constraint)){
                         TransactionList record = new TransactionList(Temp.get(i).getId(),Temp.get(i).getDate(),Temp.get(i).getAmount(),
-                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction());
+                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction(),Temp.get(i).getCurrency());
                         filters.add(record);
                     }if (Temp.get(i).getCategory().toUpperCase().equals(constraint)){
                         TransactionList record = new TransactionList(Temp.get(i).getId(),Temp.get(i).getDate(),Temp.get(i).getAmount(),
-                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction());
+                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction(),Temp.get(i).getCurrency());
                         filters.add(record);
                     }if (Temp.get(i).getType().toUpperCase().equals(constraint)){
                         TransactionList record = new TransactionList(Temp.get(i).getId(),Temp.get(i).getDate(),Temp.get(i).getAmount(),
-                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction());
+                                Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction(),Temp.get(i).getCurrency());
                         filters.add(record);
                     }
                 }

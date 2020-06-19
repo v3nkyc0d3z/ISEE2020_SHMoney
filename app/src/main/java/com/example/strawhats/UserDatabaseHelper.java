@@ -19,7 +19,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             "\t\"password\"\tTEXT,\n" +
             "\t\"dob\"\tTEXT,\n" +
             "\t\"email\"\tTEXT,\n" +
-            "\t\"country\"\tTEXT)";
+            "\t\"country\"\tTEXT,\n" +
+            "\t\"currency\"\tTEXT)";
 
     public UserDatabaseHelper(@Nullable Context context) {
         super(context, name, null, version);

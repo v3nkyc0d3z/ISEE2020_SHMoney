@@ -38,19 +38,23 @@ import java.util.GregorianCalendar;
 public class RepeatTransaction extends AppCompatActivity {
     private ArrayList<CategoryItem> mIncomeCategoryList,mExpenseCategoryList;
     private ArrayList<ModeItem> mModeList;
+    private ArrayList<CurrencyItem> mCurrencyList;
     private ModeAdapter nAdapter;
+    private CurrencyAdapter cAdapter;
     private static final String TAG = "EditTransaction";
     private CategoryAdapter mAdapter;
     private DatePickerDialog.OnDateSetListener DateSetListener;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
     TransactionDatabaseHelper transactionDatabaseHelper;
     public String ModePicked;
+    CurrencyItem CurrencyPicked;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initIncomeCategoryList();
         initExpenseCategoryList();
         initModeList();
+        initCurrencyList();
         final Intent intent = getIntent();
         final TransactionList transaction = intent.getParcelableExtra("Transaction Object");
         String type = transaction.getType();
@@ -140,6 +144,43 @@ public class RepeatTransaction extends AppCompatActivity {
                 }
 
             });
+//==========================================Currency setting=======================================================
+            String transactionCurrency = transaction.getCurrency();
+            final TextView Currency = (TextView) findViewById(R.id.textViewCurrency);
+            for(int i = 0;i<mCurrencyList.size();i++){
+                if(mCurrencyList.get(i).getmCurrencyAbbreviation().equals(transactionCurrency)){
+                    Currency.setText(mCurrencyList.get(i).getCurrencySymbol() + " " + mCurrencyList.get(i).getCurrencyName());
+                    CurrencyPicked = mCurrencyList.get(i);
+                }
+            }
+            Currency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder nBuilder = new AlertDialog.Builder(RepeatTransaction.this);
+                    cAdapter = new CurrencyAdapter(RepeatTransaction.this, mCurrencyList);
+                    nBuilder.setSingleChoiceItems(cAdapter, 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ListView lw = ((AlertDialog) dialog).getListView();
+                            CurrencyItem checked = (CurrencyItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                            Currency.setText(checked.getCurrencySymbol() + " " + checked.getCurrencyName());
+                            etAmount.setHint("0.00 " + checked.getmCurrencyAbbreviation());
+                            CurrencyPicked = checked;
+                            dialog.dismiss();
+                        }
+                    });
+                    nBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    AlertDialog nDialog = nBuilder.create();
+                    nDialog.show();
+                }
+            });
+
 
             final EditText etComment = (EditText) findViewById(R.id.etIncomeComment);
             String cmt = transaction.getComment();
@@ -203,15 +244,15 @@ public class RepeatTransaction extends AppCompatActivity {
                         toastMessage("comment cannot be empty");
                     } else{
                         String editcomment = HandleNewLine(comment);
+                        String currency = CurrencyPicked.getmCurrencyAbbreviation();
                         int id = transaction.getId();
-                        addData(date,amt,"NA",category,editcomment,"Income");
+                        addData(date,amt,"NA",category,editcomment,"Income",currency);
                         finish();
                     }
                 }
             });
-
         }
-//==================================================================================================================================
+//==================================EXPENSE SECTION================================================================================================
         else
         {
 
@@ -347,6 +388,41 @@ public class RepeatTransaction extends AppCompatActivity {
                 }
 
             });
+            String transactionCurrency = transaction.getCurrency();
+            final TextView Currency = (TextView) findViewById(R.id.textViewCurrency);
+            for(int i = 0;i<mCurrencyList.size();i++){
+                if(mCurrencyList.get(i).getmCurrencyAbbreviation().equals(transactionCurrency)){
+                    Currency.setText(mCurrencyList.get(i).getCurrencySymbol() + " " + mCurrencyList.get(i).getCurrencyName());
+                    CurrencyPicked = mCurrencyList.get(i);
+                }
+            }
+            Currency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder nBuilder = new AlertDialog.Builder(RepeatTransaction.this);
+                    cAdapter = new CurrencyAdapter(RepeatTransaction.this, mCurrencyList);
+                    nBuilder.setSingleChoiceItems(cAdapter, 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ListView lw = ((AlertDialog) dialog).getListView();
+                            CurrencyItem checked = (CurrencyItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                            Currency.setText(checked.getCurrencySymbol() + " " + checked.getCurrencyName());
+                            etAmount.setHint("0.00 " + checked.getmCurrencyAbbreviation());
+                            CurrencyPicked = checked;
+                            dialog.dismiss();
+                        }
+                    });
+                    nBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    AlertDialog nDialog = nBuilder.create();
+                    nDialog.show();
+                }
+            });
 
 
             final EditText etComment = (EditText) findViewById(R.id.etTransactionComment);
@@ -412,8 +488,9 @@ public class RepeatTransaction extends AppCompatActivity {
                     } else{
                         String editcomment = HandleNewLine(comment);
                         int id = transaction.getId();
-                        addData(date,amt,ModePicked,category,editcomment,"Expense");
-                        TransactionList updatedTransaction = new TransactionList(id,date,amount,ModePicked,category,editcomment,"Income","you got");
+                        String currency = CurrencyPicked.getmCurrencyAbbreviation();
+                        addData(date,amt,ModePicked,category,editcomment,"Expense",currency);
+                        TransactionList updatedTransaction = new TransactionList(id,date,amount,ModePicked,category,editcomment,"Income","you got",currency);
                         setResult(Activity.RESULT_OK,new Intent().putExtra("updatedTransaction",updatedTransaction));
                         finish();
                     }
@@ -439,8 +516,8 @@ public class RepeatTransaction extends AppCompatActivity {
         }
         return str;
     }
-    public void updateData(int id, String date, Float amount, String mode, String category, String comments,String type,String currency,Boolean recurence,String profile){
-        Boolean res = transactionDatabaseHelper.updateData(id,date,amount,mode,category,comments,type,currency,recurence,profile);
+    public void updateData(int id, String date, Float amount, String mode, String category, String comments,String type,String currency,String profile){
+        Boolean res = transactionDatabaseHelper.updateData(id,date,amount,mode,category,comments,type,currency,profile);
     }
     private void initExpenseCategoryList(){
         mExpenseCategoryList = new ArrayList<>();
@@ -456,8 +533,16 @@ public class RepeatTransaction extends AppCompatActivity {
         mModeList.add(new ModeItem("Cash",R.drawable.cash_24dp));
         mModeList.add(new ModeItem("PayPal",R.drawable.ic_paypal));
     }
-    public void addData(String date, Float amount, String mode, String category, String comments,String type){
-        boolean insertData = transactionDatabaseHelper.addTransaction(date,amount,mode,category,comments,type,"EUR",false,"Default");
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+    }
+    public void addData(String date, Float amount, String mode, String category, String comments,String type,String currency){
+        boolean insertData = transactionDatabaseHelper.addTransaction(date,amount,mode,category,comments,type,currency,"Default");
         if (insertData){
             toastMessage("Data Inserted!");
         } else {

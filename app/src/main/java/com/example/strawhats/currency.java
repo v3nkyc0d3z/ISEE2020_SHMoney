@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class currency extends AppCompatActivity {
-    private ArrayList<CountryItem> mCountryList;
+    private ArrayList<CurrencyItem> mCurrencyList;
     private CurrencyAdapter mAdapter;
 
     @Override
@@ -21,30 +21,28 @@ public class currency extends AppCompatActivity {
         setContentView(R.layout.activity_currency);
         initList();
         Spinner spinnerCountries = findViewById(R.id.spinner_countries);
-        mAdapter = new CurrencyAdapter(this, mCountryList);
+        mAdapter = new CurrencyAdapter(this, mCurrencyList);
         spinnerCountries.setAdapter(mAdapter);
         spinnerCountries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CountryItem clickedItem = (CountryItem) parent.getItemAtPosition(position);
-                String clickedCountryName = clickedItem.getCountryName();
+                CurrencyItem clickedItem = (CurrencyItem) parent.getItemAtPosition(position);
+                String clickedCountryName = clickedItem.getCurrencyName();
                 Toast.makeText(currency.this, clickedCountryName + " selected", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-
     }
 
     private void initList() {
-        mCountryList = new ArrayList<>();
-        mCountryList.add(new CountryItem("Rupee", "\u20B9"));
-        mCountryList.add(new CountryItem("Pound", "£"));
-        mCountryList.add(new CountryItem("Yen", "¥"));
-        mCountryList.add(new CountryItem("Dollar", "$"));
-        mCountryList.add(new CountryItem("Euro", "€"));
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
     }
 
 

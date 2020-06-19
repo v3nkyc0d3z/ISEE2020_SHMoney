@@ -20,11 +20,15 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username, password, email,country,dob;
     Button register;
     Spinner Currency;
+    ArrayList<CurrencyItem> mCurrencyList;
     UserDatabaseHelper userDatabaseHelper;
+    CurrencyAdapter cAdapter;
+    CurrencyItem CurrencyPicked;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initCurrencyList();
         setContentView(R.layout.activity_register);
         username= findViewById(R.id.username);
         password= findViewById(R.id.password);
@@ -32,24 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
         email= findViewById(R.id.email);
         country= findViewById(R.id.country);
         register= findViewById(R.id.register);
-        Currency = (Spinner) findViewById(R.id.spinner);
-        List<String> list = new ArrayList<String>();
-        list.add("Currency");
-        list.add("Euro");
-        list.add("Dollar");
-        list.add("Rupee");
-        list.add("Pound");
-        list.add("Yen");
-        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Currency.setAdapter(arrayAdapter);
+        Currency = (Spinner) findViewById(R.id.spCurrencyPref);
+        cAdapter = new CurrencyAdapter(this,mCurrencyList);
+        Currency.setAdapter(cAdapter);
 
         Currency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Currency.setSelection(position);
-
-
+                CurrencyItem clickedItem = (CurrencyItem) parent.getItemAtPosition(position);
+                CurrencyPicked = clickedItem;
             }
 
             @Override
@@ -68,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String dobValue=dob.getText().toString();
                 String emailValue=email.getText().toString();
                 String countryValue=country.getText().toString();
+                String currencyValue = CurrencyPicked.getmCurrencyAbbreviation();
 
 
                 if (usernameValue.length()>1){
@@ -77,19 +73,23 @@ public class RegisterActivity extends AppCompatActivity {
                     contentValues.put("dob",dobValue);
                     contentValues.put("email",emailValue);
                     contentValues.put("country",countryValue);
-
+                    contentValues.put("currency",currencyValue);
                     userDatabaseHelper.insertUser(contentValues);
                     Toast.makeText(RegisterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
                     finish();
                 }else {
                     Toast.makeText(RegisterActivity.this, "Enter the values", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
-
+    }
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
     }
 }
 

@@ -26,7 +26,6 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
                        "Comments String," +
                        "Type String,"+
                        "Currency String,"+
-                       "Recurrence Boolean,"+
                        "Profile String)";
         db.execSQL(query);
     }
@@ -37,7 +36,7 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addTransaction(String date, Float amount, String mode, String category, String comments,String type,String currency,Boolean recurence,String profile){
+    public boolean addTransaction(String date, Float amount, String mode, String category, String comments,String type,String currency,String profile){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("TransactionDate",date);
@@ -47,7 +46,6 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Comments",comments);
         contentValues.put("Type",type);
         contentValues.put("Currency",currency);
-        contentValues.put("Recurrence",recurence);
         contentValues.put("Profile",profile);
 
         long result =db.insert("TRANSACTIONS",null,contentValues);
@@ -75,7 +73,7 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public boolean updateData(int id, String date, Float amount, String mode, String category, String comments,String type,String currency,Boolean recurence,String profile){
+    public boolean updateData(int id, String date, Float amount, String mode, String category, String comments,String type,String currency,String profile){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("TransactionDate",date);
@@ -85,7 +83,6 @@ public class TransactionDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Comments",comments);
         contentValues.put("Type",type);
         contentValues.put("Currency",currency);
-        contentValues.put("Recurrence",recurence);
         contentValues.put("Profile",profile);
         long result = db.update("TRANSACTIONS",contentValues,"Tid = "+id,null);
         if (result > 0){

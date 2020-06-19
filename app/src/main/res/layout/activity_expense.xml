@@ -39,9 +39,9 @@
         android:layout_height="87dp"
         android:layout_marginTop="59dp"
         android:autofillHints="comment"
-        android:textColor="@color/colorWhiteBackgroundDark"
         android:hint="@string/comment_for_income"
         android:inputType="text"
+        android:textColor="@color/colorWhiteBackgroundDark"
         android:textColorHint="@color/colorWhiteBackgroundDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
@@ -68,7 +68,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,34 +162,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TransDate" />
 
-    <Switch
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="5dp"
-        android:text="Repeated Transaction?"
-        android:textColor="@color/colorWhiteBackgroundDark"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="17dp"
+        android:text="CURRENCY"
+        android:textColor="#FFFFFF"
         android:textSize="14sp"
-        android:track="@drawable/switch_track_selector"
-        android:thumb="@drawable/switch_thumb_selector"
-        android:checked="false"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCat"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCurrency"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMode"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMode" />
+
+
+    <TextView
+        android:id="@+id/textViewCurrency"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewCat"
+        android:gravity="center_vertical"
+        android:textColor="#F8F1F1"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewMode"
         android:layout_width="165dp"
         android:layout_height="47dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:textColor="#F8F1F1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toEndOf="@+id/TransDate"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 

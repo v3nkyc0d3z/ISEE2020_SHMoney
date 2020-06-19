@@ -15,9 +15,9 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 
-public class CurrencyAdapter extends ArrayAdapter<CountryItem> {
+public class CurrencyAdapter extends ArrayAdapter<CurrencyItem> {
 
-    public CurrencyAdapter(Context context, ArrayList<CountryItem> countryList) {
+    public CurrencyAdapter(Context context, ArrayList<CurrencyItem> countryList) {
         super(context, 0, countryList);
     }
 
@@ -42,11 +42,11 @@ public class CurrencyAdapter extends ArrayAdapter<CountryItem> {
         TextView CurrencySign = convertView.findViewById(R.id.currency_sign);
         TextView CurrencyName = convertView.findViewById(R.id.text_view_name);
 
-        CountryItem currentItem = getItem(position);
+        CurrencyItem currentItem = getItem(position);
 
         if (currentItem != null) {
-            CurrencySign.setText(currentItem.getFlagImage());
-            CurrencyName.setText(currentItem.getCountryName());
+            CurrencySign.setText(currentItem.getCurrencySymbol());
+            CurrencyName.setText(currentItem.getCurrencyName());
         }
 
         return convertView;

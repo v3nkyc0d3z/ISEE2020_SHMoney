@@ -7,6 +7,7 @@ import androidx.core.text.HtmlCompat;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -39,8 +40,10 @@ import java.util.Date;
 public class IncomeForm extends AppCompatActivity {
     private static final String TAG = "IncomeForm";
     private ArrayList<CategoryItem> mCategoryList;
+    private ArrayList<CurrencyItem> mCurrencyList;
     private static final String NA = "NA";
     private CategoryAdapter mAdapter;
+    private CurrencyAdapter cAdapter;
     private TextView DisplayDate;
     private DatePickerDialog.OnDateSetListener DateSetListener;
     public EditText etAmount;
@@ -49,6 +52,7 @@ public class IncomeForm extends AppCompatActivity {
     TextView catBtn;
     ImageView Bold,Italic;
     String comments;
+    CurrencyItem CurrencyPicked;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -57,6 +61,7 @@ public class IncomeForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_form2);
         initCategoryList();
+        initCurrencyList();
         //Get current date
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
@@ -130,6 +135,48 @@ public class IncomeForm extends AppCompatActivity {
             }
 
         });
+//---------------------------------------------------------------------------------------
+        String preferedCurrency = "EUR";
+        UserDatabaseHelper userDB = new UserDatabaseHelper(this);
+        Cursor cursor = userDB.getData();
+        while(cursor.moveToNext()){
+            preferedCurrency = cursor.getString(6);
+        }
+        final TextView Currency = (TextView) findViewById(R.id.textViewCurrency);
+        for(int i = 0;i<mCurrencyList.size();i++){
+            if(mCurrencyList.get(i).getmCurrencyAbbreviation().equals(preferedCurrency)){
+                Currency.setText(mCurrencyList.get(i).getCurrencySymbol() + " " + mCurrencyList.get(i).getCurrencyName());
+                CurrencyPicked = mCurrencyList.get(i);
+            }
+        }
+        Currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder nBuilder = new AlertDialog.Builder(IncomeForm.this);
+                cAdapter = new CurrencyAdapter(IncomeForm.this, mCurrencyList);
+                nBuilder.setSingleChoiceItems(cAdapter, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ListView lw = ((AlertDialog) dialog).getListView();
+                        CurrencyItem checked = (CurrencyItem) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        Currency.setText(checked.getCurrencySymbol() + " " + checked.getCurrencyName());
+                        etAmount.setHint("0.00 " + checked.getmCurrencyAbbreviation());
+                        CurrencyPicked = checked;
+                        dialog.dismiss();
+                    }
+                });
+                nBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog nDialog = nBuilder.create();
+                nDialog.show();
+            }
+        });
+
 
 
 //-------------------------Save Button Action------------------------------------------------
@@ -193,15 +240,16 @@ public class IncomeForm extends AppCompatActivity {
                     toastMessage("comment cannot be empty");
                 } else{
                     String editcomment = HandleNewLine(comment);
-                    addData(date,amt,"NA",category,editcomment);
+                    String currency = CurrencyPicked.getmCurrencyAbbreviation();
+                    addData(date,amt,"NA",category,editcomment,currency);
                     finish();
                 }
             }
         });
 
     }
-       public void addData(String date, Float amount, String mode, String category, String comments){
-        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Income","EUR",false,"Default");
+       public void addData(String date, Float amount, String mode, String category, String comments,String currency){
+        boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Income",currency,"Default");
         if (insertData){
             toastMessage("Data Inserted");
         } else {
@@ -218,6 +266,14 @@ public class IncomeForm extends AppCompatActivity {
         mCategoryList.add(new CategoryItem("Rental",R.drawable.ic_home_green_24dp));
         mCategoryList.add(new CategoryItem("Interest",R.drawable.ic_attach_money_black_24dp));
         mCategoryList.add(new CategoryItem("Other",R.drawable.ic_turned_other_24dp));
+    }
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
     }
     public String HandleNewLine(String str){
         String last2 = str.substring(str.length()-1);
