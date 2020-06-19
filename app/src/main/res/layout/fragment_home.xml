@@ -52,6 +52,22 @@
     </FrameLayout>
 
     <ImageButton
+        android:id="@+id/homescreenhelp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:contentDescription="@string/imgbtnaddincome"
+        android:scaleType="fitCenter"
+        android:tooltipText="help1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034"
+        app:srcCompat="@drawable/ic_help_outline_black_24dp" />
+
+    <ImageButton
         android:id="@+id/imageButtonAddIncome"
         android:layout_width="80dp"
         android:layout_height="80dp"

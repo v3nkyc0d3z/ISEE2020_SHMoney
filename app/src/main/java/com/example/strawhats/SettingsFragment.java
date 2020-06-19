@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class SettingsFragment extends Fragment {
-Dialog myDialog;
+    Dialog myDialog;
 
 
     @Nullable
@@ -31,13 +31,21 @@ Dialog myDialog;
             }
         });
 
+        Button help = view.findViewById(R.id.help);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),HelpActivity.class));
+            }
+        });
 
 
 
 
 
-       return view;
+        return view;
 
-                
-        }
+
     }
+}
+

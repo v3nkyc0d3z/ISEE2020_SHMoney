@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.tooltip.Tooltip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,17 @@ public class HomeFragment extends Fragment {
         TextView totalBalance = (TextView) view.findViewById(R.id.textView7);
         TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(getActivity());
         data = mDatabaseHelper.getData();
+        final ImageButton Help = (ImageButton) view.findViewById(R.id.homescreenhelp);
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the homescreen \n This is where you find all shit")
+                                    .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
+                                    .setCornerRadius(8f)
+                                    .setDismissOnClick(true)
+                                    .show();
+            }
+        });
 
 
 
