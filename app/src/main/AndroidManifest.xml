@@ -9,17 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Method_Of_Payment" />
-        <activity android:name=".Change_Date_Formate" />
-        <activity android:name=".Password_Change" />
+        <activity android:name=".SecurityQ"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/round_button" />
-        <activity android:name=".EditTransaction"/>
-        <activity android:name=".RepeatTransaction"/>
+
+        <activity android:name=".EditTransaction" />
+        <activity android:name=".RepeatTransaction" />
         <activity android:name=".IncomeForm" />
         <activity android:name=".Neon" />
         <activity android:name=".security_setting" />
@@ -29,8 +28,6 @@
             android:theme="@style/AppTheme.PopUpWindow" />
         <activity android:name=".TransactionSummary" />
         <activity android:name=".TransactionForm" />
-        <activity android:name=".HelpActivity"
-            android:theme="@style/AppTheme.PopUpWindow" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
