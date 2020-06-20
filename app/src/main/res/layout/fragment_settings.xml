@@ -8,57 +8,36 @@
     android:orientation="vertical" >
 
     <Button
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Change Currency"
         android:textSize="20sp"
         android:id="@+id/Change_Currency"
         android:layout_margin="10dp"
-        android:background="#1f4068"
+        android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
 
-    <Button
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Change Date Formate"
-        android:textSize="20sp"
-        android:id="@+id/Change_Date_Formate"
-        android:layout_margin="10dp"
-        android:background="#1f4068"
-        android:textColor="@color/design_default_color_surface"/>
 
     <Button
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Method of Payment"
-        android:textSize="20sp"
-        android:id="@+id/Method_of_Payment"
-        android:layout_margin="10dp"
-        android:background="#1f4068"
-        android:textColor="@color/design_default_color_surface"/>
-
-    <Button
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Change Passward"
         android:textSize="20sp"
         android:id="@+id/Change_Password"
         android:layout_margin="10dp"
-        android:background="#1f4068"
+        android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
     <Button
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Help"
         android:textSize="20sp"
         android:id="@+id/Help"
         android:layout_margin="10dp"
-        android:background="#1f4068"
+        android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>
 
 </LinearLayout>
