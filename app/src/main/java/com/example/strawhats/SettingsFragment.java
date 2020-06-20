@@ -39,6 +39,14 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button ChangePassword = view.findViewById(R.id.Change_Password);
+        ChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Password_Change.class));
+            }
+        });
+
 
 
 
