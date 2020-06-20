@@ -68,7 +68,7 @@ public class TransactionForm extends AppCompatActivity {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add expense' screen \nUse this page to add your expenses")
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add expense' screen \nUse this page to add your expenses\nClick on this message to make it disappear")
                         .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
                         .setCornerRadius(8f)
                         .setDismissOnClick(true)

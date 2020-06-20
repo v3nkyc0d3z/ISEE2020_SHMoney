@@ -1,20 +1,26 @@
 package com.example.strawhats;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.tooltip.Tooltip;
 
 import java.nio.file.Watchable;
 import java.util.ArrayList;
@@ -40,7 +46,18 @@ public class TransactionSummary extends AppCompatActivity implements TextWatcher
         mlistView = (ListView) findViewById(R.id.lvAllTransactions);
         filter.addTextChangedListener(this);
         mDatabaseHelper = new TransactionDatabaseHelper(this);
-
+        final ImageButton Help = (ImageButton) findViewById(R.id.summaryscreenhelp);
+        Help.setColorFilter(ContextCompat.getColor(TransactionSummary.this,R.color.colorBlack));
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the transaction summary screen \nuse the filters to search a specific transaction \nClick on any transaction to view its details and options \nClick on this message to make it disappear ")
+                        .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
+                        .setCornerRadius(8f)
+                        .setDismissOnClick(true)
+                        .show();
+            }
+        });
         ModeSpinner = (Spinner) findViewById(R.id.spModeFilter);
         ModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
