@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class SettingsFragment extends Fragment {
-Dialog myDialog;
+    Dialog myDialog;
 
 
     @Nullable
@@ -31,7 +31,7 @@ Dialog myDialog;
             }
         });
 
-        Button help = view.findViewById(R.id.help);
+        Button help = view.findViewById(R.id.Help);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,12 +39,21 @@ Dialog myDialog;
             }
         });
 
+        Button ChangePassword = view.findViewById(R.id.Change_Password);
+        ChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Password_Change.class));
+            }
+        });
 
 
 
 
-       return view;
 
-                
-        }
+        return view;
+
+
     }
+}
+
