@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        Button help = view.findViewById(R.id.help);
+        Button help = view.findViewById(R.id.Help);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
