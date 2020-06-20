@@ -22,6 +22,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewCat"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageButton
+        android:id="@+id/expensescreenhelp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:tooltipText="help1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034"
+        app:srcCompat="@drawable/ic_help_outline_black_24dp" />
+
     <ImageView
         android:id="@+id/fmtItalicExpense"
         android:layout_width="wrap_content"
