@@ -20,10 +20,12 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import com.tooltip.Tooltip;
 
 public class IncomeForm extends AppCompatActivity {
     private static final String TAG = "IncomeForm";
@@ -121,10 +124,10 @@ public class IncomeForm extends AppCompatActivity {
                         drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                         catBtn.setText(checkedItem.getmCategoryName());
                         dialog.dismiss();
-                }
-            });
+                    }
+                });
                 mBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
+                    @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
@@ -134,6 +137,17 @@ public class IncomeForm extends AppCompatActivity {
                 mDialog.show();
             }
 
+        });
+        final ImageButton Help = (ImageButton) findViewById(R.id.incomescreenhelp);
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add income' screen \nUse this page to add your new income\nClick on this message to make it disappear")
+                        .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
+                        .setCornerRadius(8f)
+                        .setDismissOnClick(true)
+                        .show();
+            }
         });
 //---------------------------------------------------------------------------------------
         String preferedCurrency = "EUR";
@@ -249,7 +263,7 @@ public class IncomeForm extends AppCompatActivity {
         });
 
     }
-       public void addData(String date, Float amount, String mode, String category, String comments,String currency){
+    public void addData(String date, Float amount, String mode, String category, String comments,String currency){
         boolean insertData = mDatabaseHelper.addTransaction(date,amount,"NA",category,comments,"Income",currency,"Default");
         if (insertData){
             toastMessage("Data Inserted");

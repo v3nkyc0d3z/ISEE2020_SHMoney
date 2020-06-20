@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the homescreen \n This is where you find all shit")
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the homescreen \nThe donut chart represents your net transaction value \nTap the centre of the donut chart to view the transaction history \nClick on this message to make it disappear ")
                                     .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
                                     .setCornerRadius(8f)
                                     .setDismissOnClick(true)

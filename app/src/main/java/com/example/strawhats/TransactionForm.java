@@ -17,15 +17,18 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.tooltip.Tooltip;
 
 import org.w3c.dom.Text;
 
@@ -61,6 +64,17 @@ public class TransactionForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
+        final ImageButton Help = (ImageButton) findViewById(R.id.expensescreenhelp);
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add expense' screen \nUse this page to add your expenses\nClick on this message to make it disappear")
+                        .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
+                        .setCornerRadius(8f)
+                        .setDismissOnClick(true)
+                        .show();
+            }
+        });
 //Initialize the available categories
         initCategoryList();
         initModeList();

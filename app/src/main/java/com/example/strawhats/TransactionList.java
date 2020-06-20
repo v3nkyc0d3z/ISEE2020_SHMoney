@@ -3,6 +3,7 @@ package com.example.strawhats;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 public class TransactionList implements Parcelable {
 //    id,date,amt,mode,category,comment,type,action
     public int id;
