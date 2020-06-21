@@ -238,11 +238,12 @@ public class EditTransaction extends AppCompatActivity {
                     }
                     String category = catBtn.getText().toString();
                     String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
+                    if (comment.length()==0){
+                        comment = " ";
+                    }
                     if(amount.length() == 0){
                         toastMessage("Amount should not be empty");
-                    } else if(comment.length() == 0){
-                        toastMessage("comment cannot be empty");
-                    } else{
+                    } else {
                         String editcomment = HandleNewLine(comment);
                         int id = transaction.getId();
                         String currency = CurrencyPicked.getmCurrencyAbbreviation();
@@ -486,10 +487,11 @@ public class EditTransaction extends AppCompatActivity {
                     }
                     String category = catBtn.getText().toString();
                     String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
+                    if (comment.length()==0){
+                        comment = " ";
+                    }
                     if(amount.length() == 0){
                         toastMessage("Amount should not be empty");
-                    } else if(comment.length() == 0){
-                        toastMessage("comment cannot be empty");
                     } else{
                         String editcomment = HandleNewLine(comment);
                         int id = transaction.getId();
