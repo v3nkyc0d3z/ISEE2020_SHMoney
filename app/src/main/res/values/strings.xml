@@ -39,6 +39,14 @@
         <item>Rupee</item>
         <item>Pound</item>
         <item>Yen</item>
+    </string-array>
+    <string-array name="Security_Questions">
+        <item>Security Questions</item>
+        <item>What is your favourite pet?</item>
+        <item>What is your first best friend?</item>
+        <item>What is your favourite subject in school?</item>
+        <item>What is your best friend\'s surname?</item>
+        <item>What is your sibling nick name?</item>
 
     </string-array>
     <string name="title_activity_scrolling">ScrollingActivity</string>
@@ -171,5 +179,11 @@
     <string name="hello_user_welcome_to_help_menu">Hello User, welcome to help menu</string>
     <string name="text_to_input">***text to input***</string>
     <string name="hello_user_welcome_to_help_center">Hello User, Welcome to Help Center</string>
+    <string name="app_Forgotpassword">Forgot Password ?</string>
+    <string name="app_securityans">Answer</string>
+    <string name="app_securityq">Security Question</string>
+    <string name="app_SQ">Select Security Question</string>
+    <string name="app_SQAnswer">Enter the Answer</string>
+    <string name="app_Check">Submit</string>
 
 </resources>

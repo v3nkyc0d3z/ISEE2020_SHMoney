@@ -17,9 +17,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             "\t\"ID\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "\t\"username\"\tTEXT,\n" +
             "\t\"password\"\tTEXT,\n" +
-            "\t\"dob\"\tTEXT,\n" +
             "\t\"email\"\tTEXT,\n" +
-            "\t\"country\"\tTEXT,\n" +
+            "\t\"SQA\"\tTEXT,\n" +
+            "\t\"SQQ\"\tTEXT,\n" +
             "\t\"currency\"\tTEXT)";
 
     public UserDatabaseHelper(@Nullable Context context) {

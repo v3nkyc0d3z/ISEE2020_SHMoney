@@ -11,6 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SecurityQ"></activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".Password_Change" />
+        <activity android:name=".HelpActivity"
+            android:theme="@style/AppTheme.PopUpWindow" />
+        
         <activity android:name=".MainActivity" />
         <meta-data
             android:name="com.google.android.actions"

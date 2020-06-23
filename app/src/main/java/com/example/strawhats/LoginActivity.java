@@ -54,9 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isDataAvailable){
-//                    write the code for forget password activity here
-                }else {
+                 if (isDataAvailable){
+                Intent intent = new Intent(LoginActivity.this, SecurityQ.class);
+                startActivity(intent);
+            }else {
                     Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intent);
                 }

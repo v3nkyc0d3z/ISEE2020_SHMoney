@@ -17,13 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText username, password, email,country,dob;
+    EditText username, password, email,SecurityAnswer;
     Button register;
-    Spinner Currency;
+    Spinner Currency,SecurityQuestion;
+    String SQQ;
     ArrayList<CurrencyItem> mCurrencyList;
+
     UserDatabaseHelper userDatabaseHelper;
     CurrencyAdapter cAdapter;
+    //SecurityAdapter sAdapter;
     CurrencyItem CurrencyPicked;
+   // SecurityQuestion QuestionPicked;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +36,37 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         username= findViewById(R.id.username);
         password= findViewById(R.id.password);
-        dob= findViewById(R.id.dob);
+        //dob= findViewById(R.id.dob);
         email= findViewById(R.id.email);
-        country= findViewById(R.id.country);
+        //country= findViewById(R.id.country);
         register= findViewById(R.id.register);
         Currency = (Spinner) findViewById(R.id.spCurrencyPref);
+        SecurityQuestion = (Spinner) findViewById(R.id.spSQ);
+        SecurityAnswer= findViewById(R.id.SQanswer);
         cAdapter = new CurrencyAdapter(this,mCurrencyList);
         Currency.setAdapter(cAdapter);
-
+List<String> list=new ArrayList<String>();
+list.add("Security Questions");
+list.add("What is your favourite pet?");
+        list.add("What is your first best friend?");
+        list.add("What is your favourite subject in school?");
+        list.add("What is your best friend's surname?");
+        list.add("What is your sibling nick name?");
+       ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+       arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SecurityQuestion.setAdapter(arrayAdapter);
+//        SecurityQuestion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//             SQQ= parent.setSelection(position).toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+SQQ=SecurityQuestion.getSelectedItem().toString();
         Currency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -60,9 +87,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String usernameValue=username.getText().toString();
                 String passwordValue=password.getText().toString();
-                String dobValue=dob.getText().toString();
+               // String dobValue=dob.getText().toString();
                 String emailValue=email.getText().toString();
-                String countryValue=country.getText().toString();
+                String SQAValue=SecurityAnswer.getText().toString();
                 String currencyValue = CurrencyPicked.getmCurrencyAbbreviation();
 
 
@@ -70,9 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("username",usernameValue);
                     contentValues.put("password",passwordValue);
-                    contentValues.put("dob",dobValue);
                     contentValues.put("email",emailValue);
-                    contentValues.put("country",countryValue);
+                    contentValues.put("SQA",SQAValue);
+                   contentValues.put("SQQ",SQQ);
                     contentValues.put("currency",currencyValue);
                     userDatabaseHelper.insertUser(contentValues);
                     Toast.makeText(RegisterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
@@ -92,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
         mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
     }
 }
+
 
 
 

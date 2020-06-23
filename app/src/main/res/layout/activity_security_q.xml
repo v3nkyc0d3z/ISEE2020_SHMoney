@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".SecurityQ">
 
+    <EditText
+        android:id="@+id/eSA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/app_securityans"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSQ"
+        android:layout_width="232dp"
+        android:layout_height="36dp"
+        android:text="@string/app_securityq"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/eSA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_Check"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eSA" />
 </androidx.constraintlayout.widget.ConstraintLayout>
