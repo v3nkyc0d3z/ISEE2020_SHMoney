@@ -57,6 +57,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+
     public boolean isDataAvailable(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from user";

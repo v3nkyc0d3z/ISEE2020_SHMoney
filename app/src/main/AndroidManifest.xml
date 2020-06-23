@@ -12,7 +12,6 @@
         <activity android:name=".SecurityQ"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/round_button" />

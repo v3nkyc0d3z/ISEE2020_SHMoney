@@ -68,7 +68,7 @@ public class TransactionForm extends AppCompatActivity {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add expense' screen \nUse this page to add your expenses")
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add expense' screen \nUse this page to add your expenses\nClick on this message to make it disappear")
                         .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
                         .setCornerRadius(8f)
                         .setDismissOnClick(true)
@@ -212,11 +212,13 @@ public class TransactionForm extends AppCompatActivity {
 
 //--------------------------------------------------------------------------------------------------
         String preferedCurrency = "EUR";
+        etAmount = (EditText) findViewById(R.id.etAmount);
         UserDatabaseHelper userDB = new UserDatabaseHelper(this);
         Cursor cursor = userDB.getData();
         while(cursor.moveToNext()){
             preferedCurrency = cursor.getString(6);
         }
+        etAmount.setHint("0.00"+" " +preferedCurrency);
         final TextView Currency = (TextView) findViewById(R.id.textViewCurrency);
         for(int i = 0;i<mCurrencyList.size();i++){
             if(mCurrencyList.get(i).getmCurrencyAbbreviation().equals(preferedCurrency)){
@@ -255,7 +257,7 @@ public class TransactionForm extends AppCompatActivity {
 //-------------------------Save Button Action-------------------------------------------------------
         Button SaveButton = (Button) findViewById(R.id.btnSave);
         mDatabaseHelper = new TransactionDatabaseHelper(this);
-        etAmount = (EditText) findViewById(R.id.etAmount);
+
         //final Spinner ModeSelect = (Spinner) findViewById(R.id.PaymentType);
         etComment = (EditText) findViewById(R.id.etTransactionComment);
         Bold = (ImageView) findViewById(R.id.fmtBoldExpense);
@@ -309,18 +311,17 @@ public class TransactionForm extends AppCompatActivity {
                 }
                 //String mode = ModeSelect.getSelectedItem().toString();
                 String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
+                if (comment.length()==0){
+                    comment = " ";
+                }
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
-                } else if(comment.length() == 0){
-                    toastMessage("comment cannot be empty");
-                    //} else if(mode.equals("None")){
-                    //    toastMessage("Enter Mode of Payment");
-                }else {
-                    String editcomment = HandleNewLine(comment);
-                    String Currency = CurrencyPicked.getmCurrencyAbbreviation();
-                    addData(date,amt,ModePicked,CategoryPicked,editcomment,Currency);
-                    finish();
-                }
+                } else {
+                        String editcomment = HandleNewLine(comment);
+                        String Currency = CurrencyPicked.getmCurrencyAbbreviation();
+                        addData(date,amt,ModePicked,CategoryPicked,editcomment,Currency);
+                        finish();
+                    }
 
             }
         });

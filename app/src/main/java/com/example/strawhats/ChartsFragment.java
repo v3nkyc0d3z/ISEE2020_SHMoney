@@ -4,9 +4,11 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.tooltip.Tooltip;
 
 import org.honorato.multistatetogglebutton.MultiStateToggleButton;
 import org.honorato.multistatetogglebutton.ToggleButton;
@@ -63,6 +66,7 @@ public class ChartsFragment extends Fragment {
         pieChart.setUsePercentValues(true);
         setupPieChart(pieChart);
         button = (MultiStateToggleButton) view.findViewById(R.id.mstb_multi_id);
+
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
         init();

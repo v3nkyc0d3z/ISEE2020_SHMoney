@@ -142,7 +142,7 @@ public class IncomeForm extends AppCompatActivity {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add income' screen' \nUse this page to add your new income")
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("This is the 'add income' screen \nUse this page to add your new income\nClick on this message to make it disappear")
                         .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
                         .setCornerRadius(8f)
                         .setDismissOnClick(true)
@@ -248,11 +248,12 @@ public class IncomeForm extends AppCompatActivity {
                 }
                 String category = catBtn.getText().toString();
                 String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
+                if (comment.length()==0){
+                    comment = " ";
+                }
                 if(amount.length() == 0){
                     toastMessage("Amount should not be empty");
-                } else if(comment.length() == 0){
-                    toastMessage("comment cannot be empty");
-                } else{
+                }else{
                     String editcomment = HandleNewLine(comment);
                     String currency = CurrencyPicked.getmCurrencyAbbreviation();
                     addData(date,amt,"NA",category,editcomment,currency);

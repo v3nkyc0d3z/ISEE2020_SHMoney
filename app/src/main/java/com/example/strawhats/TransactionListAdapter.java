@@ -149,7 +149,7 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
                 ArrayList<TransactionList> filters = new ArrayList<>();
                 constraint = constraint.toString().toUpperCase();
                 for (int i = 0 ; i<Temp.size();i++){
-                    if (Temp.get(i).getComment().toUpperCase().contains(constraint)){
+                    if (Temp.get(i).getComment().toUpperCase().contains(constraint) && Temp.get(i).getComment().length()!=0){
                         TransactionList record = new TransactionList(Temp.get(i).getId(),Temp.get(i).getDate(),Temp.get(i).getAmount(),
                                 Temp.get(i).getMode(),Temp.get(i).getCategory(),Temp.get(i).getComment(),Temp.get(i).getType(),Temp.get(i).getAction(),Temp.get(i).getCurrency());
                         filters.add(record);
