@@ -3,6 +3,7 @@ package com.example.strawhats;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +11,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Password_Change extends AppCompatActivity {
-    EditText  current_password, new_password, confirmPass;
+    EditText current_password, new_password, confirmPass;
     Button change_password;
     UserDatabaseHelper userDatabaseHelper;
     String pass, email, country, currency,dob, username;
@@ -64,7 +66,8 @@ public class Password_Change extends AppCompatActivity {
 
 
                     Toast.makeText(Password_Change.this, "Password has been changed", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent logout = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(logout);
                 }else {
                     Toast.makeText(Password_Change.this, "Enter correct values", Toast.LENGTH_SHORT).show();
                 }
