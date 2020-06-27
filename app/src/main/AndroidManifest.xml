@@ -9,17 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SecurityQ"></activity>
+        <activity android:name=".ImportExport"/>
+        <provider
+            android:authorities="com.example.strawhats.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity android:name=".SecurityQ" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Password_Change" />
-        <activity android:name=".HelpActivity"
+        <activity
+            android:name=".HelpActivity"
             android:theme="@style/AppTheme.PopUpWindow" />
-        
         <activity android:name=".MainActivity" />
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/round_button" />
-
         <activity android:name=".EditTransaction" />
         <activity android:name=".RepeatTransaction" />
         <activity android:name=".IncomeForm" />
@@ -34,7 +43,6 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

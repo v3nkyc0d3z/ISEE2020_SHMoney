@@ -226,7 +226,7 @@ public class RepeatTransaction extends AppCompatActivity {
                 }
             });
             Button save = (Button) findViewById(R.id.btnIncomeSave);
-            save.setText("Edit");
+            save.setText("Repeat");
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -470,7 +470,7 @@ public class RepeatTransaction extends AppCompatActivity {
                 }
             });
             Button save = (Button) findViewById(R.id.btnSave);
-            save.setText("Edit");
+            save.setText("Repeat");
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

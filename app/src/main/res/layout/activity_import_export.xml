@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:background="@drawable/background"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+
+    <Button
+        android:layout_width="240sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Export Data"
+        android:textSize="20sp"
+        android:id="@+id/btnExportData"
+        android:layout_marginTop="100sp"
+        android:background="@drawable/buttonshape"
+        android:textColor="@color/design_default_color_surface"/>
+
+    <TextView
+        android:id="@+id/tvChooseCSV"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100sp"
+        android:text="Tap to choose a CSV file"
+        android:textColor="@color/colorWhiteBackground"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="240sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Import Data"
+        android:textSize="20sp"
+        android:id="@+id/btnImportData"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/buttonshape"
+        android:textColor="@color/design_default_color_surface"/>
+</LinearLayout>

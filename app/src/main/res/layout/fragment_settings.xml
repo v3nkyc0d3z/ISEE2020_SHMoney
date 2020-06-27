@@ -23,9 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Change Passward"
+        android:text="Change Password"
         android:textSize="20sp"
         android:id="@+id/Change_Password"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="@color/design_default_color_surface"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Import/Export data"
+        android:textSize="20sp"
+        android:id="@+id/ImportExport"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
         android:textColor="@color/design_default_color_surface"/>

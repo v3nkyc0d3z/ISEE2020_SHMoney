@@ -47,6 +47,14 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button ImportExport = view.findViewById(R.id.ImportExport);
+        ImportExport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),ImportExport.class));
+            }
+        });
+
 
 
 
