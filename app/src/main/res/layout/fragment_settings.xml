@@ -43,6 +43,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="Add Threshold"
+        android:textSize="20sp"
+        android:id="@+id/AddThreshold"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="@color/design_default_color_surface"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Help"
         android:textSize="20sp"
         android:id="@+id/Help"

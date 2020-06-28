@@ -36,7 +36,7 @@ public class HelpActivity extends AppCompatActivity {
                 "\n" +
                 "If you have any problems, suggestions, appraises or any general feedback, please write to us at" + "\n" + "'strawhats.isee2020@gmail.com'."+ "\n" +" we are always happy to assist you.";
 
-        textview.setText(para);
+        textview.setText(R.string.large_text);
         textview.setMovementMethod(new ScrollingMovementMethod());
         textview.setTextColor(Color.WHITE);
                 textview.setGravity(Gravity.FILL_VERTICAL);

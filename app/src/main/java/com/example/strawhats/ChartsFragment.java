@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,14 +53,18 @@ public class ChartsFragment extends Fragment {
     Float Net = 0f;
     Integer dateRange = 60;
     private MultiStateToggleButton button;
+    ArrayList<CurrencyItem> mCurrencyList;
+    UserDatabaseHelper userDatabaseHelper;
+    CurrencyItem DefaultCurrency;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charts,container,false);
-// Git is so weird sometimes
 //---------------------------------Balance Over Time----------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------
+        userDatabaseHelper = new UserDatabaseHelper(getActivity());
+        initCurrencyList();
         TransactionDatabaseHelper mDatabaseHelper = new TransactionDatabaseHelper(getActivity());
         data = mDatabaseHelper.getData();
         PieChart pieChart = view.findViewById(R.id.piechart);
@@ -70,6 +75,18 @@ public class ChartsFragment extends Fragment {
         graphView =(GraphView)view.findViewById(R.id.lineGraph);
         mtransactionDatabaseHelper = new TransactionDatabaseHelper(getActivity());
         init();
+//---------------------------------Threshold progress--------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+
+//        Cursor userData = userDatabaseHelper.getData();
+//        Float constraint = null;
+//        while(userData.moveToNext()){
+//            constraint = userData.getFloat(7);
+//        }
+//        ProgressBar ThresholdProgress = (ProgressBar)view.findViewById(R.id.pbThreshold);
+//        if (constraint == 0f){
+//            ThresholdProgress.setVisibility(View.INVISIBLE);
+//        }
         return view;
     }
     private void create_line_graph(){
@@ -206,6 +223,7 @@ public class ChartsFragment extends Fragment {
             int id = data.getInt(0);
             String date = data.getString(1);
             Float amount = data.getFloat(2);
+            amount = amount*DefaultCurrency.getCurrencyExchange();
             amt = Float.toString(amount);
             String mode = data.getString(3);
             String category = data.getString(4);
@@ -233,6 +251,7 @@ public class ChartsFragment extends Fragment {
             String type = data.getString(6);
             String category = data.getString(4);
             float amount = data.getFloat(2);
+            amount = amount*DefaultCurrency.getCurrencyExchange();
             if (type != null && category != null){
                 if (type.equals("Expense")){
                     if (category.equals("Shopping")){
@@ -287,5 +306,24 @@ public class ChartsFragment extends Fragment {
         for(int c: MY_COLORS) colors.add(c);
         pieDataSet.setColors(colors);
 
+    }
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR",84.84f));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP",0.90f));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN",120.27f));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD",1.12f));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR",1f));
+        String currencyPreference="";
+        Cursor userData = userDatabaseHelper.getData();
+        while (userData.moveToNext()){
+            currencyPreference = userData.getString(6);
+
+        }
+        for (CurrencyItem currency: mCurrencyList){
+            if (currencyPreference.equals(currency.getmCurrencyAbbreviation())){
+                DefaultCurrency = currency;
+            }
+        }
     }
 }

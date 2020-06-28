@@ -25,6 +25,7 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
     ArrayList<TransactionList> Original,Temp;
     ArrayList<CurrencyItem> mCurrencyList;
     CustomFilter cs;
+    UserDatabaseHelper userDatabaseHelper;
 
 
     public TransactionListAdapter(Context context, ArrayList<TransactionList> Objects){
@@ -53,7 +54,6 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.adapter_transaction_list,null);
         row.setPadding(0,30,0,-90);
-
         TextView tvComment = (TextView) row.findViewById(R.id.lvaComment);
         tvComment.setTextSize(18);
         TextView tvDate = (TextView) row.findViewById(R.id.lvaDate);
@@ -124,11 +124,11 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
     }
     private void initCurrencyList() {
         mCurrencyList = new ArrayList<>();
-        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
-        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
-        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
-        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
-        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR",84.84f));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP",0.90f));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN",120.27f));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD",1.12f));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR",1f));
     }
     @Override
     public Filter getFilter() {

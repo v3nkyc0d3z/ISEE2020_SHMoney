@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,12 +36,30 @@ public class HomeFragment extends Fragment {
 
     Cursor data;
     Float Net = 0f;
+    UserDatabaseHelper userDatabaseHelper;
+    ArrayList<CurrencyItem> mCurrencyList;
+    CurrencyItem DefaultCurrency;
+    ProgressBar ThresholdPB;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
+        userDatabaseHelper = new UserDatabaseHelper(getActivity());
+
+        initCurrencyList();
+        String currencyPreference="";
+        Cursor userData = userDatabaseHelper.getData();
+        while (userData.moveToNext()){
+            currencyPreference = userData.getString(6);
+        }
+        for (CurrencyItem currency: mCurrencyList){
+            if (currencyPreference.equals(currency.getmCurrencyAbbreviation())){
+                DefaultCurrency = currency;
+            }
+        }
         View view = inflater.inflate(R.layout.fragment_home,container,false);
+        ThresholdPB = (ProgressBar) view.findViewById(R.id.pbThreshold);
         ImageButton AddExpense = (ImageButton) view.findViewById(R.id.imageButtonAddExpense);
         ImageButton AddIncome = (ImageButton) view.findViewById(R.id.imageButtonAddIncome);
         FloatingActionButton FAB = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
@@ -85,7 +104,7 @@ public class HomeFragment extends Fragment {
             }
         });
         setupPieChart(pieChart);
-        totalBalance.setText(Net.toString());
+        totalBalance.setText(DefaultCurrency.getCurrencySymbol() + Net.toString());
         if (Net < 0) {
             FAB.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorTextRed)));
         } else{
@@ -103,13 +122,14 @@ public class HomeFragment extends Fragment {
         while(data.moveToNext()){
             String type = data.getString(6);
             float amount = data.getFloat(2);
-
+            float exchange = amount*DefaultCurrency.getCurrencyExchange();
             if (type.equals("Expense")){
-                expense = expense + amount;
-                Net = Net - amount;
+                expense = expense + exchange;
+                ThresholdPB.setProgress(25);
+                Net = Net - exchange;
             } else{
-                income = income +amount;
-                Net = Net + amount;
+                income = income + exchange;
+                Net = Net + exchange;
             }
         }
         value.add(new PieEntry(income,"inc"));
@@ -133,5 +153,12 @@ public class HomeFragment extends Fragment {
         pieDataSet.setColors(colors);
 
     }
-
+    private void initCurrencyList() {
+        mCurrencyList = new ArrayList<>();
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR",84.84f));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP",0.90f));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN",120.27f));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD",1.12f));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR",1f));
+    }
 }

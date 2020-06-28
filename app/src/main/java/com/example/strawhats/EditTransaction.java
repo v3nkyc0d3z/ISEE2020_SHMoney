@@ -247,6 +247,7 @@ public class EditTransaction extends AppCompatActivity {
                         String editcomment = HandleNewLine(comment);
                         int id = transaction.getId();
                         String currency = CurrencyPicked.getmCurrencyAbbreviation();
+                        amt = amt/CurrencyPicked.getCurrencyExchange();
                         updateData(id,date,amt,"NA",category,editcomment,"Income",currency,"Default");
                         TransactionList updatedTransaction = new TransactionList(id,date,amount,"NA",category,editcomment,"Income","you got",currency);
                         setResult(Activity.RESULT_OK,new Intent().putExtra("updatedTransaction",updatedTransaction));
@@ -496,6 +497,7 @@ public class EditTransaction extends AppCompatActivity {
                         String editcomment = HandleNewLine(comment);
                         int id = transaction.getId();
                         String currency = CurrencyPicked.getmCurrencyAbbreviation();
+                        amt = amt/CurrencyPicked.getCurrencyExchange();
                         updateData(id,date,amt,ModePicked,category,editcomment,"Expense",currency,"Default");
                         TransactionList updatedTransaction = new TransactionList(id,date,amount,ModePicked,category,editcomment,"Income","you got",currency);
                         setResult(Activity.RESULT_OK,new Intent().putExtra("updatedTransaction",updatedTransaction));
@@ -542,10 +544,10 @@ public class EditTransaction extends AppCompatActivity {
     }
     private void initCurrencyList() {
         mCurrencyList = new ArrayList<>();
-        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
-        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
-        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
-        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
-        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR",84.84f));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP",0.90f));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN",120.27f));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD",1.12f));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR",1f));
     }
 }

@@ -20,7 +20,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             "\t\"email\"\tTEXT,\n" +
             "\t\"SQA\"\tTEXT,\n" +
             "\t\"SQQ\"\tTEXT,\n" +
-            "\t\"currency\"\tTEXT)";
+            "\t\"currency\"\tFLOAT,\n" +
+            "\t\"constraint\"\tFLOAT)";
 
     public UserDatabaseHelper(@Nullable Context context) {
         super(context, name, null, version);
@@ -32,8 +33,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert("user", "",contentValues);
 
     }
-
-
 
 
     @Override
@@ -67,5 +66,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         } else{
             return false;
         }
+    }
+    public void updateUserData(ContentValues cv){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update("user",cv,"ID = 1",null);
     }
 }

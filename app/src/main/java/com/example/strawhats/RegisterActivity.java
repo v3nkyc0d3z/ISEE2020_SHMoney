@@ -112,11 +112,11 @@ SQQ=SecurityQuestion.getSelectedItem().toString();
     }
     private void initCurrencyList() {
         mCurrencyList = new ArrayList<>();
-        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR"));
-        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP"));
-        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN"));
-        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD"));
-        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR"));
+        mCurrencyList.add(new CurrencyItem("Rupee", "\u20B9","INR",84.84f));
+        mCurrencyList.add(new CurrencyItem("Pound", "£","GBP",0.90f));
+        mCurrencyList.add(new CurrencyItem("Yen", "¥","YEN",120.27f));
+        mCurrencyList.add(new CurrencyItem("Dollar", "$","USD",1.12f));
+        mCurrencyList.add(new CurrencyItem("Euro", "€","EUR",1f));
     }
 }
 
