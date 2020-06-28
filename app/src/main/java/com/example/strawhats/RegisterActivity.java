@@ -66,7 +66,7 @@ list.add("What is your favourite pet?");
 //
 //            }
 //        });
-SQQ=SecurityQuestion.getSelectedItem().toString();
+
         Currency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -91,7 +91,7 @@ SQQ=SecurityQuestion.getSelectedItem().toString();
                 String emailValue=email.getText().toString();
                 String SQAValue=SecurityAnswer.getText().toString();
                 String currencyValue = CurrencyPicked.getmCurrencyAbbreviation();
-
+                SQQ=SecurityQuestion.getSelectedItem().toString();
 
                 if (usernameValue.length()>1){
                     ContentValues contentValues = new ContentValues();
