@@ -58,7 +58,7 @@ list.add("What is your favourite pet?");
 //        SecurityQuestion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//             SQQ= parent.setSelection(position).toString();
+//             SQQ = parent.setSelection(position);
 //            }
 //
 //            @Override

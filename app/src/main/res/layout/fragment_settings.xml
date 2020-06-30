@@ -2,62 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
     android:background="@drawable/background"
-    android:paddingRight="16dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Change Currency"
-        android:textSize="20sp"
         android:id="@+id/Change_Currency"
-        android:layout_margin="10dp"
-        android:background="@drawable/buttonshape"
-        android:textColor="@color/design_default_color_surface"/>
-
-
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Change Password"
-        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="Change Currency"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp" />
+
+
+    <Button
         android:id="@+id/Change_Password"
-        android:layout_margin="10dp"
-        android:background="@drawable/buttonshape"
-        android:textColor="@color/design_default_color_surface"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Import/Export data"
-        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="Change Password"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp" />
+
+    <Button
         android:id="@+id/ImportExport"
-        android:layout_margin="10dp"
-        android:background="@drawable/buttonshape"
-        android:textColor="@color/design_default_color_surface"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Add Threshold"
-        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="Import/Export data"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp" />
+
+    <Button
         android:id="@+id/AddThreshold"
-        android:layout_margin="10dp"
-        android:background="@drawable/buttonshape"
-        android:textColor="@color/design_default_color_surface"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Help"
-        android:textSize="20sp"
-        android:id="@+id/Help"
         android:layout_margin="10dp"
         android:background="@drawable/buttonshape"
-        android:textColor="@color/design_default_color_surface"/>
+        android:text="Add Threshold"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/Help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="Help"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp" />
 
 </LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SET YOUR MONTHLY THRESHOLD"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="75dp"/>
+    <EditText
+        android:id="@+id/etThreshold"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100sp"
+        android:layout_gravity="center"
+        android:inputType="numberDecimal"
+        android:hint="Threshold"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50sp"
+        android:text="SET"
+        android:id="@+id/btnSetThreshold"/>
+
+</LinearLayout>

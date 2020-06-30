@@ -9,24 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImportExport"/>
+        <activity android:name=".BudgetThresholding"></activity>
+        <activity android:name=".ResetPassword"/>
+        <activity android:name=".ImportExport" />
+
         <provider
-            android:authorities="com.example.strawhats.fileprovider"
             android:name="androidx.core.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:authorities="com.example.strawhats.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <activity android:name=".SecurityQ" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Password_Change" />
         <activity
             android:name=".HelpActivity"
             android:theme="@style/AppTheme.PopUpWindow" />
-        
         <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/round_button" />

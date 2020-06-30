@@ -64,9 +64,11 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         tvAmount.setTextSize(18);
         initCurrencyList();
         String currencySymbol = "";
+        Float exchange = 1f;
         for(int i = 0; i<mCurrencyList.size();i++){
             if (Original.get(position).getCurrency().equals(mCurrencyList.get(i).getmCurrencyAbbreviation())){
                 currencySymbol = mCurrencyList.get(i).getCurrencySymbol();
+                exchange = mCurrencyList.get(i).getCurrencyExchange();
                 break;
             }
         }
@@ -74,7 +76,8 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
 //        tvComment.setText(Original.get(position).getComment());
         tvComment.setText(HtmlCompat.fromHtml(comment,0));
         tvDate.setText(Original.get(position).getDate());
-        tvAmount.setText(currencySymbol+ " " +Original.get(position).getAmount());
+        Float amount = Float.parseFloat(Original.get(position).getAmount());
+        tvAmount.setText(currencySymbol+ " " +amount*exchange);
         tvAction.setText(Original.get(position).getAction());
 
         if(Original.get(position).getAction().equals("you spent")){

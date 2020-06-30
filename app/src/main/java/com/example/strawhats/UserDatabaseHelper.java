@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.Nullable;
 
 public class UserDatabaseHelper extends SQLiteOpenHelper {
-    static String name = "database";
+    static String name = "UserDatabase";
     static int version = 1;
 
     String createTableUser= "CREATE TABLE  if not exists \"user\" (\n" +
@@ -20,7 +20,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             "\t\"email\"\tTEXT,\n" +
             "\t\"SQA\"\tTEXT,\n" +
             "\t\"SQQ\"\tTEXT,\n" +
-            "\t\"currency\"\tFLOAT,\n" +
+            "\t\"currency\"\tTEXT,\n" +
             "\t\"constraint\"\tFLOAT)";
 
     public UserDatabaseHelper(@Nullable Context context) {
@@ -70,5 +70,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     public void updateUserData(ContentValues cv){
         SQLiteDatabase db = this.getWritableDatabase();
         db.update("user",cv,"ID = 1",null);
+    }
+    public void rawQuery(String query){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(query);
     }
 }

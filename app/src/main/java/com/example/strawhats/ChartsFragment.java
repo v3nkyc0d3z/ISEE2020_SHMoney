@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,6 +58,7 @@ public class ChartsFragment extends Fragment {
     UserDatabaseHelper userDatabaseHelper;
     CurrencyItem DefaultCurrency;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,16 +79,6 @@ public class ChartsFragment extends Fragment {
         init();
 //---------------------------------Threshold progress--------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
-
-//        Cursor userData = userDatabaseHelper.getData();
-//        Float constraint = null;
-//        while(userData.moveToNext()){
-//            constraint = userData.getFloat(7);
-//        }
-//        ProgressBar ThresholdProgress = (ProgressBar)view.findViewById(R.id.pbThreshold);
-//        if (constraint == 0f){
-//            ThresholdProgress.setVisibility(View.INVISIBLE);
-//        }
         return view;
     }
     private void create_line_graph(){

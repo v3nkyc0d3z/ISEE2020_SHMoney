@@ -54,6 +54,13 @@ public class SettingsFragment extends Fragment {
                 startActivity(new Intent(getActivity(),ImportExport.class));
             }
         });
+        final Button BudgetThresholding = view.findViewById(R.id.AddThreshold);
+        BudgetThresholding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),BudgetThresholding.class));
+            }
+        });
 
 
 
