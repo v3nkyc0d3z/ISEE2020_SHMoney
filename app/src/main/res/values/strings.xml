@@ -185,5 +185,6 @@
     <string name="app_SQ">Select Security Question</string>
     <string name="app_SQAnswer">Enter the Answer</string>
     <string name="app_Check">Submit</string>
+    <string name="app_contact">Add Contact</string>
 
 </resources>

@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCat"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.666" />
 
     <ImageButton
         android:id="@+id/expensescreenhelp"
@@ -41,7 +41,7 @@
         android:id="@+id/fmtItalicExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_format_italic_white"
         app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         android:id="@+id/etTransactionComment"
         android:layout_width="377dp"
         android:layout_height="87dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="92dp"
         android:autofillHints="comment"
         android:hint="@string/comment_for_income"
         android:inputType="text"
@@ -73,9 +73,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTransactionComment" />
+        app:layout_constraintTop_toBottomOf="@+id/etTransactionComment"
+        app:layout_constraintVertical_bias="0.409" />
 
     <TextView
         android:id="@+id/TransDate"
@@ -196,15 +196,14 @@
         android:id="@+id/textViewCurrency"
         android:layout_width="165dp"
         android:layout_height="47dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="60dp"
         android:gravity="center_vertical"
         android:textColor="#F8F1F1"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toEndOf="@+id/textViewCat" />
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/textViewCat"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMode" />
 
     <TextView
         android:id="@+id/textViewMode"
@@ -228,6 +227,17 @@
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/btnOpen"
+        android:layout_width="99dp"
+        android:layout_height="28dp"
+        android:text="@string/app_contact"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/etTransactionComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCurrency" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

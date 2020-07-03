@@ -1,11 +1,17 @@
 package com.example.strawhats;
+import android.content.Intent;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,6 +20,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Spannable;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -32,6 +39,7 @@ import com.tooltip.Tooltip;
 
 import org.w3c.dom.Text;
 
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,24 +54,35 @@ public class TransactionForm extends AppCompatActivity {
     private CategoryAdapter mAdapter;
     private ModeAdapter nAdapter;
     private CurrencyAdapter cAdapter;
-    private TextView DisplayDate;
+    private TextView DisplayDate,AddContacts;
     private DatePickerDialog.OnDateSetListener DateSetListener;
     public String CategoryPicked;
-    public String ModePicked;
+    public String ModePicked,contactName;
     public EditText etAmount;
     public EditText etComment;
+
     TransactionDatabaseHelper mDatabaseHelper;
-    TextView catMenu;
+    TextView catMenu,btnOpen;
     TextView modeMenu;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
     ImageView Bold,Italic;
     CurrencyItem CurrencyPicked;
 
-
+private final int PICK_CONTACT = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
+        btnOpen =  findViewById(R.id.btnOpen);
+
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 Intent iContact = new Intent (Intent.ACTION_PICK,ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(iContact,PICK_CONTACT);
+
+            }
+        });
         final ImageButton Help = (ImageButton) findViewById(R.id.expensescreenhelp);
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +228,6 @@ public class TransactionForm extends AppCompatActivity {
 
         });
 
-
 //--------------------------------------------------------------------------------------------------
         String preferedCurrency = "EUR";
         etAmount = (EditText) findViewById(R.id.etAmount);
@@ -253,6 +271,9 @@ public class TransactionForm extends AppCompatActivity {
                 nDialog.show();
             }
         });
+
+
+        //---------------------------------Add Contacts-----------------------------------------------------
 
 //-------------------------Save Button Action-------------------------------------------------------
         Button SaveButton = (Button) findViewById(R.id.btnSave);
@@ -368,5 +389,25 @@ public class TransactionForm extends AppCompatActivity {
         }
 
         return str;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_CONTACT){
+            if(resultCode == RESULT_OK){
+                Uri contactData = data.getData();
+                Cursor c = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    c = getContentResolver().query(contactData, null,null,null);
+                }
+                if(c.moveToFirst()){
+                     contactName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    btnOpen.setText(contactName);
+                }
+            }
+        }
+
     }
 }

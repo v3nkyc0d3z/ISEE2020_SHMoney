@@ -1,5 +1,6 @@
 package com.example.strawhats;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
@@ -7,6 +8,7 @@ import androidx.core.text.HtmlCompat;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,8 +16,10 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.style.StyleSpan;
@@ -52,11 +56,11 @@ public class IncomeForm extends AppCompatActivity {
     public EditText etAmount;
     public EditText etComment;
     TransactionDatabaseHelper mDatabaseHelper;
-    TextView catBtn;
+    TextView catBtn,btnOpen;
     ImageView Bold,Italic;
-    String comments;
+    String comments,contactName;
     CurrencyItem CurrencyPicked;
-
+    private final int PICK_CONTACT = 1;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -69,6 +73,19 @@ public class IncomeForm extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/dd/MM");
         String currentDate = sdf.format(new Date());
+
+        btnOpen =  findViewById(R.id.btnOpen);
+
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iContact = new Intent (Intent.ACTION_PICK,ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(iContact,PICK_CONTACT);
+
+            }
+        });
+
+
 
 //---------------------Date picker section---------------------------------------------------
         DisplayDate = (TextView) findViewById(R.id.IncomeDate);
@@ -298,4 +315,24 @@ public class IncomeForm extends AppCompatActivity {
         }
         return str;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_CONTACT){
+            if(resultCode == RESULT_OK){
+                Uri contactData = data.getData();
+                Cursor c = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    c = getContentResolver().query(contactData, null,null,null);
+                }
+                if(c.moveToFirst()){
+                    contactName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    btnOpen.setText(contactName);
+                }
+            }
+        }
+
+    }
+
 }
