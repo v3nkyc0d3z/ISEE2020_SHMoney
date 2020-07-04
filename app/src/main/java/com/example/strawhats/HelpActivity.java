@@ -29,19 +29,31 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainhelp);
 
-        textview = (TextView) findViewById(R.id.helpcontent);
 
+      //  TextView txtDetails = (TextView) findViewById(R.id.txtDetails);
+     //   txtDetails.setText( "This application is a product of" + "\n" + "'StrawHats Private Limited'. \n" +
+      //          "We keep forward this product to assist you with your daily life. This application helps to to keep track of your regular transactions. You can use this app to add your income, add your expenses and view the pictorial representations of the summary of transactions. You can edit, delete or repeat the transactions aswell. Click on the \"?\" symbol on right top corner of each page to know more about that particular page. \n" +
+      //          "\n" +
+       //         "If you have any problems, suggestions, appraises or any general feedback, please write to us at" + "\n" + "'strawhats.isee2020@gmail.com'."+ "\n" +" we are always happy to assist you.");
+     //   txtDetails.setMovementMethod(new ScrollingMovementMethod());
+       // textview.setGravity(Gravity.FILL_VERTICAL);
+      //  textview.setTextColor(Color.WHITE);
+
+        textview = (TextView) findViewById(R.id.txtDetails);
+        String large_text;
         String para = "This application is a product of" + "\n" + "'StrawHats Private Limited'. \n" +
                 "We keep forward this product to assist you with your daily life. This application helps to to keep track of your regular transactions. You can use this app to add your income, add your expenses, view the pictorial representations of the summary of transactions. You can edit, delete or repeat the transactions aswell. Click on the \"?\" symbol on right top corner of each page to know more about that particular page. \n" +
                 "\n" +
-                "If you have any problems, suggestions, appraises or any general feedback, please write to us at" + "\n" + "'strawhats.isee2020@gmail.com'."+ "\n" +" we are always happy to assist you.";
+              "If you have any problems, suggestions, appraises or any general feedback, please write to us at" + "\n" + "'strawhats.isee2020@gmail.com'."+ "\n" +" we are always happy to assist you.";
 
         textview.setText(R.string.large_text);
         textview.setMovementMethod(new ScrollingMovementMethod());
         textview.setTextColor(Color.WHITE);
-                textview.setGravity(Gravity.FILL_VERTICAL);
-                textview.setGravity(Gravity.CENTER_HORIZONTAL);
-                        textview.setTextSize((float) 50d);
+              textview.setGravity(Gravity.FILL_VERTICAL);
+               textview.setGravity(Gravity.FILL_HORIZONTAL);
+               textview.setTextSize((float) 20d);
 
     }
+
+
 }
