@@ -67,21 +67,16 @@ public class ImportExport extends AppCompatActivity {
                     FileOutputStream out = openFileOutput("data_"+snow+".csv", Context.MODE_PRIVATE);
                     out.write((data.toString()).getBytes());
                     out.close();
-
                     Context context = getApplicationContext();
-
-
                     File filelocation = new File(getFilesDir(),"data_"+snow+".csv");
                     String paths = filelocation.getPath();
                     toastMessage("File " + filelocation.getPath() + " written");
-
                     Uri path = FileProvider.getUriForFile(context,"com.example.strawhats.fileprovider",filelocation);
                     Intent fileIntent = new Intent(Intent.ACTION_SEND);
                     fileIntent.setType("text/csv");
                     fileIntent.putExtra(Intent.EXTRA_SUBJECT,"Data");
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     fileIntent.putExtra(Intent.EXTRA_STREAM,path);
-
                     startActivity(Intent.createChooser(fileIntent,"Send Mail"));
                 }catch (Exception e){
                     e.printStackTrace();
@@ -98,38 +93,41 @@ public class ImportExport extends AppCompatActivity {
                 startActivityForResult(mFileManager,1);
             }
         });
-
         Button importData = (Button) findViewById(R.id.btnImportData);
         TDBHelper = new TransactionDatabaseHelper(this);
         importData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayList<TransactionList> Transactions = new ArrayList<>();
-                String line = "";
-                ContentValues cv;
-                try {
-                    InputStream inputStream = getContentResolver().openInputStream(importUri);
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-                    while ((line = reader.readLine()) != null){
-                        String[] tokens = line.split(",");
-                        if (!tokens[0].equals("Date")){
-                            Boolean res = TDBHelper.addTransaction(tokens[0],Float.parseFloat(tokens[1]),tokens[2],
-                                                                    tokens[3],tokens[4],tokens[5],tokens[6],"Default");
-                            if (res){
-                                Log.d("line parsed","import successful");
-                            }else{
-                                Log.d("problem","insert failed");
+                if (importUri != null) {
+                    String line = "";
+                    ContentValues cv;
+                    try {
+                        InputStream inputStream = getContentResolver().openInputStream(importUri);
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+                        while ((line = reader.readLine()) != null) {
+                            String[] tokens = line.split(",");
+                            if (!tokens[0].equals("Date")) {
+                                Boolean res = TDBHelper.addTransaction(tokens[0], Float.parseFloat(tokens[1]), tokens[2],
+                                        tokens[3], tokens[4], tokens[5], tokens[6], "Default");
+                                if (res) {
+                                    Log.d("line parsed", "import successful");
+                                } else {
+                                    Log.d("problem", "insert failed");
+                                }
                             }
                         }
+                    } catch (FileNotFoundException e) {
+                        Log.wtf("Import Failed", "No File found" + FileLocation, e);
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        Log.wtf("Read Failed", "Error reading line found" + line, e);
+                        e.printStackTrace();
                     }
-                } catch (FileNotFoundException e) {
-                    Log.wtf("Import Failed","No File found"+FileLocation,e);
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    Log.wtf("Read Failed","Error reading line found"+line,e);
-                    e.printStackTrace();
+                    finish();
+                }else{
+                    toastMessage("Choose a file to import");
                 }
-                finish();
             }
         });
     }

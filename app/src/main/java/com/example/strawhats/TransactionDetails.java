@@ -108,7 +108,6 @@ public class TransactionDetails extends AppCompatActivity {
             tv4.setText("Category   : " + category);
             tv5.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @Override

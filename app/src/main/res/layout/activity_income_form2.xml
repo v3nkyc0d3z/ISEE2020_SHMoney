@@ -82,7 +82,7 @@
     <TextView
         android:id="@+id/IncomeDate"
         android:layout_width="154dp"
-        android:layout_height="43dp"
+        android:layout_height="25dp"
         android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:textColor="#FFFFFF"
@@ -111,7 +111,7 @@
     <TextView
         android:id="@+id/textViewCategory"
         android:layout_width="156dp"
-        android:layout_height="44dp"
+        android:layout_height="25dp"
         android:background="#2F617C"
         android:backgroundTint="#2F617C"
         android:gravity="center_vertical"
@@ -121,10 +121,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toEndOf="@+id/IncomeDate"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.016"
+        app:layout_constraintVertical_bias="0.025"
         tools:ignore="RtlCompat" />
 
     <TextView
@@ -147,8 +147,8 @@
         android:id="@+id/etIncomeComment"
         android:layout_width="347dp"
         android:layout_height="85dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="20dp"
         android:autofillHints="comment"
         android:backgroundTint="#FFFFFF"
         android:hint="@string/comment_for_income"
@@ -179,15 +179,17 @@
         android:id="@+id/textViewCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="64dp"
         android:text="EURO"
         android:textColor="#FFFFFF"
-        android:textSize="18dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toEndOf="@+id/tvCurr"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurr"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/fmtBoldIncome"
@@ -240,10 +242,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeComment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintHorizontal_bias="0.697"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

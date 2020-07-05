@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         username= findViewById(R.id.username);
         password= findViewById(R.id.password);
         //dob= findViewById(R.id.dob);
-        email= findViewById(R.id.email);
+
         //country= findViewById(R.id.country);
         register= findViewById(R.id.register);
         Currency = (Spinner) findViewById(R.id.spCurrencyPref);
@@ -88,7 +88,6 @@ list.add("What is your favourite pet?");
                 String usernameValue=username.getText().toString();
                 String passwordValue=password.getText().toString();
                // String dobValue=dob.getText().toString();
-                String emailValue=email.getText().toString();
                 String SQAValue=SecurityAnswer.getText().toString();
                 String currencyValue = CurrencyPicked.getmCurrencyAbbreviation();
                 SQQ=SecurityQuestion.getSelectedItem().toString();
@@ -97,9 +96,8 @@ list.add("What is your favourite pet?");
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("username",usernameValue);
                     contentValues.put("password",passwordValue);
-                    contentValues.put("email",emailValue);
                     contentValues.put("SQA",SQAValue);
-                   contentValues.put("SQQ",SQQ);
+                    contentValues.put("SQQ",SQQ);
                     contentValues.put("currency",currencyValue);
                     userDatabaseHelper.insertUser(contentValues);
                     Toast.makeText(RegisterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();

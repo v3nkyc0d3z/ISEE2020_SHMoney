@@ -302,6 +302,7 @@ private final int PICK_CONTACT = 1;
                 etComment.setText(HtmlCompat.fromHtml(html,0));
             }
         });
+
         Italic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,7 +313,6 @@ private final int PICK_CONTACT = 1;
                     endSelection = startSelection;
                     startSelection = temp;
                 }
-
                 Spannable s = etComment.getText();
                 s.setSpan(new StyleSpan(Typeface.ITALIC),startSelection,endSelection,0);
                 System.out.println(s);
@@ -330,7 +330,6 @@ private final int PICK_CONTACT = 1;
                 if (amount.length()!= 0) {
                     amt = Float.parseFloat(amount);
                 }
-                //String mode = ModeSelect.getSelectedItem().toString();
                 String comment = HtmlCompat.toHtml(etComment.getText(),HtmlCompat.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE);
                 if (comment.length()==0){
                     comment = " ";
@@ -403,11 +402,10 @@ private final int PICK_CONTACT = 1;
                     c = getContentResolver().query(contactData, null,null,null);
                 }
                 if(c.moveToFirst()){
-                     contactName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    contactName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
                     btnOpen.setText(contactName);
                 }
             }
         }
-
     }
 }

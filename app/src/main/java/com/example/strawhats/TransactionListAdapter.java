@@ -77,7 +77,8 @@ public class TransactionListAdapter extends BaseAdapter implements Filterable {
         tvComment.setText(HtmlCompat.fromHtml(comment,0));
         tvDate.setText(Original.get(position).getDate());
         Float amount = Float.parseFloat(Original.get(position).getAmount());
-        tvAmount.setText(currencySymbol+ " " +amount*exchange);
+        String Amount = currencySymbol+ " " + Math.ceil(amount*exchange*100)/100;
+        tvAmount.setText(Amount);
         tvAction.setText(Original.get(position).getAction());
 
         if(Original.get(position).getAction().equals("you spent")){

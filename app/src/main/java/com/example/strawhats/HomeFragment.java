@@ -100,9 +100,6 @@ public class HomeFragment extends Fragment {
 
         PieChart pieChart = view.findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
-
-
-
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,10 +154,7 @@ public class HomeFragment extends Fragment {
         }
         value.add(new PieEntry(income,"inc"));
         value.add(new PieEntry(expense,"exp"));
-
-
         PieDataSet pieDataSet = new PieDataSet(value,"Proportions");
-
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueTextSize(13f);
         pieChart.setData(pieData);
@@ -169,7 +163,6 @@ public class HomeFragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
         pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
-
         final int[] MY_COLORS = {Color.rgb(12,166,139), Color.rgb(212,64,34)};
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for(int c: MY_COLORS) colors.add(c);
@@ -193,7 +186,14 @@ public class HomeFragment extends Fragment {
         }
         if (constaraint == 0){
             ThresholdPB.setVisibility(View.INVISIBLE);
-            constraintTitle.setVisibility(View.INVISIBLE);
+            constraintTitle.setText("Tap here to setup a monthly threshold");
+            constraintTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent constraint = new Intent(getActivity(),BudgetThresholding.class);
+                    startActivity(constraint);
+                }
+            });
         } else {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.MONTH, 0);
@@ -201,25 +201,24 @@ public class HomeFragment extends Fragment {
             Date monthFirstDay = calendar.getTime();
             calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
             Date monthLastDay = calendar.getTime();
-
             Date tDate;
             data = mDatabaseHelper.getData();
             while(data.moveToNext()){
                 String stDate = data.getString(1);
                 tDate = new SimpleDateFormat("yyyy/dd/MM").parse(stDate);
                 if (data.getString(6).equals("Expense")) {
-                    if (tDate.after(monthFirstDay) && tDate.before(monthLastDay)) {
+                    if ((tDate.after(monthFirstDay) && tDate.before(monthLastDay))
+                            || tDate.equals(monthFirstDay) || tDate.equals(monthLastDay)) {
                         netExp = netExp + data.getFloat(2);
                     }
                 }
             }
-            if (netExp > constaraint){
+            if (netExp >= constaraint){
                 ThresholdPB.setProgress(100);
                 ThresholdPB.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
                 Intent intent = new Intent(getActivity(),BudgetThresholding.class);
                 Context c = getContext();
                 showNotification(c,"Budget Exceeded","Tap to increase budget",intent);
-
             } else {
                 int progress = (int) ((netExp / constaraint) * 100);
                 ThresholdPB.setProgress(progress);

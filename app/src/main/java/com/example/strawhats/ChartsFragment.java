@@ -163,16 +163,15 @@ public class ChartsFragment extends Fragment {
             String sDate = transaction.getDate();
             Date date = new SimpleDateFormat("yyyy/dd/MM").parse(sDate);
             Float amount = Float.parseFloat(transaction.getAmount());
-
             Calendar calendar = Calendar.getInstance(); // this would default to now
             calendar.add(Calendar.DAY_OF_MONTH, -dateRange);
 
             if (date.after(calendar.getTime())){
-                String type = transaction.getType();
-                if (type.equals("expense")){
-                    amount = amount*-1;
-                };
-                if (lineDataMap.containsKey(transaction.getDate())){
+//                String type = transaction.getType();
+//                if (type.equals("Expense")){
+//                    amount = amount*-1;
+//                }
+                if (lineDataMap.containsKey(date)){
                     if (transaction.getType().equals("Income")) {
                         lineDataMap.put(date, (lineDataMap.get(date) + amount));
                     } else{
@@ -186,8 +185,6 @@ public class ChartsFragment extends Fragment {
                     }
                 }
             }
-
-
         }
 /**      GraphView Graphs have a special Datatype called Datapoint array
  *      It is an array of size (n,2) n-data and 2 - axis
@@ -238,7 +235,6 @@ public class ChartsFragment extends Fragment {
         Float entertainment = 0f;
         Float rental = 0f;
         Float hospital = 0f;
-
         while(data.moveToNext()){
             String type = data.getString(6);
             String category = data.getString(4);
@@ -259,15 +255,12 @@ public class ChartsFragment extends Fragment {
             }
 
         }
-
         if (shopping > 0){
             value.add(new PieEntry(shopping,"Shopping"));
         }
-
         if (entertainment > 0){
             value.add(new PieEntry(entertainment,"Entertainment"));
         }
-
         if (rental > 0){
             value.add(new PieEntry(rental,"Rental"));
         }
