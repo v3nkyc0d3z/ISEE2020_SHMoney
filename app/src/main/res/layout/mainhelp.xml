@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgrnd"
+    android:background="#1f4068"
     android:padding="5dp"
     android:layout_gravity="center"
     >
@@ -32,8 +32,8 @@
 
     <TextView
         android:id="@+id/txtDetails"
-        android:layout_width="353dp"
-        android:layout_height="460dp"
+        android:layout_width="308dp"
+        android:layout_height="397dp"
         android:layout_gravity="center"
         android:gravity="fill_horizontal"
         android:justificationMode="inter_word"

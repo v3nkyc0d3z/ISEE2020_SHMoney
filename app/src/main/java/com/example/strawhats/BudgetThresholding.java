@@ -1,13 +1,19 @@
 package com.example.strawhats;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+
+import com.tooltip.Tooltip;
 
 public class BudgetThresholding extends AppCompatActivity {
     EditText etAmount;
@@ -28,6 +34,18 @@ public class BudgetThresholding extends AppCompatActivity {
         }
         etAmount.setText(constraint.toString());
 
+        final ImageButton Help = (ImageButton) findViewById(R.id.thresholdhelp);
+        Help.setColorFilter(ContextCompat.getColor(BudgetThresholding.this,R.color.colorWhiteBackgroundDark));
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tooltip tooltip = new Tooltip.Builder(Help).setText("Use this page to set your monthly threshold limit \nSet the value to zero (0) to turn off the threshold \nClick on this message to make it disappear ")
+                        .setTextColor(Color.WHITE).setGravity(Gravity.BOTTOM)
+                        .setCornerRadius(8f)
+                        .setDismissOnClick(true)
+                        .show();
+            }
+        });
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
