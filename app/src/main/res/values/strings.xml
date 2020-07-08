@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Strawhats</string>
+    <string name="app_name">SH_Money</string>
     <string name="save_transaction">save</string>
     <string name="amount_spent">Amount Spent</string>
     <string name="transactionbtn">New Transaction</string>
